@@ -1,0 +1,8 @@
+<a class="content-button" [routerLink]="link()">
+  <div class="header">
+    <img class="image" alt="" [attr.src]="image()" />
+    <div class="type-chip">{{type() | titlecase}}</div>
+  </div>
+  <div class="title">{{ title() }}</div>
+  <div class="state-layer"></div>
+</a>

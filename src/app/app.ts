@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
 
 @Component({
   selector: 'app-root',
-  imports: [NxWelcome, RouterModule],
+  imports: [RouterModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
-  protected title = 'envisioning-intelligences-kiosk';
-}
+export class App {}

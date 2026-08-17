@@ -1,0 +1,101 @@
+:host {
+  display: block;
+  width: fit-content;
+  height: 100%;
+  border-radius: 2rem;
+  overflow: hidden;
+
+  .content-button,
+  .state-layer {
+    min-width: 17rem;
+    max-width: 31.125rem;
+    height: 100%;
+    width: 100%;
+  }
+
+  .state-layer {
+    position: absolute;
+    background: #ffffff;
+    opacity: 0;
+  }
+
+  .content-button {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .content-button:hover {
+    .state-layer {
+      opacity: 0.08;
+    }
+  }
+
+  .content-button:active,
+  .content-button:focus {
+    .state-layer {
+      opacity: 0.1;
+    }
+  }
+
+  .header {
+    position: relative;
+    min-height: 0px;
+    max-height: 336px;
+    flex: 3;
+
+    .image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .type-chip {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    border-radius: 9999px;
+    background: #121318;
+    padding: 0.5rem 1.25rem;
+    border: 1px solid #7a7785;
+
+    font-family: 'Plus Jakarta Sans Variable', sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    letter-spacing: 0.1px;
+  }
+
+  .title {
+    padding: 1.25rem;
+    background: #2f3036;
+    flex: 1;
+
+    font-family: 'Lora Variable', serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  @media (min-width: 1280px) {
+    .header {
+      min-height: 0px;
+    }
+
+    .type-chip {
+      bottom: 1.5rem;
+      left: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      letter-spacing: 0.15px;
+    }
+
+    .title {
+      padding: 1.5rem;
+      font-size: 1.75rem;
+      line-height: 2.25rem;
+    }
+  }
+}
