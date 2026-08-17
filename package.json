@@ -1,8 +1,9 @@
 {
-  "name": "@envisioning-intelligences-kiosk/source",
+  "name": "envisioning-intelligences-kiosk",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "prepare": "husky",
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test"
@@ -24,7 +25,12 @@
     "@angular/cli": "~22.0.4",
     "@angular/compiler-cli": "~22.0.4",
     "@angular/language-service": "~22.0.4",
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "@commitlint/config-nx-scopes": "^21.2.0",
+    "@compodoc/compodoc": "^2.0.0",
     "@eslint/js": "^9.8.0",
+    "@fontsource-variable/material-symbols-rounded": "^5.3.3",
     "@nx/angular": "23.1.1",
     "@nx/eslint": "23.1.1",
     "@nx/eslint-plugin": "23.1.1",
@@ -33,10 +39,16 @@
     "@nx/workspace": "23.1.1",
     "@schematics/angular": "~22.0.4",
     "@swc/helpers": "~0.5.18",
+    "@testing-library/angular": "^19.4.2",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/user-event": "^14.6.4",
     "@typescript-eslint/utils": "^8.58.0",
+    "@vitest/coverage-v8": "^4.1.10",
     "angular-eslint": "^22.0.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
+    "husky": "^9.1.7",
     "jsdom": "^27.1.0",
     "nx": "23.1.1",
     "prettier": "~3.6.2",
@@ -44,6 +56,11 @@
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.58.0",
     "vitest": "^4.0.8"
+  },
+  "allowScripts": {
+    "@parcel/watcher": true,
+    "esbuild": true,
+    "nx": true
   },
   "nx": {
     "includedScripts": []
