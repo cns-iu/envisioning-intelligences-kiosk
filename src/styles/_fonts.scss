@@ -1,0 +1,25 @@
+@use '@fontsource-variable/lora' as lora;
+@use '@fontsource-variable/material-symbols-rounded' as material-symbols-rounded;
+@use '@fontsource-variable/plus-jakarta-sans' as plus-jakarta-sans;
+
+mat-icon,
+.material-symbols-rounded,
+.material-icons,
+[matButtonIcon] {
+  font-family: 'Material Symbols Rounded Variable';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
