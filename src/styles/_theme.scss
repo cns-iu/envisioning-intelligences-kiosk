@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+@use './palettes' as palettes;
+
+:root {
+  color-scheme: light dark;
+  @include mat.theme(
+    (
+      color: (
+        primary: palettes.$primary-palette,
+        tertiary: palettes.$tertiary-palette,
+        theme-type: color-scheme,
+      ),
+      // TODO add typography
+      density: 0,
+    )
+  );
+}

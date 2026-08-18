@@ -1,2 +1,7 @@
-@use '@fontsource-variable/lora/wght.css' as lora;
-@use '@fontsource-variable/plus-jakarta-sans/wght.css' as plus-jakarta-sans;
+@use './styles/fonts';
+@use './styles/theme';
+
+body {
+  margin: 0;
+  padding: 0;
+}
