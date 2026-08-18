@@ -17,6 +17,9 @@
         "tsConfig": "tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "styles": ["./src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["./src/styles/utils"]
+        },
         "assets": [
           {
             "glob": "**/*",
@@ -90,6 +93,12 @@
         "buildTarget": "envisioning-intelligences-kiosk:build",
         "staticFilePath": "dist/envisioning-intelligences-kiosk/browser",
         "spa": true
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx nx format:write"
       }
     }
   }
