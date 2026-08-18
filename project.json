@@ -29,6 +29,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/envisioning-intelligences-kiosk/",
           "budgets": [
             {
               "type": "initial",
@@ -44,6 +45,13 @@
           "outputHashing": "all"
         },
         "development": {
+          "baseHref": "/",
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true
+        },
+        "preview": {
+          "baseHref": "/apps/envisioning-intelligences-kiosk/",
           "extractLicenses": false,
           "optimization": false,
           "sourceMap": true

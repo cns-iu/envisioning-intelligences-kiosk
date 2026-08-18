@@ -79,7 +79,17 @@ mkdir -p "$DEPLOY_DIR"
 cp -r "${DIST_DIR}"/!(libs) "${DEPLOY_DIR}/"
 cp -r "${ACTION_PATH}/assets"/* "${DEPLOY_DIR}/"
 
-# -- step 2: move applications out of their browser/ subdirectory -----------
+# -- step 2: normalize application output layout ---------------------------
+# Angular applications in this workspace are emitted directly under dist,
+# rather than under dist/apps. Normalize those directories to the layout used
+# by the preview page before flattening their browser output.
+mkdir -p "${DEPLOY_DIR}/apps"
+for browser_dir in "${DEPLOY_DIR}"/*/browser; do
+  [[ -d "$browser_dir" ]] || continue
+  mv "$(dirname "$browser_dir")" "${DEPLOY_DIR}/apps/"
+done
+
+# Move applications out of their browser/ subdirectory.
 for browser_dir in "${DEPLOY_DIR}/apps"/*/browser; do
   [[ -d "$browser_dir" ]] || continue
   mv "${browser_dir}"/* "$(dirname "$browser_dir")/"
