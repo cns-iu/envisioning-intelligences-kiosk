@@ -1,21 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
 import { IntelligenceTypeChip } from './intelligence-type-chip';
 
 describe('IntelligenceTypeChip', () => {
-  let component: IntelligenceTypeChip;
-  let fixture: ComponentFixture<IntelligenceTypeChip>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  it('renders the image and label from inputs', async () => {
+    await render(`<app-intelligence-type-chip [label]="label" [image]="image"></app-intelligence-type-chip>`, {
+      componentProperties: {
+        label: 'Collective',
+        image: '/assets/collective.svg',
+      },
       imports: [IntelligenceTypeChip],
-    }).compileComponents();
+    });
 
-    fixture = TestBed.createComponent(IntelligenceTypeChip);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(screen.getByAltText('Collective')).toBeInTheDocument();
+    expect(screen.getByText('Collective')).toBeInTheDocument();
   });
 });
