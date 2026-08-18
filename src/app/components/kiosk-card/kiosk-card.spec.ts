@@ -4,7 +4,7 @@ import { KioskCard } from './kiosk-card';
 describe('KioskCard', () => {
   it('renders the card image, title, and type label from the inputs', async () => {
     const { container } = await render(KioskCard, {
-      componentInputs: {
+      inputs: {
         image: 'assets/demo-image.png',
         title: 'Deep Time Stories',
         type: 'visualization',
@@ -20,7 +20,7 @@ describe('KioskCard', () => {
 
   it('uses the default imagewhen inputs are not provided', async () => {
     const { container } = await render(KioskCard, {
-      componentInputs: {
+      inputs: {
         title: 'Default Work',
         type: 'visualization',
         link: '/works/default',

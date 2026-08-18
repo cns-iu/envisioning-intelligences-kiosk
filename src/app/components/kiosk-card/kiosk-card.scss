@@ -1,101 +1,90 @@
+@use 'token-utils';
+@use 'breakpoints';
+
 :host {
   display: block;
-  width: fit-content;
   height: 100%;
+  width: 100%;
   border-radius: 2rem;
   overflow: hidden;
 
-  .content-button,
-  .state-layer {
-    min-width: 17rem;
-    max-width: 31.125rem;
+  .app-kiosk-card--content-button,
+  .app-kiosk-card--state-layer {
     height: 100%;
     width: 100%;
+    min-width: 17rem;
+    max-width: 31.125rem;
   }
 
-  .state-layer {
+  .app-kiosk-card--state-layer {
     position: absolute;
-    background: #ffffff;
+    background: token-utils.sys-slot(on-surface);
     opacity: 0;
   }
 
-  .content-button {
+  .app-kiosk-card--content-button {
     display: flex;
     flex-direction: column;
     position: relative;
-    color: #ffffff;
-    font-weight: 700;
+    color: token-utils.sys-slot(on-surface);
     text-decoration: none;
   }
 
-  .content-button:hover {
-    .state-layer {
+  .app-kiosk-card--content-button:hover {
+    .app-kiosk-card--state-layer {
       opacity: 0.08;
     }
   }
 
-  .content-button:active,
-  .content-button:focus {
-    .state-layer {
+  .app-kiosk-card--content-button:active,
+  .app-kiosk-card--content-button:focus {
+    .app-kiosk-card--state-layer {
       opacity: 0.1;
     }
   }
 
-  .header {
+  .app-kiosk-card--header {
     position: relative;
-    min-height: 0px;
-    max-height: 336px;
-    flex: 3;
+    flex: 1;
 
-    .image {
+    .app-kiosk-card--image {
       height: 100%;
       width: 100%;
       object-fit: cover;
     }
   }
 
-  .type-chip {
+  .app-kiosk-card--type-chip {
     position: absolute;
     bottom: 1.25rem;
     left: 1.25rem;
-    border-radius: 9999px;
-    background: #121318;
     padding: 0.5rem 1.25rem;
-    border: 1px solid #7a7785;
-
-    font-family: 'Plus Jakarta Sans Variable', sans-serif;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    letter-spacing: 0.1px;
+    background: token-utils.sys-slot(surface-container-highest);
+    border: 1px solid token-utils.sys-slot(outline-variant);
+    border-radius: 9999px;
+    font: token-utils.sys-slot(label-medium);
+    letter-spacing: token-utils.sys-slot(label-medium-tracking);
   }
 
-  .title {
+  .app-kiosk-card--title {
     padding: 1.25rem;
-    background: #2f3036;
-    flex: 1;
-
-    font-family: 'Lora Variable', serif;
-    font-size: 1.5rem;
-    line-height: 2rem;
+    background: token-utils.sys-slot(surface-container-highest);
+    font: token-utils.sys-slot(title-medium);
+    letter-spacing: token-utils.sys-slot(title-medium-tracking);
   }
 
-  @media (min-width: 1280px) {
-    .header {
-      min-height: 0px;
-    }
-
-    .type-chip {
+  @include breakpoints.breakpoint(large) {
+    .app-kiosk-card--type-chip {
       bottom: 1.5rem;
       left: 1.5rem;
-      font-size: 1rem;
-      line-height: 1.5rem;
-      letter-spacing: 0.15px;
+      font: token-utils.sys-slot(label-large);
+      letter-spacing: token-utils.sys-slot(label-large-tracking);
     }
 
-    .title {
+    .app-kiosk-card--title {
       padding: 1.5rem;
-      font-size: 1.75rem;
-      line-height: 2.25rem;
+      font: token-utils.sys-slot(title-large);
+      letter-spacing: token-utils.sys-slot(title-large-tracking);
     }
   }
 }

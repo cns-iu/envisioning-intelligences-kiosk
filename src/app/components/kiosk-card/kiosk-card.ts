@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
@@ -11,7 +11,7 @@ export type WorkType = 'visualization' | 'video';
  */
 @Component({
   selector: 'app-kiosk-card',
-  imports: [CommonModule, MatButtonModule, RouterLink],
+  imports: [CommonModule, MatButtonModule, RouterLink, NgOptimizedImage],
   templateUrl: './kiosk-card.html',
   styleUrl: './kiosk-card.scss',
 })
