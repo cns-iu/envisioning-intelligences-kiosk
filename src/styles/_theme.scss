@@ -1,8 +1,12 @@
 @use '@angular/material' as mat;
 @use './palettes' as palettes;
+@use './typography' as typography;
+
+$_overrides: typography.$typography-overrides;
 
 :root {
   color-scheme: light dark;
+
   @include mat.theme(
     (
       color: (
@@ -10,8 +14,9 @@
         tertiary: palettes.$tertiary-palette,
         theme-type: color-scheme,
       ),
-      // TODO add typography
+      typography: typography.$typography,
       density: 0,
-    )
+    ),
+    $_overrides
   );
 }
