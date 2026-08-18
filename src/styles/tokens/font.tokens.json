@@ -1,0 +1,148 @@
+{
+  "Static": {
+    "Font": {
+      "Brand": {
+        "$type": "string",
+        "$value": "Lora",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:19177:5934",
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.type": "string"
+        }
+      },
+      "Plain": {
+        "$type": "string",
+        "$value": "Plus Jakarta Sans",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:19177:5935",
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.type": "string"
+        }
+      }
+    },
+    "Weight": {
+      "Regular": {
+        "$type": "string",
+        "$value": "Regular",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:19177:5937",
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.type": "string"
+        }
+      },
+      "Medium": {
+        "$type": "string",
+        "$value": "Medium",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:19177:5938",
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.type": "string"
+        }
+      },
+      "Semibold": {
+        "$type": "string",
+        "$value": "Semibold",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:19177:5940",
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.type": "string"
+        }
+      },
+      "Bold": {
+        "$type": "string",
+        "$value": "Bold",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:19177:5941",
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.type": "string"
+        }
+      }
+    },
+    "Weight Italic": {
+      "Regular": {
+        "$type": "string",
+        "$value": "Regular Italic",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:19177:5942",
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.type": "string"
+        }
+      },
+      "Medium": {
+        "$type": "string",
+        "$value": "Medium Italic",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:19177:5943",
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.type": "string"
+        }
+      },
+      "Semibold": {
+        "$type": "string",
+        "$value": "Semibold Italic",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:19177:5944",
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.type": "string"
+        }
+      },
+      "Bold": {
+        "$type": "string",
+        "$value": "Bold Italic",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:19177:5945",
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.type": "string"
+        }
+      },
+      "Black": {
+        "$type": "string",
+        "$value": "Black Italic",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:19177:5946",
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.type": "string"
+        }
+      }
+    }
+  },
+  "Tracking": {
+    "None": {
+      "$type": "number",
+      "$value": 0,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:19177:5947",
+        "com.figma.scopes": ["ALL_SCOPES"]
+      }
+    },
+    "Small": {
+      "$type": "number",
+      "$value": 0.10000000149011612,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:19177:5948",
+        "com.figma.scopes": ["ALL_SCOPES"]
+      }
+    }
+  },
+  "Underline": {
+    "Thickness": {
+      "$type": "number",
+      "$value": 1,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:19177:5949",
+        "com.figma.scopes": ["ALL_SCOPES"]
+      }
+    },
+    "Offset": {
+      "$type": "number",
+      "$value": 2,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:19177:5950",
+        "com.figma.scopes": ["ALL_SCOPES"]
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Envisioning Intelligences"
+  }
+}
