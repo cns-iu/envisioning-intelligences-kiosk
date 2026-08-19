@@ -3,7 +3,7 @@ import { KioskCard } from './kiosk-card';
 
 describe('KioskCard', () => {
   it('renders the card image, title, and type label from the inputs', async () => {
-    const { container } = await render(KioskCard, {
+    await render(KioskCard, {
       inputs: {
         image: 'assets/demo-image.png',
         title: 'Deep Time Stories',
@@ -12,14 +12,14 @@ describe('KioskCard', () => {
       },
     });
 
-    expect(container.querySelector('img')).toHaveAttribute('src', 'assets/demo-image.png');
+    expect(screen.getByAltText('')).toHaveAttribute('src', 'assets/demo-image.png');
     expect(screen.getByText('Deep Time Stories')).toBeInTheDocument();
     expect(screen.getByText('Visualization')).toBeInTheDocument();
-    expect(container.querySelector('a')).toHaveAttribute('href', '/works/deep-time');
+    expect(screen.getByRole('link', { name: /Deep Time Stories/ })).toHaveAttribute('href', '/works/deep-time');
   });
 
-  it('uses the default imagewhen inputs are not provided', async () => {
-    const { container } = await render(KioskCard, {
+  it('uses the default image when inputs are not provided', async () => {
+    await render(KioskCard, {
       inputs: {
         title: 'Default Work',
         type: 'visualization',
@@ -27,7 +27,7 @@ describe('KioskCard', () => {
       },
     });
 
-    expect(container.querySelector('img')).toHaveAttribute('src', 'assets/card-placeholder.png');
-    expect(container.querySelector('a')).toHaveAttribute('href', '/works/default');
+    expect(screen.getByAltText('')).toHaveAttribute('src', 'assets/card-placeholder.png');
+    expect(screen.getByRole('link', { name: /Default Work/ })).toHaveAttribute('href', '/works/default');
   });
 });
