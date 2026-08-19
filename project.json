@@ -29,7 +29,7 @@
       },
       "configurations": {
         "production": {
-          "baseHref": "/envisioning-intelligences-kiosk",
+          "baseHref": "/envisioning-intelligences-kiosk/",
           "budgets": [
             {
               "type": "initial",
