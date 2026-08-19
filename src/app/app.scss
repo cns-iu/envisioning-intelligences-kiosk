@@ -12,6 +12,7 @@
     grid-auto-rows: auto min-content;
     gap: 1rem;
     padding: 1rem;
+    min-height: 33rem;
   }
 
   @include breakpoints.breakpoint(small) {

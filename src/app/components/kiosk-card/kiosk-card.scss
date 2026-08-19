@@ -45,7 +45,7 @@
 
   .app-kiosk-card--header {
     position: relative;
-    min-width: 272px;
+    min-width: 17rem;
     aspect-ratio: 272/163;
 
     .app-kiosk-card--image {
@@ -73,6 +73,10 @@
   }
 
   @include breakpoints.breakpoint(large) {
+    .app-kiosk-card--header {
+      aspect-ratio: unset;
+    }
+
     .app-kiosk-card--type-chip {
       bottom: 1.5rem;
       left: 1.5rem;
