@@ -10,7 +10,7 @@
   color: token-utils.sys-slot(on-surface);
   background: token-utils.sys-slot(surface-container-low);
   border: 1px solid token-utils.sys-slot(outline-variant);
-  border-radius: 9999px;
+  border-radius: token-utils.sys-slot(corner-full);
   font: token-utils.sys-slot(label-small);
   letter-spacing: token-utils.sys-slot(label-small-tracking);
   position: relative;
@@ -29,7 +29,7 @@
   }
 
   @include breakpoints.breakpoint(medium) {
-    width: 236px;
+    width: 14.75rem;
     font: token-utils.sys-slot(label-medium);
     letter-spacing: token-utils.sys-slot(label-medium-tracking);
   }
