@@ -58,6 +58,7 @@
       position: relative;
       border: $border-width solid t.sys-slot(outline);
       outline: none;
+      overflow: hidden;
 
       &::before {
         @include fill-container();
@@ -74,7 +75,8 @@
         opacity: t.sys-slot(hover-state-layer-opacity);
       }
 
-      &:focus-visible::before {
+      &.cdk-program-focused::before,
+      &.cdk-keyboard-focused::before {
         opacity: t.sys-slot(focus-state-layer-opacity);
       }
 
