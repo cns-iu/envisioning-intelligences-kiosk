@@ -15,18 +15,18 @@
 }
 
 // // Returns a CSS variable name for a given token and namespace,
-// // e.g. token(primary, button) => --atlasng-button-primary
+// // e.g. token(primary, button) => --app-button-primary
 // @function token($token, $namespace-or-config) {
 //   $namespace: $namespace-or-config;
 //   @if meta.type-of($namespace-or-config) == 'map' {
 //     $namespace: map.get($namespace-or-config, namespace);
 //   }
 
-//   @return --ang-#{$namespace}-#{$token};
+//   @return --app-#{$namespace}-#{$token};
 // }
 
 // // Returns a CSS variable for a given token and namespace,
-// // e.g. slot(primary, button) => var(--atlasng-button-primary, var(--mat-sys-primary))
+// // e.g. slot(primary, button) => var(--app-button-primary, var(--mat-sys-primary))
 // @function slot($token, $tokens-config, $fallback: null) {
 //   $tokens: map.get($tokens-config, tokens);
 //   @if not map.has-key($tokens, $token) {
