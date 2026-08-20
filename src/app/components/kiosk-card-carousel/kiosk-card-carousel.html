@@ -1,11 +1,11 @@
 <swiper-container init="false" #swiperEl>
   @for (slides of groupedSlides(); track $index) {
-  <swiper-slide>
-    @for (slide of slides; track slide) {
-    <!-- TODO replace with card component -->
-    <span class="slide">Slide {{ $index }}</span>
-    }
-  </swiper-slide>
+    <swiper-slide>
+      @for (slide of slides; track slide) {
+        <!-- TODO replace with card component -->
+        <span class="slide">Slide {{ $index }}</span>
+      }
+    </swiper-slide>
   }
 </swiper-container>
 
