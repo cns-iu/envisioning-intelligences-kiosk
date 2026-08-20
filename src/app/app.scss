@@ -1,7 +1,35 @@
 @use 'token-utils';
+@use 'breakpoints';
 
 :host {
   display: block;
   width: 100vw;
   height: 100vh;
+
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-auto-rows: auto min-content;
+    gap: 1rem;
+    padding: 1rem;
+    min-height: 33rem;
+  }
+
+  @include breakpoints.breakpoint(small) {
+    .card-container {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @include breakpoints.breakpoint(medium) {
+    .card-container {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @include breakpoints.breakpoint(large) {
+    .card-container {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
 }
