@@ -4,12 +4,14 @@
 
 .app-about-modal--panel {
   max-height: 100vh;
+  border-radius: token-utils.sys-slot(corner-large);
+  border: 1px solid token-utils.sys-slot(outline);
 
   @include mat.dialog-overrides(
     (
-      container-shape: 16px,
+      container-shape: token-utils.sys-slot(corner-large),
       container-small-max-width: 100vw,
-      container-max-width: 100vw,
+      container-max-width: 100rem,
     )
   );
 
@@ -38,6 +40,16 @@
       padding-left: 1.5rem;
     }
   }
+
+  @include breakpoints.breakpoint(large) {
+    border-radius: 32px;
+
+    @include mat.dialog-overrides(
+      (
+        container-shape: 32px,
+      )
+    );
+  }
 }
 
 .app-about-modal {
@@ -45,15 +57,26 @@
   flex-direction: column;
   position: relative;
   gap: 2.5rem;
-  border: 1px solid token-utils.sys-slot(outline);
   color: token-utils.sys-slot(on-surface);
   background: token-utils.sys-slot(surface-container-high);
-  border-radius: inherit;
-  overflow: auto;
 
   .close {
-    --mat-icon-button-state-layer-size: 48px;
-    --mat-icon-button-icon-size: 24px;
+    @include mat.icon-button-overrides(
+      (
+        state-layer-size: 48px,
+        icon-size: 24px,
+      )
+    );
+
+    @include breakpoints.breakpoint(large) {
+      @include mat.icon-button-overrides(
+        (
+          state-layer-size: 64px,
+          icon-size: 48px,
+        )
+      );
+    }
+
     position: absolute;
     top: 0.25rem;
     right: 0.25rem;
@@ -113,6 +136,7 @@
       .chips {
         display: flex;
         gap: 0.75rem;
+        flex-wrap: wrap;
       }
     }
   }
@@ -142,11 +166,11 @@
 
     .left,
     .right {
-      height: 100%;
+      flex: 1;
     }
 
     .left {
-      min-width: 252px;
+      max-width: 296px;
       padding-bottom: 1.25rem;
 
       .header {
@@ -154,6 +178,16 @@
           max-width: 100%;
         }
       }
+
+      .types {
+        .chips {
+          gap: 0.5rem;
+        }
+      }
+    }
+
+    .logo-container {
+      width: 232px;
     }
 
     .right {
@@ -169,17 +203,7 @@
   }
 
   @include breakpoints.breakpoint(large) {
-    .app-about-modal--panel {
-      @include mat.dialog-overrides(
-        (
-          container-shape: 32px,
-        )
-      );
-    }
-
     .close {
-      --mat-icon-button-state-layer-size: 64px;
-      --mat-icon-button-icon-size: 48px;
       top: 0.5rem;
       right: 0.5rem;
 
@@ -195,8 +219,12 @@
       letter-spacing: token-utils.sys-slot(title-large-tracking);
     }
 
+    .logo-container {
+      width: 262px;
+    }
+
     .left {
-      min-width: 360px;
+      max-width: 328px;
       padding: 2rem;
 
       .header {
@@ -213,6 +241,10 @@
       .types {
         .content-header {
           margin-bottom: 1.5rem;
+        }
+
+        .chips {
+          gap: 1rem;
         }
       }
     }
