@@ -1,0 +1,32 @@
+<button class="close" matIconButton matDialogClose type="button" aria-label="Click me!">
+  <mat-icon fontIcon="close" />
+</button>
+<div class="left">
+  <div class="header">
+    @if (!data.title) {
+    <div class="logo-container">
+      <div class="logo" inlineSVG="/assets/wordmark-variable.svg" alt="Envisioning Intelligences"></div>
+    </div>
+    } @else {
+    <div class="title">{{ data.title }}</div>
+    <div class="year">{{ data.year }}</div>
+    }
+  </div>
+  <div class="types">
+    <div class="content-header">Intelligence types</div>
+    <div class="chips">
+      @for (type of data.types; track type) {
+      <app-intelligence-type-chip [image]="`assets/${type}.svg`" [label]="getTypeLabel(type)" />
+      }
+    </div>
+  </div>
+</div>
+
+<div class="right">
+  @for (section of data.sections; track section) {
+  <div class="section">
+    <div class="content-header">{{section.title}}</div>
+    <markdown [data]="section.content" />
+  </div>
+  }
+</div>

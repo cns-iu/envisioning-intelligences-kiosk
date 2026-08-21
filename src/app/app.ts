@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { IntelligenceTypeChip } from './components/intelligence-type-chip/intelligence-type-chip';
-import { KioskCard } from './components/kiosk-card/kiosk-card';
-import { KioskCardContainer } from './components/kiosk-card/kiosk-card-container/kiosk-card-container';
+import { AboutService } from './services/about.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, KioskCard, KioskCardContainer, IntelligenceTypeChip],
+  imports: [MatButtonModule, RouterModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {}
+export class App {
+  readonly about = inject(AboutService);
+}
