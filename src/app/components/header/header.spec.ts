@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/angular';
+import { fireEvent, render, within } from '@testing-library/angular';
 import { provideRouter } from '@angular/router';
 import { Header } from './header';
 
@@ -6,8 +6,8 @@ describe('Header', () => {
   const providers = [provideRouter([])];
 
   it('renders the logo as an accessible link to home', async () => {
-    const { getByRole } = await render(Header, { providers });
-    const logo = getByRole('link', { name: 'Home' });
+    const { getByLabelText } = await render(Header, { providers });
+    const logo = getByLabelText('Home');
 
     expect(logo).toHaveAttribute('href', '/');
   });
@@ -28,13 +28,14 @@ describe('Header', () => {
   });
 
   it('renders the home and about navigation buttons', async () => {
-    const { getAllByRole } = await render(Header, { providers });
-    const buttons = getAllByRole('button');
+    const { getByRole } = await render(Header, { providers });
+    const navigation = within(getByRole('navigation'));
+    const home = navigation.getByRole('link', { name: 'Home' });
+    const about = navigation.getByRole('button', { name: 'About' });
 
-    expect(buttons).toHaveLength(2);
-    expect(buttons[0]).toHaveTextContent('Home');
-    expect(buttons[0]).toHaveAttribute('routerlink', '/');
-    expect(buttons[1]).toHaveTextContent('About');
+    expect(home).toHaveTextContent('Home');
+    expect(home).toHaveAttribute('routerlink', '/');
+    expect(about).toHaveTextContent('About');
   });
 
   it('emits when the about button is clicked', async () => {

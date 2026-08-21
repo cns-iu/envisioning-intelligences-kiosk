@@ -1,10 +1,10 @@
 <header class="header">
-  <a class="logo" inlineSVG="assets/wordmark-variable.svg" routerLink="/" aria-label="Home"> </a>
+  <a class="logo" type="link" inlineSVG="assets/wordmark-variable.svg" routerLink="/" aria-label="Home"> </a>
   @if (title()) {
   <span class="title">{{ title() }}</span>
   }
   <nav class="button-group">
-    <a mat-button class="button" routerLink="/">Home</a>
+    <a mat-button class="button" type="button" routerLink="/">Home</a>
     <button mat-button class="button" type="button" (click)="aboutClicked.emit()">About</button>
   </nav>
 </header>
