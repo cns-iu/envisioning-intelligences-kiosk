@@ -1,0 +1,47 @@
+@use 'token-utils';
+@use 'breakpoints';
+
+:host {
+  display: flex;
+  height: 2.5rem;
+  width: fit-content;
+  align-items: center;
+  pointer-events: none;
+  color: token-utils.sys-slot(on-surface);
+  background: token-utils.sys-slot(surface-container-low);
+  border: 1px solid token-utils.sys-slot(outline-variant);
+  border-radius: token-utils.sys-slot(corner-full);
+  font: token-utils.sys-slot(label-small);
+  letter-spacing: token-utils.sys-slot(label-small-tracking);
+  position: relative;
+  overflow: hidden;
+
+  .tile {
+    height: calc(100% + 2px);
+    position: absolute;
+  }
+
+  .label {
+    width: 100%;
+    text-align: center;
+    padding: 0 1.25rem 0 3.5rem;
+    text-wrap: nowrap;
+  }
+
+  @include breakpoints.breakpoint(medium) {
+    width: 14.75rem;
+    font: token-utils.sys-slot(label-medium);
+    letter-spacing: token-utils.sys-slot(label-medium-tracking);
+  }
+
+  @include breakpoints.breakpoint(large) {
+    height: 3rem;
+    width: 18.75rem;
+    font: token-utils.sys-slot(label-large);
+    letter-spacing: token-utils.sys-slot(label-large-tracking);
+
+    .label {
+      padding-left: 4rem;
+    }
+  }
+}
