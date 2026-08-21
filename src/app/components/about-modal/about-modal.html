@@ -1,0 +1,42 @@
+<button class="close" matIconButton matDialogClose type="button" aria-label="Click me!">
+  <mat-icon fontIcon="close" />
+</button>
+<div class="left">
+  <div class="header">
+    @if (main) {
+    <div class="logo-container">
+      <div class="logo" inlineSVG="/assets/wordmark-variable.svg" alt="Envisioning Intelligences"></div>
+    </div>
+    } @else {
+    <div class="title">{{ title }}</div>
+    <div>{{ year }}</div>
+    }
+  </div>
+  <div class="types">
+    <div class="content-header">Intelligence Types</div>
+    <div class="chips">
+      @for (type of types; track type) {
+      <div>{{ type }}</div>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="right">
+  @if (affiliations) {
+  <div class="affiliations">
+    <div class="content-header">Artists and affiliations</div>
+    <markdown [data]="affiliations" />
+  </div>
+  } @if (description) {
+  <div class="description">
+    <div class="content-header">Description</div>
+    <markdown [data]="description" />
+  </div>
+  } @if (references) {
+  <div class="references">
+    <div class="content-header">References</div>
+    <markdown [data]="references" />
+  </div>
+  }
+</div>

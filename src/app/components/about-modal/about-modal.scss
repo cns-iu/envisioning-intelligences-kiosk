@@ -1,0 +1,231 @@
+@use '@angular/material' as mat;
+@use 'token-utils';
+@use 'breakpoints';
+
+.app-about-modal--panel {
+  max-height: 100vh;
+
+  @include mat.dialog-overrides(
+    (
+      container-shape: 16px,
+      container-small-max-width: 100vw,
+      container-max-width: 100vw,
+    )
+  );
+
+  markdown {
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    p {
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+  }
+}
+
+.app-about-modal {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 2.5rem;
+  border: 1px solid token-utils.sys-slot(outline);
+  color: token-utils.sys-slot(on-surface);
+  background: token-utils.sys-slot(surface-container-high);
+  border-radius: inherit;
+  overflow: auto;
+
+  .close {
+    --mat-icon-button-state-layer-size: 48px;
+    --mat-icon-button-icon-size: 24px;
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+  }
+
+  .logo-container {
+    width: 272px;
+    height: 64.15px;
+    position: relative;
+    color: token-utils.sys-slot(on-surface);
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .content-header {
+    font: token-utils.sys-slot(title-small);
+    letter-spacing: token-utils.sys-slot(title-small-tracking);
+    margin-bottom: 0.5rem;
+  }
+
+  .left,
+  .right {
+    padding: 1.25rem;
+  }
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 1.25rem;
+    padding-bottom: 0;
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font: token-utils.sys-slot(title-small);
+      letter-spacing: token-utils.sys-slot(title-small-tracking);
+
+      .title {
+        max-width: calc(100% - 36px);
+        font: token-utils.sys-slot(headline-small);
+        letter-spacing: token-utils.sys-slot(headline-small-tracking);
+        color: token-utils.sys-slot(primary);
+      }
+    }
+
+    .types {
+      .content-header {
+        color: token-utils.sys-slot(primary);
+        margin-bottom: 1rem;
+      }
+
+      .chips {
+        display: flex;
+        gap: 0.75rem;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding-top: 0;
+    font: token-utils.sys-slot(body-small);
+    letter-spacing: token-utils.sys-slot(body-small-tracking);
+    color: token-utils.sys-slot(on-surface-variant);
+
+    .content-header {
+      color: token-utils.sys-slot(on-surface);
+    }
+  }
+
+  @include breakpoints.breakpoint(medium) {
+    flex-direction: row;
+    gap: 0;
+
+    .content-header {
+      font: token-utils.sys-slot(title-medium);
+      letter-spacing: token-utils.sys-slot(title-medium-tracking);
+    }
+
+    .left,
+    .right {
+      height: 100%;
+    }
+
+    .left {
+      min-width: 252px;
+      padding-bottom: 1.25rem;
+
+      .header {
+        .title {
+          max-width: 100%;
+        }
+      }
+    }
+
+    .right {
+      background: token-utils.sys-slot(surface-container-low);
+      padding-top: 1.25rem;
+      font: token-utils.sys-slot(body-medium);
+      letter-spacing: token-utils.sys-slot(body-medium-tracking);
+
+      .content-header {
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+
+  @include breakpoints.breakpoint(large) {
+    .app-about-modal--panel {
+      @include mat.dialog-overrides(
+        (
+          container-shape: 32px,
+        )
+      );
+    }
+
+    .close {
+      --mat-icon-button-state-layer-size: 64px;
+      --mat-icon-button-icon-size: 48px;
+      top: 0.5rem;
+      right: 0.5rem;
+
+      mat-icon {
+        font-size: 48px;
+        height: 48px;
+        width: 48px;
+      }
+    }
+
+    .content-header {
+      font: token-utils.sys-slot(title-large);
+      letter-spacing: token-utils.sys-slot(title-large-tracking);
+    }
+
+    .left {
+      min-width: 360px;
+      padding: 2rem;
+
+      .header {
+        font: token-utils.sys-slot(title-large);
+        letter-spacing: token-utils.sys-slot(title-large-tracking);
+        gap: 20px;
+
+        .title {
+          font: token-utils.sys-slot(headline-large);
+          letter-spacing: token-utils.sys-slot(headline-large-tracking);
+        }
+      }
+
+      .types {
+        .content-header {
+          margin-bottom: 1.5rem;
+        }
+      }
+    }
+
+    .right {
+      background: token-utils.sys-slot(surface-container-low);
+      padding: 2rem;
+      font: token-utils.sys-slot(body-large);
+      letter-spacing: token-utils.sys-slot(body-large-tracking);
+
+      .content-header {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

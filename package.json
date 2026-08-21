@@ -22,6 +22,8 @@
     "@fontsource-variable/lora": "^5.3.0",
     "@fontsource-variable/material-symbols-rounded": "^5.3.3",
     "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "ng-inline-svg-2": "^20.0.2",
+    "ngx-markdown": "^22.0.0",
     "rxjs": "~7.8.0"
   },
   "devDependencies": {
