@@ -1,0 +1,15 @@
+@use 'swiper/css' as swiper;
+@use 'swiper/css/a11y' as a11y;
+@use 'swiper/css/keyboard' as keyboard;
+@use 'swiper/css/navigation' as navigation;
+@use 'swiper/css/pagination' as pagination;
+
+.app-kiosk-card-carousel {
+  display: block;
+  height: 200px;
+  width: 1200px;
+
+  swiper-container {
+    height: 100%;
+  }
+}

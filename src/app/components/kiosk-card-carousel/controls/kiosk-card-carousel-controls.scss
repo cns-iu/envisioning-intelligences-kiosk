@@ -1,0 +1,92 @@
+@use '@angular/material' as mat;
+@use 'token-utils' as t;
+
+@mixin fill-container() {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.app-kiosk-card-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 24px;
+  gap: 24px;
+
+  .app-kiosk-card-carousel-controls--previous-slide,
+  .app-kiosk-card-carousel-controls--next-slide {
+    $icon-size: 3rem;
+    $button-size: 4rem;
+
+    @include mat.icon-button-overrides(
+      (
+        icon-size: $icon-size,
+        state-layer-size: $button-size,
+        touch-target-size: $button-size,
+      )
+    );
+
+    .app-kiosk-card-carousel-controls--icon {
+      width: $icon-size;
+      height: $icon-size;
+      font-size: $icon-size;
+      line-height: $icon-size;
+    }
+  }
+
+  .app-kiosk-card-carousel-controls--pagination-container {
+    $bullet-size: 4rem;
+    $border-width: 2px;
+
+    --swiper-pagination-bullet-size: calc(#{$bullet-size} - 2 * #{$border-width});
+    --swiper-pagination-bullet-horizontal-gap: 0px;
+    --swiper-pagination-color: #{t.sys-slot(primary)};
+    --swiper-pagination-bullet-inactive-color: #{t.sys-slot(surface)};
+    --swiper-pagination-bullet-opacity: 1;
+    --swiper-pagination-bullet-inactive-opacity: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: fit-content;
+    transform: none;
+
+    .swiper-pagination-bullet {
+      position: relative;
+      border: $border-width solid t.sys-slot(outline);
+      outline: none;
+      overflow: hidden;
+
+      &::before {
+        @include fill-container();
+        content: '';
+        background-color: t.sys-slot(on-surface);
+        opacity: 0;
+      }
+
+      &.swiper-pagination-bullet-active::before {
+        background-color: t.sys-slot(on-primary);
+      }
+
+      &:hover::before {
+        opacity: t.sys-slot(hover-state-layer-opacity);
+      }
+
+      &.cdk-program-focused::before,
+      &.cdk-keyboard-focused::before {
+        opacity: t.sys-slot(focus-state-layer-opacity);
+      }
+
+      &:active::before {
+        opacity: t.sys-slot(pressed-state-layer-opacity);
+      }
+
+      .app-kiosk-card-carousel-controls--pagination-bullet-ripple {
+        @include fill-container();
+      }
+    }
+  }
+}

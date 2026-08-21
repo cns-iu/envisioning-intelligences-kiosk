@@ -1,3 +1,4 @@
+@use './utils/breakpoints' as breakpoints;
 @use '@fontsource-variable/lora' as lora;
 @use '@fontsource-variable/material-symbols-rounded' as material-symbols-rounded;
 @use '@fontsource-variable/plus-jakarta-sans' as plus-jakarta-sans;
@@ -19,7 +20,15 @@ mat-icon,
   direction: ltr;
   font-variation-settings:
     'FILL' 1,
-    'wght' 400,
+    'wght' 500,
     'GRAD' 0,
     'opsz' 24;
+
+  @include breakpoints.breakpoint(large) {
+    font-variation-settings:
+      'FILL' 1,
+      'wght' 500,
+      'GRAD' 0,
+      'opsz' 48;
+  }
 }
