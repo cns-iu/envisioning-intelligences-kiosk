@@ -1,14 +1,4 @@
-<button matButton [style.margin]="'2rem'" (click)="openFile('/content/exhibit.yml')">Open Exhibit Modal</button>
-<button matButton [style.margin]="'2rem'" (click)="openFile('/content/test.yml')">Open Piece Modal</button>
-
-<app-kiosk-card-container>
-  <app-kiosk-card link="work/test" type="visualization" title="The Knowledge Cosmos" />
-  <app-kiosk-card link="work/test" type="visualization" title="Zoonotic Web" />
-  <app-kiosk-card link="work/test" type="visualization" title="Cultural Knowledge" />
-  <app-kiosk-card link="work/test" type="visualization" title="Intelligence Is Information Having Fun" />
-  <app-kiosk-card link="work/test" type="visualization" title="Artificial Worldviews" />
-  <app-kiosk-card link="work/test" type="visualization" title="ReCollection: You Only Have Seven Seconds" />
-  <app-kiosk-card link="work/test" type="visualization" title="Responsibility: Visualizing AI for Google DeepMind" />
-  <app-kiosk-card link="work/test" type="visualization" title="Title of Work" />
-</app-kiosk-card-container>
+<!-- TODO: add header (sticky) -->
+<button matButton [style.margin]="'2rem'" (click)="about.openFile('/content/exhibit.yml')">Open Exhibit Modal</button>
+<button matButton [style.margin]="'2rem'" (click)="about.openFile('/content/test.yml')">Open Piece Modal</button>
 <router-outlet />
