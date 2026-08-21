@@ -1,5 +1,8 @@
 @use 'token-utils';
+@use 'breakpoints';
 
 :host {
   display: block;
+  width: 100vw;
+  height: 100vh;
 }
