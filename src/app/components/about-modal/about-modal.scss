@@ -2,7 +2,7 @@
 @use 'token-utils';
 @use 'breakpoints';
 
-.app-about-modal--panel {
+.about-modal--panel {
   max-height: 100vh;
   border-radius: token-utils.sys-slot(corner-large);
   border: 1px solid token-utils.sys-slot(outline);
@@ -26,18 +26,29 @@
     }
 
     p {
-      &:first-child {
-        margin-top: 0;
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
+      margin-block-end: 0rem;
     }
 
     ul {
       margin: 0;
       padding-left: 1.5rem;
+    }
+
+    h3 {
+      font: token-utils.sys-slot(title-small);
+      letter-spacing: token-utils.sys-slot(title-small-tracking);
+      margin: 0;
+      margin-top: 40px;
+      margin-bottom: 0.5rem;
+      color: token-utils.sys-slot(on-surface);
+    }
+
+    h3:first-child {
+      margin-top: 0;
+    }
+
+    h3 + p {
+      margin-block-start: 0;
     }
   }
 
@@ -52,7 +63,7 @@
   }
 }
 
-.app-about-modal {
+.about-modal--root {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -60,7 +71,7 @@
   color: token-utils.sys-slot(on-surface);
   background: token-utils.sys-slot(surface-container-high);
 
-  .close {
+  .about-modal--close {
     @include mat.icon-button-overrides(
       (
         state-layer-size: 48px,
@@ -82,7 +93,7 @@
     right: 0.25rem;
   }
 
-  .logo-container {
+  .about-modal--logo-container {
     width: 272px;
     height: 64.15px;
     position: relative;
@@ -94,32 +105,26 @@
     }
   }
 
-  .content-header {
-    font: token-utils.sys-slot(title-small);
-    letter-spacing: token-utils.sys-slot(title-small-tracking);
-    margin-bottom: 0.5rem;
-  }
-
-  .left,
-  .right {
+  .about-modal--left,
+  .about-modal--right {
     padding: 1.25rem;
   }
 
-  .left {
+  .about-modal--left {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
     padding: 1.25rem;
     padding-bottom: 0;
 
-    .header {
+    .about-modal--header {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
       font: token-utils.sys-slot(title-small);
       letter-spacing: token-utils.sys-slot(title-small-tracking);
 
-      .title {
+      .about-modal--title {
         max-width: calc(100% - 36px);
         font: token-utils.sys-slot(headline-small);
         letter-spacing: token-utils.sys-slot(headline-small-tracking);
@@ -127,13 +132,15 @@
       }
     }
 
-    .types {
-      .content-header {
+    .about-modal--types {
+      .about-modal--type-header {
+        font: token-utils.sys-slot(title-small);
+        letter-spacing: token-utils.sys-slot(title-small-tracking);
         color: token-utils.sys-slot(primary);
         margin-bottom: 1rem;
       }
 
-      .chips {
+      .about-modal--chips {
         display: flex;
         gap: 0.75rem;
         flex-wrap: wrap;
@@ -141,7 +148,7 @@
     }
   }
 
-  .right {
+  .about-modal--right {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
@@ -149,61 +156,61 @@
     font: token-utils.sys-slot(body-small);
     letter-spacing: token-utils.sys-slot(body-small-tracking);
     color: token-utils.sys-slot(on-surface-variant);
-
-    .content-header {
-      color: token-utils.sys-slot(on-surface);
-    }
   }
 
   @include breakpoints.breakpoint(medium) {
     flex-direction: row;
     gap: 0;
 
-    .content-header {
-      font: token-utils.sys-slot(title-medium);
-      letter-spacing: token-utils.sys-slot(title-medium-tracking);
+    markdown {
+      h3 {
+        font: token-utils.sys-slot(title-medium);
+        letter-spacing: token-utils.sys-slot(title-medium-tracking);
+        margin-bottom: 0.75rem;
+      }
     }
 
-    .left,
-    .right {
+    .about-modal--left,
+    .about-modal--right {
       flex: 1;
     }
 
-    .left {
+    .about-modal--left {
       max-width: 296px;
       padding-bottom: 1.25rem;
 
-      .header {
-        .title {
+      .about-modal--header {
+        .about-modal--title {
           max-width: 100%;
         }
       }
 
-      .types {
-        .chips {
+      .about-modal--types {
+        .about-modal--type-header {
+          font: token-utils.sys-slot(title-medium);
+          letter-spacing: token-utils.sys-slot(title-medium-tracking);
+        }
+
+        .about-modal--chips {
           gap: 0.5rem;
         }
       }
     }
 
-    .logo-container {
+    .about-modal--logo-container {
       width: 232px;
     }
 
-    .right {
+    .about-modal--right {
       background: token-utils.sys-slot(surface-container-low);
       padding-top: 1.25rem;
       font: token-utils.sys-slot(body-medium);
       letter-spacing: token-utils.sys-slot(body-medium-tracking);
-
-      .content-header {
-        margin-bottom: 0.75rem;
-      }
     }
   }
 
   @include breakpoints.breakpoint(large) {
-    .close {
+    .about-modal--close {
       top: 0.5rem;
       right: 0.5rem;
 
@@ -214,50 +221,46 @@
       }
     }
 
-    .content-header {
-      font: token-utils.sys-slot(title-large);
-      letter-spacing: token-utils.sys-slot(title-large-tracking);
+    markdown {
+      h3 {
+        font: token-utils.sys-slot(title-large);
+        letter-spacing: token-utils.sys-slot(title-large-tracking);
+        margin-bottom: 1rem;
+        margin-top: 3rem;
+      }
     }
 
-    .logo-container {
+    .about-modal--logo-container {
       width: 262px;
     }
 
-    .left {
+    .about-modal--left {
       max-width: 328px;
       padding: 2rem;
 
-      .header {
+      .about-modal--header {
         font: token-utils.sys-slot(title-large);
         letter-spacing: token-utils.sys-slot(title-large-tracking);
         gap: 20px;
 
-        .title {
+        .about-modal--title {
           font: token-utils.sys-slot(headline-large);
           letter-spacing: token-utils.sys-slot(headline-large-tracking);
         }
       }
 
-      .types {
-        .content-header {
-          margin-bottom: 1.5rem;
-        }
-
-        .chips {
-          gap: 1rem;
+      .about-modal--types {
+        .about-modal--type-header {
+          font: token-utils.sys-slot(title-large);
+          letter-spacing: token-utils.sys-slot(title-large-tracking);
         }
       }
     }
 
-    .right {
-      background: token-utils.sys-slot(surface-container-low);
+    .about-modal--right {
       padding: 2rem;
       font: token-utils.sys-slot(body-large);
       letter-spacing: token-utils.sys-slot(body-large-tracking);
-
-      .content-header {
-        margin-bottom: 1rem;
-      }
     }
   }
 }

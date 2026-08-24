@@ -1,6 +1,10 @@
 import { Component, inject } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatDialog } from '@angular/material/dialog';
+import { TestBed } from '@angular/core/testing';
 import { render } from '@testing-library/angular';
+import { AboutModal } from '../components/about-modal/about-modal';
 import { AboutService } from './about.service';
 
 @Component({
@@ -16,48 +20,71 @@ describe('AboutService', () => {
     open: vi.fn(),
   };
 
-  async function renderService() {
+  async function setupService() {
     const result = await render(TestHost, {
-      providers: [{ provide: MatDialog, useValue: dialog }],
+      providers: [{ provide: MatDialog, useValue: dialog }, provideHttpClient(), provideHttpClientTesting()],
     });
 
-    return result.fixture.componentInstance.service;
+    return {
+      service: result.fixture.componentInstance.service,
+      httpMock: TestBed.inject(HttpTestingController),
+    };
   }
 
   afterEach(() => {
-    vi.restoreAllMocks();
     dialog.open.mockClear();
   });
 
-  it('parses YAML content into an object', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('title: Test\nyear: 2026\ntypes:\n  - human')));
+  it('requests yaml content and opens the about modal with parsed data', async () => {
+    const { service, httpMock } = await setupService();
 
-    const service = await renderService();
+    service.openDialog('/content/test.yml');
 
-    await expect(service.load('/content/test.yml')).resolves.toEqual({
-      title: 'Test',
-      year: 2026,
-      types: ['human'],
+    const req = httpMock.expectOne('/content/test.yml');
+    expect(req.request.method).toBe('GET');
+    expect(req.request.responseType).toBe('text');
+
+    req.flush(
+      [
+        'id: recollection',
+        'title: "ReCollection: You Only Have Seven Seconds"',
+        'year: 2023',
+        'intelligenceTypes:',
+        '  - artificial-machine',
+        '  - human',
+        'description: About description',
+      ].join('\n'),
+    );
+
+    expect(dialog.open).toHaveBeenCalledWith(AboutModal, {
+      data: {
+        id: 'recollection',
+        title: 'ReCollection: You Only Have Seven Seconds',
+        year: 2023,
+        intelligenceTypes: ['artificial-machine', 'human'],
+        description: 'About description',
+      },
     });
+
+    httpMock.verify();
   });
 
-  it('throws when the content request fails', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('', { status: 404, statusText: 'Not Found' })));
+  it('opens the modal when optional fields are not present', async () => {
+    const { service, httpMock } = await setupService();
 
-    const service = await renderService();
+    service.openDialog('/content/about-minimal.yml');
 
-    await expect(service.load('/content/missing.yml')).rejects.toThrow('Failed to load content: 404 Not Found');
-  });
+    const req = httpMock.expectOne('/content/about-minimal.yml');
+    req.flush(['id: minimal', 'intelligenceTypes:', '  - animal', 'description: Minimal description'].join('\n'));
 
-  it('loads content and opens the about modal', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('title: Test\ntypes:\n  - human')));
-
-    const service = await renderService();
-
-    await service.openFile('/content/test.yml');
-
-    expect(dialog.open).toHaveBeenCalledWith(expect.anything(), {
-      data: { title: 'Test', types: ['human'] },
+    expect(dialog.open).toHaveBeenCalledWith(AboutModal, {
+      data: {
+        id: 'minimal',
+        intelligenceTypes: ['animal'],
+        description: 'Minimal description',
+      },
     });
+
+    httpMock.verify();
   });
 });

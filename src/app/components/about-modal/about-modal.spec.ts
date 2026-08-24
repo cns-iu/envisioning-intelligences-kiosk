@@ -1,19 +1,25 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { render, screen } from '@testing-library/angular';
 import { MarkdownService } from 'ngx-markdown';
-import { AboutModal, IntelligenceType } from './about-modal';
+import { AboutModal } from './about-modal';
+import { About } from '../../models/about';
+import { IntelligenceType } from '../../models/exhibit';
 
 describe('AboutModal', () => {
   const dialogRef = {
     addPanelClass: vi.fn(),
   };
 
-  async function renderModal(data: {
-    title?: string;
-    year?: number;
-    types: string[];
-    sections?: { title: string; content: string }[];
-  }) {
+  function createAboutData(overrides: Partial<About> = {}): About {
+    return {
+      id: 'about-1',
+      intelligenceTypes: [],
+      description: 'Base description',
+      ...overrides,
+    };
+  }
+
+  async function renderModal(data: About = createAboutData()) {
     return render(AboutModal, {
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: data },
@@ -28,44 +34,58 @@ describe('AboutModal', () => {
   });
 
   it('creates the modal and adds its panel class', async () => {
-    await renderModal({ types: [] });
+    await renderModal();
 
-    expect(dialogRef.addPanelClass).toHaveBeenCalledWith('app-about-modal--panel');
+    expect(dialogRef.addPanelClass).toHaveBeenCalledWith('about-modal--panel');
   });
 
   it('renders the title and year', async () => {
-    await renderModal({
-      title: 'Living Systems',
-      year: 2026,
-      types: [],
-    });
+    await renderModal(
+      createAboutData({
+        title: 'Living Systems',
+        year: 2026,
+      }),
+    );
 
     expect(screen.getByText('Living Systems')).toBeInTheDocument();
     expect(screen.getByText('2026')).toBeInTheDocument();
   });
 
-  it('renders intelligence type labels from enum keys and preserves unknown values', async () => {
-    await renderModal({
-      types: [IntelligenceType.animal, 'artificial', 'unknown'],
-    });
+  it('renders the logo when the title is not provided', async () => {
+    const { container } = await renderModal();
+
+    expect(container.querySelector('.about-modal--logo-container')).toBeInTheDocument();
+  });
+
+  it('maps known intelligence types and preserves unknown values in getTypeLabel', async () => {
+    const { fixture } = await renderModal(
+      createAboutData({
+        intelligenceTypes: ['animal'] as IntelligenceType[],
+      }),
+    );
+
+    expect(fixture.componentInstance.getTypeLabel('animal' as IntelligenceType)).toBe('Animal');
+    expect(fixture.componentInstance.getTypeLabel('unknown' as IntelligenceType)).toBe('unknown');
+  });
+
+  it('renders intelligence type labels', async () => {
+    await renderModal(
+      createAboutData({
+        intelligenceTypes: ['animal', 'artificial-machine'],
+      }),
+    );
 
     expect(screen.getByText('Animal')).toBeInTheDocument();
     expect(screen.getByText('Artificial/Machine')).toBeInTheDocument();
-    expect(screen.getByText('unknown')).toBeInTheDocument();
   });
 
-  it('renders every content section', async () => {
-    await renderModal({
-      types: [],
-      sections: [
-        { title: 'Description', content: 'A living description.' },
-        { title: 'References', content: 'A useful reference.' },
-      ],
-    });
+  it('renders the description markdown content', async () => {
+    await renderModal(
+      createAboutData({
+        description: 'A living description with **markdown**.',
+      }),
+    );
 
-    expect(screen.getByText('Description')).toBeInTheDocument();
-    expect(screen.getByText('A living description.')).toBeInTheDocument();
-    expect(screen.getByText('References')).toBeInTheDocument();
-    expect(screen.getByText('A useful reference.')).toBeInTheDocument();
+    expect(screen.getByText(/A living description with/i)).toBeInTheDocument();
   });
 });
