@@ -1,27 +1,37 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { booleanAttribute, Component, ElementRef, input, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { InteractiveElementManager } from '../../shared/interactive-element-manager';
 
-/** Type of work featured in card */
+/** Supported work categories displayed by a kiosk card. */
 export type WorkType = 'visualization' | 'video';
 
-/**
- * KioskCard component displays a card with an image, title, type of work, and a button that links to a specified route.
- */
+/** Presents a linked work preview with an optimized image and category label. */
 @Component({
   selector: 'app-kiosk-card',
   imports: [CommonModule, MatButtonModule, RouterLink, NgOptimizedImage],
   templateUrl: './kiosk-card.html',
   styleUrl: './kiosk-card.scss',
+  host: { class: 'app-kiosk-card' },
 })
 export class KioskCard {
-  /** Image url */
+  /** URL of the card image, or the placeholder asset when omitted. */
   readonly image = input<string>('assets/card-placeholder.png');
-  /** Card title */
+  /** Human-readable title of the linked work. */
   readonly title = input.required<string>();
-  /** Type of work */
+  /** Category shown over the card image. */
   readonly type = input.required<WorkType>();
-  /** Router link for the button */
+  /** Application route opened when the card is activated. */
   readonly link = input.required<string>();
+  /** Whether Angular should prioritize loading this card's image. */
+  readonly priority = input(false, { transform: booleanAttribute });
+
+  /** Rendered link enhanced with focus-origin styles and a Material ripple. */
+  private readonly cardButton = viewChild.required('cardButton', { read: ElementRef });
+
+  /** Registers the rendered card link with the shared interaction manager. */
+  constructor() {
+    new InteractiveElementManager(() => this.cardButton().nativeElement);
+  }
 }

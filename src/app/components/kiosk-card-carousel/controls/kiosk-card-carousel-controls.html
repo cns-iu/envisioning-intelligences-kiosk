@@ -1,0 +1,13 @@
+<button matIconButton class="app-kiosk-card-carousel-controls--previous-slide" #prevEl>
+  <mat-icon class="app-kiosk-card-carousel-controls--icon" fontIcon="arrow_left_alt" />
+</button>
+
+<span
+  class="app-kiosk-card-carousel-controls--pagination-container"
+  (cdkObserveContent)="onPaginationContentChange($event)"
+  #paginationContainerEl
+></span>
+
+<button matIconButton class="app-kiosk-card-carousel-controls--next-slide" #nextEl>
+  <mat-icon class="app-kiosk-card-carousel-controls--icon" fontIcon="arrow_right_alt" />
+</button>
