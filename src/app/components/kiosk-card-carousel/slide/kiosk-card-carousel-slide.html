@@ -1,0 +1,11 @@
+<app-kiosk-card-container class="app-kiosk-card-carousel-slide--card-container">
+  @for (exhibit of exhibits(); track exhibit.id) {
+    <app-kiosk-card
+      [title]="exhibit.title"
+      [image]="exhibit.cardImageUrl"
+      [link]="`/exhibit/${exhibit.id}`"
+      [type]="exhibit.videoId ? 'video' : 'visualization'"
+      [priority]="isFirstSlide()"
+    />
+  }
+</app-kiosk-card-container>
