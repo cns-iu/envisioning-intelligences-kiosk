@@ -7,7 +7,7 @@
   position: sticky;
   top: 0;
 
-  .header {
+  .app-header--header {
     display: grid;
     grid-template-areas:
       'logo . button-group'
@@ -17,7 +17,7 @@
     background: token-utils.sys-slot(background);
   }
 
-  .logo {
+  .app-header--logo {
     grid-area: logo;
     padding: 0.75rem 1rem;
     border-radius: token-utils.sys-slot(corner-large);
@@ -30,12 +30,12 @@
     }
   }
 
-  ::ng-deep .logo > svg {
+  ::ng-deep .app-header--logo > svg {
     width: 100%;
     height: 100%;
   }
 
-  .title {
+  .app-header--title {
     grid-area: title;
     font: token-utils.sys-slot(headline-small);
     letter-spacing: token-utils.sys-slot(headline-small-tracking);
@@ -45,13 +45,13 @@
     border-top: 1px solid token-utils.sys-slot(surface-variant);
   }
 
-  .button-group {
+  .app-header--actions {
     grid-area: button-group;
     display: flex;
     align-items: center;
   }
 
-  .button {
+  .app-header--button {
     height: 3rem;
     padding: 0.75rem 1rem;
     border-radius: token-utils.sys-slot(corner-large);
@@ -69,23 +69,23 @@
   }
 
   @include breakpoints.breakpoint(large) {
-    .header {
+    .app-header--header {
       grid-template-areas: 'logo title button-group';
       grid-template-columns: 20.25rem 1fr auto;
       grid-template-rows: 6.625rem;
     }
 
-    .logo {
+    .app-header--logo {
       padding: 1.5rem 2.5rem;
       border-radius: 2rem;
     }
 
-    .title {
+    .app-header--title {
       text-align: center;
       border-top: none;
     }
 
-    .button {
+    .app-header--button {
       height: 4.75rem;
       padding: 2.5rem 2rem;
       border-radius: 2rem;
