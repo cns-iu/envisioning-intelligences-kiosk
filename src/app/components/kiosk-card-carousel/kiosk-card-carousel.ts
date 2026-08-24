@@ -12,6 +12,7 @@ import { register, SwiperContainer } from 'swiper/element';
 import { A11y, Keyboard, Navigation, Pagination } from 'swiper/modules';
 import { SwiperOptions } from 'swiper/types';
 import { KioskCardCarouselControls } from './controls/kiosk-card-carousel-controls';
+import { KioskCardCarouselSlide } from './slide/kiosk-card-carousel-slide';
 
 const SWIPER_CONFIG: SwiperOptions = {
   a11y: true,
@@ -24,7 +25,7 @@ const SWIPER_CONFIG: SwiperOptions = {
 
 @Component({
   selector: 'app-kiosk-card-carousel',
-  imports: [KioskCardCarouselControls],
+  imports: [KioskCardCarouselControls, KioskCardCarouselSlide],
   templateUrl: './kiosk-card-carousel.html',
   styleUrl: './kiosk-card-carousel.scss',
   encapsulation: ViewEncapsulation.None,
@@ -32,13 +33,12 @@ const SWIPER_CONFIG: SwiperOptions = {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class KioskCardCarousel {
-  readonly slides = input.required<unknown[]>();
-  readonly rows = input(2);
-  readonly columns = input(4);
+  readonly cards = input.required<unknown[]>();
+  readonly cardsPerSlide = input(8);
 
-  protected readonly groupedSlides = computed(() => {
-    const slides = this.slides();
-    const step = this.rows() * this.columns();
+  protected readonly groupedCards = computed(() => {
+    const slides = this.cards();
+    const step = this.cardsPerSlide();
     const length = Math.ceil(slides.length / step);
     return Array.from({ length }, (_, i) => slides.slice(i * step, (i + 1) * step));
   });

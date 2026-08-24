@@ -1,10 +1,7 @@
 <swiper-container init="false" #swiperEl>
-  @for (slides of groupedSlides(); track $index) {
+  @for (cards of groupedCards(); track $index) {
     <swiper-slide>
-      @for (slide of slides; track slide) {
-        <!-- TODO replace with card component -->
-        <span class="slide">Slide {{ $index }}</span>
-      }
+      <app-kiosk-card-carousel-slide [cards]="cards" />
     </swiper-slide>
   }
 </swiper-container>
