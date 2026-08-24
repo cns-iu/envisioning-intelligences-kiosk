@@ -1,0 +1,31 @@
+@use './token-utils';
+
+@mixin fill-container() {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+@mixin state-layer() {
+  &::before {
+    @include fill-container();
+    content: '';
+    opacity: 0;
+    background: token-utils.sys-slot(on-surface);
+  }
+
+  &:hover::before {
+    opacity: token-utils.sys-slot(hover-state-layer-opacity);
+  }
+
+  // &:focus-visible::before,
+  &.cdk-program-focused::before,
+  &.cdk-keyboard-focused::before {
+    opacity: token-utils.sys-slot(focus-state-layer-opacity);
+  }
+
+  &:active::before {
+    opacity: token-utils.sys-slot(pressed-state-layer-opacity);
+  }
+}

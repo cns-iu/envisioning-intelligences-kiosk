@@ -1,7 +1,14 @@
 @use './styles/fonts';
 @use './styles/theme';
+@use './styles/utils/layer-utils';
 
 body {
   margin: 0;
   padding: 0;
+}
+
+// Do not remove `:not(#fakeId)`
+// It is used to increase specificity of the selector so that it overrides the styles applied by `.mat-ripple`
+.app-envisioning-intelligences--ripple:not(#fakeId) {
+  @include layer-utils.fill-container();
 }
