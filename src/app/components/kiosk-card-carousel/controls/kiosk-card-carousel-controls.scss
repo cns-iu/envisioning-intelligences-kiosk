@@ -1,12 +1,6 @@
 @use '@angular/material' as mat;
-@use 'token-utils' as t;
-
-@mixin fill-container() {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-}
+@use 'layer-utils';
+@use 'token-utils';
 
 .app-kiosk-card-carousel-controls {
   display: flex;
@@ -42,8 +36,8 @@
 
     --swiper-pagination-bullet-size: calc(#{$bullet-size} - 2 * #{$border-width});
     --swiper-pagination-bullet-horizontal-gap: 0px;
-    --swiper-pagination-color: #{t.sys-slot(primary)};
-    --swiper-pagination-bullet-inactive-color: #{t.sys-slot(surface)};
+    --swiper-pagination-color: #{token-utils.sys-slot(primary)};
+    --swiper-pagination-bullet-inactive-color: #{token-utils.sys-slot(surface)};
     --swiper-pagination-bullet-opacity: 1;
     --swiper-pagination-bullet-inactive-opacity: 1;
 
@@ -56,36 +50,15 @@
 
     .swiper-pagination-bullet {
       position: relative;
-      border: $border-width solid t.sys-slot(outline);
+      border: $border-width solid token-utils.sys-slot(outline);
       outline: none;
       overflow: hidden;
 
-      &::before {
-        @include fill-container();
-        content: '';
-        background-color: t.sys-slot(on-surface);
-        opacity: 0;
-      }
+      @include layer-utils.state-layer();
 
+      // Must be after state-layer mixin to override the background color
       &.swiper-pagination-bullet-active::before {
-        background-color: t.sys-slot(on-primary);
-      }
-
-      &:hover::before {
-        opacity: t.sys-slot(hover-state-layer-opacity);
-      }
-
-      &.cdk-program-focused::before,
-      &.cdk-keyboard-focused::before {
-        opacity: t.sys-slot(focus-state-layer-opacity);
-      }
-
-      &:active::before {
-        opacity: t.sys-slot(pressed-state-layer-opacity);
-      }
-
-      .app-kiosk-card-carousel-controls--pagination-bullet-ripple {
-        @include fill-container();
+        background-color: token-utils.sys-slot(on-primary);
       }
     }
   }

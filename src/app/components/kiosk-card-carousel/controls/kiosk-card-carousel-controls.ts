@@ -1,25 +1,12 @@
-import { FocusMonitor } from '@angular/cdk/a11y';
 import { CdkObserveContent } from '@angular/cdk/observers';
-import {
-  afterNextRender,
-  Component,
-  computed,
-  DestroyRef,
-  ElementRef,
-  inject,
-  viewChild,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, computed, ElementRef, viewChild, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
-import { MatRippleLoader } from '@angular/material/core';
 import { MatIcon } from '@angular/material/icon';
 import { SwiperOptions } from 'swiper/types';
+import { InteractiveElementManager } from '../../../shared/interactive-element-manager';
 
 /** CSS class Swiper applies to each generated pagination bullet. */
 export const PAGINATION_BULLET_CLASS = 'swiper-pagination-bullet';
-
-/** CSS class applied to the Material ripple attached to each pagination bullet. */
-export const PAGINATION_BULLET_RIPPLE_CLASS = 'app-kiosk-card-carousel-controls--pagination-bullet-ripple';
 
 /**
  * Determines whether a DOM node is a Swiper pagination bullet.
@@ -29,6 +16,16 @@ export const PAGINATION_BULLET_RIPPLE_CLASS = 'app-kiosk-card-carousel-controls-
  */
 function isPaginationBullet(node: Node): node is HTMLElement {
   return node instanceof HTMLElement && node.classList.contains(PAGINATION_BULLET_CLASS);
+}
+
+/**
+ * Selects Swiper pagination bullets from an iterable of candidate nodes.
+ *
+ * @param nodes - Candidate nodes emitted by content observation or queried after rendering.
+ * @returns HTML elements carrying Swiper's pagination bullet class.
+ */
+function coercePaginationBulletArray(nodes: Iterable<Node>): HTMLElement[] {
+  return Array.from(nodes).filter(isPaginationBullet);
 }
 
 /**
@@ -55,14 +52,12 @@ export class KioskCardCarouselControls {
   /** Container in which Swiper renders pagination bullets. */
   private readonly paginationContainerEl = viewChild.required('paginationContainerEl', { read: ElementRef });
 
-  /** Applies and removes focus-origin classes on dynamically generated bullets. */
-  readonly #focusMonitor = inject(FocusMonitor);
-
-  /** Creates and destroys Material ripples on dynamically generated bullets. */
-  readonly #rippleLoader = inject(MatRippleLoader);
-
-  /** Bullets currently enhanced with focus monitoring and a Material ripple. */
-  readonly #paginationBullets = new Set<HTMLElement>();
+  /** Adds focus and ripple behavior to initial and dynamically rendered pagination bullets. */
+  readonly #interactiveElementManager = new InteractiveElementManager(() => {
+    const el = this.paginationContainerEl().nativeElement as HTMLElement;
+    const initialBullets = el.querySelectorAll<HTMLElement>(`.${PAGINATION_BULLET_CLASS}`);
+    return coercePaginationBulletArray(initialBullets);
+  });
 
   /**
    * Swiper navigation and pagination options bound to this component's rendered elements.
@@ -83,16 +78,6 @@ export class KioskCardCarouselControls {
     }),
   );
 
-  /** Initializes enhancements for generated bullets and registers their cleanup. */
-  constructor() {
-    afterNextRender(() => {
-      const initialBullets = this.#getInitialPaginationBullets();
-      this.#addPaginationBullets(initialBullets);
-    });
-
-    inject(DestroyRef).onDestroy(() => this.#removePaginationBullets(this.#paginationBullets));
-  }
-
   /**
    * Enhances newly rendered pagination bullets and cleans up bullets removed by Swiper.
    *
@@ -104,55 +89,11 @@ export class KioskCardCarouselControls {
         continue;
       }
 
-      this.#addPaginationBullets(mutation.addedNodes);
-      this.#removePaginationBullets(mutation.removedNodes);
-    }
-  }
+      const addedBullets = coercePaginationBulletArray(mutation.addedNodes);
+      this.#interactiveElementManager.addAll(addedBullets);
 
-  /**
-   * Finds pagination bullets already rendered before content observation begins.
-   *
-   * @returns The pagination bullets currently in the pagination container.
-   */
-  #getInitialPaginationBullets(): NodeListOf<HTMLElement> {
-    const el = this.paginationContainerEl().nativeElement as HTMLElement;
-    return el.querySelectorAll<HTMLElement>(`.${PAGINATION_BULLET_CLASS}`);
-  }
-
-  /**
-   * Adds focus monitoring and a Material ripple to untracked pagination bullets.
-   *
-   * @param nodes - Candidate nodes added to the pagination container.
-   */
-  #addPaginationBullets(nodes: Iterable<Node>): void {
-    const bullets = Array.from(nodes)
-      .filter(isPaginationBullet)
-      .filter((bullet) => !this.#paginationBullets.has(bullet));
-
-    for (const bullet of bullets) {
-      this.#paginationBullets.add(bullet);
-      this.#focusMonitor.monitor(bullet, true);
-      this.#rippleLoader.configureRipple(bullet, {
-        centered: true,
-        className: PAGINATION_BULLET_RIPPLE_CLASS,
-      });
-    }
-  }
-
-  /**
-   * Removes focus monitoring and Material ripples from tracked pagination bullets.
-   *
-   * @param nodes - Candidate nodes removed from the pagination container or cleaned up on destroy.
-   */
-  #removePaginationBullets(nodes: Iterable<Node>): void {
-    const bullets = Array.from(nodes)
-      .filter(isPaginationBullet)
-      .filter((bullet) => this.#paginationBullets.has(bullet));
-
-    for (const bullet of bullets) {
-      this.#paginationBullets.delete(bullet);
-      this.#focusMonitor.stopMonitoring(bullet);
-      this.#rippleLoader.destroyRipple(bullet);
+      const removedBullets = coercePaginationBulletArray(mutation.removedNodes);
+      this.#interactiveElementManager.removeAll(removedBullets);
     }
   }
 }

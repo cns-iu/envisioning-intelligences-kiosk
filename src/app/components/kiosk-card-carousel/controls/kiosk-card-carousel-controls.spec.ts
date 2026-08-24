@@ -3,18 +3,10 @@ import { Renderer2 } from '@angular/core';
 import { MatRippleLoader } from '@angular/material/core';
 import { render, waitFor } from '@testing-library/angular';
 import { EMPTY } from 'rxjs';
-import {
-  KioskCardCarouselControls,
-  PAGINATION_BULLET_CLASS,
-  PAGINATION_BULLET_RIPPLE_CLASS,
-} from './kiosk-card-carousel-controls';
+import { KioskCardCarouselControls, PAGINATION_BULLET_CLASS } from './kiosk-card-carousel-controls';
+import { INTERACTIVE_ELEMENT_RIPPLE_CLASS } from '../../../shared/interactive-element-manager';
 
 describe('KioskCardCarouselControls', () => {
-  /**
-   * Renders the controls with observable focus and ripple collaborators.
-   *
-   * @returns The Testing Library render result and frequently used test utilities.
-   */
   async function setup() {
     const focusMonitor = {
       focusVia: vi.fn(),
@@ -40,12 +32,6 @@ describe('KioskCardCarouselControls', () => {
     return { ...renderResult, component, focusMonitor, renderer, rippleLoader };
   }
 
-  /**
-   * Returns the element in which Swiper renders pagination bullets.
-   *
-   * @param component - Rendered carousel controls instance.
-   * @returns The configured pagination container.
-   */
   function getPaginationContainer(component: KioskCardCarouselControls): HTMLElement {
     const pagination = component.config().pagination;
 
@@ -56,12 +42,6 @@ describe('KioskCardCarouselControls', () => {
     return pagination.el;
   }
 
-  /**
-   * Creates a Swiper pagination bullet through Angular's rendering abstraction.
-   *
-   * @param renderer - Renderer associated with the controls fixture.
-   * @returns A new pagination bullet element.
-   */
   function createPaginationBullet(renderer: Renderer2): HTMLElement {
     const bullet = renderer.createElement('button') as HTMLElement;
     renderer.addClass(bullet, PAGINATION_BULLET_CLASS);
@@ -99,7 +79,7 @@ describe('KioskCardCarouselControls', () => {
     expect(focusMonitor.monitor).toHaveBeenCalledTimes(1);
     expect(rippleLoader.configureRipple).toHaveBeenCalledWith(bullet, {
       centered: true,
-      className: PAGINATION_BULLET_RIPPLE_CLASS,
+      className: INTERACTIVE_ELEMENT_RIPPLE_CLASS,
     });
     expect(rippleLoader.configureRipple).toHaveBeenCalledTimes(1);
 

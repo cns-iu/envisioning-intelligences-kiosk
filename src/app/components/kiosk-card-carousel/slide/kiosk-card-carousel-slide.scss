@@ -1,3 +1,10 @@
 :host {
   display: block;
+  height: 100%;
+  padding: 0 16px;
+  overflow-y: auto;
+
+  .app-kiosk-card-carousel-slide--card-container {
+    height: 100%;
+  }
 }

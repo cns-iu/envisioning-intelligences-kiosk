@@ -1,7 +1,7 @@
-<swiper-container init="false" #swiperEl>
-  @for (cards of groupedCards(); track $index) {
+<swiper-container class="app-kiosk-card-carousel--container" init="false" #swiperEl>
+  @for (exhibits of groupedExhibits(); track $index) {
     <swiper-slide>
-      <app-kiosk-card-carousel-slide [cards]="cards" />
+      <app-kiosk-card-carousel-slide [exhibits]="exhibits" [isFirstSlide]="$first" />
     </swiper-slide>
   }
 </swiper-container>

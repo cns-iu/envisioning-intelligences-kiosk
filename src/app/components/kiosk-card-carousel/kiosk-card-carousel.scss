@@ -4,12 +4,13 @@
 @use 'swiper/css/navigation' as navigation;
 @use 'swiper/css/pagination' as pagination;
 
+$controls-height: 64px + 2 * 24px;
+
 .app-kiosk-card-carousel {
   display: block;
-  height: 200px;
-  width: 1200px;
+  height: 100vh; // TODO move to parent
 
-  swiper-container {
-    height: 100%;
+  .app-kiosk-card-carousel--container {
+    height: calc(100% - #{$controls-height});
   }
 }
