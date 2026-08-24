@@ -5,22 +5,14 @@ import { render, waitFor } from '@testing-library/angular';
 import { EMPTY } from 'rxjs';
 import { INTERACTIVE_ELEMENT_RIPPLE_CLASS, InteractiveElementManager } from './interactive-element-manager';
 
-/** Hosts a manager whose initial element depends on a view query. */
 @Component({ template: '<button #initialElement>Initial element</button>' })
 class InitialElementHost {
-  /** Element registered with the manager after the host's initial render. */
   readonly initialElement = viewChild.required<ElementRef<HTMLElement>>('initialElement');
 
-  /** Manager under test, created within the host's injection context. */
   readonly manager = new InteractiveElementManager(() => this.initialElement().nativeElement);
 }
 
 describe('InteractiveElementManager', () => {
-  /**
-   * Creates observable focus and ripple collaborators.
-   *
-   * @returns Provider mocks used to verify the manager's effects.
-   */
   function createCollaborators() {
     const focusMonitor = {
       monitor: vi.fn(() => EMPTY),
@@ -34,11 +26,6 @@ describe('InteractiveElementManager', () => {
     return { focusMonitor, rippleLoader };
   }
 
-  /**
-   * Renders the test host with observable focus and ripple collaborators.
-   *
-   * @returns The Testing Library render result and provider mocks.
-   */
   async function setup() {
     const collaborators = createCollaborators();
     const renderResult = await render(InitialElementHost, {

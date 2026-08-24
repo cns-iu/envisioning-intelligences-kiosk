@@ -6,12 +6,6 @@ import { INTERACTIVE_ELEMENT_RIPPLE_CLASS } from '../../shared/interactive-eleme
 import { KioskCard } from './kiosk-card';
 
 describe('KioskCard', () => {
-  /**
-   * Renders a kiosk card with observable focus and ripple collaborators.
-   *
-   * @param inputs - Input values that override the default card fixture.
-   * @returns The render result and interaction collaborator mocks.
-   */
   async function setup(inputs: Record<string, unknown> = {}) {
     const focusMonitor = {
       monitor: vi.fn(() => EMPTY),
