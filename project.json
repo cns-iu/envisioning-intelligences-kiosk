@@ -15,6 +15,9 @@
         "outputPath": "dist/envisioning-intelligences-kiosk",
         "browser": "./src/main.ts",
         "tsConfig": "tsconfig.app.json",
+        "loader": {
+          ".css": "text"
+        },
         "inlineStyleLanguage": "scss",
         "styles": ["./src/styles.scss"],
         "stylePreprocessorOptions": {
