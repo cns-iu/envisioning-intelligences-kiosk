@@ -22,6 +22,7 @@ const SWIPER_CONFIG: SwiperOptions = {
   loop: true,
   observer: true,
   slidesPerView: 1,
+  touchStartPreventDefault: false,
   modules: [A11y, Keyboard, Navigation, Pagination],
 };
 
