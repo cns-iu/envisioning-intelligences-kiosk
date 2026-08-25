@@ -1,1 +1,0 @@
-import{Ca as i,Da as o,Ea as s,ua as t}from"./chunk-LOMPBE6Y.js";var n=class a{static \u0275fac=function(e){return new(e||a)};static \u0275cmp=t({type:a,selectors:[["app-landing-page"]],decls:2,vars:0,template:function(e,g){e&1&&(i(0,"p"),s(1,"landing-page works!"),o())},styles:["[_nghost-%COMP%]{display:block}"]})};export{n as default};
