@@ -1,21 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render } from '@testing-library/angular';
 import LandingPage from './landing-page';
 
 describe('LandingPage', () => {
-  let component: LandingPage;
-  let fixture: ComponentFixture<LandingPage>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LandingPage],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(LandingPage);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('renders the landing page', async () => {
+    const result = render(LandingPage);
+    await expect(result).resolves.toBeDefined();
   });
 });
