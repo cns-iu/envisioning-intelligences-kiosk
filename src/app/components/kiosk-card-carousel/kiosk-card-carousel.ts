@@ -6,9 +6,10 @@ import {
   ElementRef,
   input,
   viewChild,
-  ViewEncapsulation,
 } from '@angular/core';
 import { register, SwiperContainer } from 'swiper/element';
+import * as a11yCssModule from 'swiper/element/css/a11y';
+import * as keyboardCssModule from 'swiper/element/css/keyboard';
 import { A11y, Keyboard, Navigation, Pagination } from 'swiper/modules';
 import { SwiperOptions } from 'swiper/types';
 import { Exhibit } from '../../models/exhibit';
@@ -23,6 +24,9 @@ const SWIPER_CONFIG: SwiperOptions = {
   observer: true,
   slidesPerView: 1,
   modules: [A11y, Keyboard, Navigation, Pagination],
+  injectStyles: [a11yCssModule, keyboardCssModule]
+    .map((module) => (module as { default: string }).default)
+    .filter((text) => !!text),
 };
 
 /**
@@ -33,7 +37,6 @@ const SWIPER_CONFIG: SwiperOptions = {
   imports: [KioskCardCarouselControls, KioskCardCarouselSlide],
   templateUrl: './kiosk-card-carousel.html',
   styleUrl: './kiosk-card-carousel.scss',
-  encapsulation: ViewEncapsulation.None,
   host: { class: 'app-kiosk-card-carousel' },
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
