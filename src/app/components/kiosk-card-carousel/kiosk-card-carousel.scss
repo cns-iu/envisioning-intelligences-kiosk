@@ -1,12 +1,6 @@
-@use 'swiper/css' as swiper;
-@use 'swiper/css/a11y' as a11y;
-@use 'swiper/css/keyboard' as keyboard;
-@use 'swiper/css/navigation' as navigation;
-@use 'swiper/css/pagination' as pagination;
-
 $controls-height: 64px + 2 * 24px;
 
-.app-kiosk-card-carousel {
+:host {
   display: block;
   height: 100vh; // TODO move to parent
 
