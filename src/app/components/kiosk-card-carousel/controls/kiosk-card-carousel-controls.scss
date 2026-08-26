@@ -1,0 +1,68 @@
+@use '@angular/material' as mat;
+@use 'layer-utils';
+@use 'token-utils';
+
+// Base styles for pagination bullets
+@use 'swiper/css/pagination' as pagination;
+
+.app-kiosk-card-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 24px;
+  gap: 24px;
+
+  .app-kiosk-card-carousel-controls--previous-slide,
+  .app-kiosk-card-carousel-controls--next-slide {
+    $icon-size: 3rem;
+    $button-size: 4rem;
+
+    @include mat.icon-button-overrides(
+      (
+        icon-size: $icon-size,
+        state-layer-size: $button-size,
+        touch-target-size: $button-size,
+      )
+    );
+
+    .app-kiosk-card-carousel-controls--icon {
+      width: $icon-size;
+      height: $icon-size;
+      font-size: $icon-size;
+      line-height: $icon-size;
+    }
+  }
+
+  .app-kiosk-card-carousel-controls--pagination-container {
+    $bullet-size: 4rem;
+    $border-width: 2px;
+
+    --swiper-pagination-bullet-size: calc(#{$bullet-size} - 2 * #{$border-width});
+    --swiper-pagination-bullet-horizontal-gap: 0px;
+    --swiper-pagination-color: #{token-utils.sys-slot(primary)};
+    --swiper-pagination-bullet-inactive-color: #{token-utils.sys-slot(surface)};
+    --swiper-pagination-bullet-opacity: 1;
+    --swiper-pagination-bullet-inactive-opacity: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: fit-content;
+    transform: none;
+
+    .swiper-pagination-bullet {
+      position: relative;
+      border: $border-width solid token-utils.sys-slot(outline);
+      outline: none;
+      overflow: hidden;
+
+      @include layer-utils.state-layer();
+
+      // Must be after state-layer mixin to override the background color
+      &.swiper-pagination-bullet-active::before {
+        background-color: token-utils.sys-slot(on-primary);
+      }
+    }
+  }
+}

@@ -2,21 +2,21 @@
 
 :host {
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  grid-auto-rows: auto min-content;
-  gap: 1rem;
-  padding: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: 1fr min-content;
   min-height: 33rem;
+  gap: 1rem;
 
   @include breakpoints.breakpoint(small) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @include breakpoints.breakpoint(medium) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @include breakpoints.breakpoint(large) {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr minmax(84px, min-content));
   }
 }
