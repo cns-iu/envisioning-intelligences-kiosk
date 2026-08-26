@@ -1,5 +1,5 @@
 import { httpResource } from '@angular/common/http';
-import { inject, InjectionToken, Provider, Service } from '@angular/core';
+import { inject, InjectionToken, Provider, Service, signal } from '@angular/core';
 import { load } from 'js-yaml';
 import { Exhibit, ExhibitSchema } from '../models/exhibit';
 
@@ -51,4 +51,6 @@ export class ExhibitStore {
       },
     })
     .asReadonly();
+
+  readonly currentExhibit = signal<Exhibit | undefined>(undefined);
 }

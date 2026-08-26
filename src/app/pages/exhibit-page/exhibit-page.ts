@@ -1,9 +1,9 @@
 import { Component, computed, effect, inject, input } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { EmbeddedVisualization } from '../../components/embedded-visualization/embedded-visualization';
 import { EmbeddedYoutube } from '../../components/embedded-youtube/embedded-youtube';
 import { Exhibit } from '../../models/exhibit';
+import { ExhibitStore } from '../../services/exhibit-store';
 
 @Component({
   selector: 'app-exhibit-page',
@@ -13,7 +13,7 @@ import { Exhibit } from '../../models/exhibit';
 })
 export default class ExhibitPage {
   readonly route = inject(ActivatedRoute);
-  readonly title = inject(Title);
+  readonly exhibitStore = inject(ExhibitStore);
 
   readonly exhibits = input<Exhibit[]>();
   readonly exhibitId = computed(() => this.route.snapshot.paramMap.get('id'));
@@ -21,7 +21,7 @@ export default class ExhibitPage {
 
   constructor() {
     effect(() => {
-      this.title.setTitle(this.exhibit()?.title ?? 'Envisioning Intelligences');
+      this.exhibitStore.currentExhibit.set(this.exhibit());
     });
   }
 }
