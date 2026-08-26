@@ -1,5 +1,4 @@
-import { Component, computed, inject, Signal, signal } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component, computed, Signal, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Header } from './components/header/header';
 import { Exhibit } from './models/exhibit';
@@ -12,7 +11,6 @@ import ExhibitPage from './pages/exhibit-page/exhibit-page';
   styleUrl: './app.scss',
 })
 export class App {
-  readonly title = inject(Title);
   /** Exhibit signal exposed by the currently activated routed component, if any. */
   private readonly activatedExhibit = signal<Signal<Exhibit | undefined> | undefined>(undefined);
 
@@ -22,7 +20,6 @@ export class App {
   /** Reads the exhibit signal off the activated routed component, if it exposes one. */
   onActivate(component: unknown): void {
     this.activatedExhibit.set(component instanceof ExhibitPage ? component.exhibit : undefined);
-    this.title.setTitle(this.currentExhibit()?.title ?? 'Envisioning Intelligences');
   }
 
   onDeactivate(): void {

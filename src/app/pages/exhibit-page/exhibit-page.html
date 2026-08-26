@@ -2,3 +2,6 @@
 @if (exhibit?.visualizationUrl) {
   <app-embedded-visualization [visualizationUrl]="exhibit.visualizationUrl" />
 }
+@if (exhibit?.videoId) {
+  <app-embedded-youtube [videoId]="exhibit.videoId" />
+}

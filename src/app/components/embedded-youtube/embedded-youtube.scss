@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  width: auto;
+  max-height: calc(100% - 2rem);
+  margin: 1rem auto;
+  aspect-ratio: 16/9;
+  position: relative;
+  height: auto;
+  max-width: 100%;
+
+  ::ng-deep youtube-player {
+    youtube-player-placeholder,
+    > div,
+    iframe {
+      height: 100% !important;
+      width: 100% !important;
+    }
+  }
+}

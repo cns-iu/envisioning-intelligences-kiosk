@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { KioskCardContainer } from '../../components/kiosk-card/kiosk-card-container/kiosk-card-container';
 import { KioskCard } from '../../components/kiosk-card/kiosk-card';
+import { Exhibit } from '../../models/exhibit';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,5 +10,5 @@ import { KioskCard } from '../../components/kiosk-card/kiosk-card';
   styleUrl: './landing-page.scss',
 })
 export default class LandingPage {
-  // TODO get exhibit title and set on header
+  readonly exhibits = input<Exhibit[]>();
 }

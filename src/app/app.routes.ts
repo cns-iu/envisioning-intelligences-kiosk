@@ -5,21 +5,14 @@ import { filter, map } from 'rxjs';
 import { Exhibit } from './models/exhibit';
 import { ExhibitStore } from './services/exhibit-store';
 
-function exhibitResolver(): ResolveFn<Exhibit | undefined> {
-  return (route) => {
+function exhibitsResolver(): ResolveFn<Exhibit[]> {
+  return () => {
     const exhibitStore = inject(ExhibitStore);
-    const exhibitId = route.paramMap.get('id') || '';
     return toObservable(exhibitStore.exhibits.status).pipe(
       filter((status) => status === 'resolved'),
-      map(() => {
-        return findExhibit(exhibitStore.exhibits.value(), exhibitId);
-      }),
+      map(() => exhibitStore.exhibits.value()),
     );
   };
-}
-
-function findExhibit(exhibits: Exhibit[], id: string | null): Exhibit | undefined {
-  return exhibits.find((ex) => ex.id === id);
 }
 
 export const appRoutes: Route[] = [
@@ -27,12 +20,15 @@ export const appRoutes: Route[] = [
     path: '',
     pathMatch: 'full',
     title: 'Envisioning Intelligences',
+    resolve: {
+      exhibits: exhibitsResolver(),
+    },
     loadComponent: () => import('./pages/landing-page/landing-page'),
   },
   {
     path: 'exhibit/:id',
     resolve: {
-      exhibit: exhibitResolver(),
+      exhibits: exhibitsResolver(),
     },
     loadComponent: () => import('./pages/exhibit-page/exhibit-page'),
   },
