@@ -1,1 +1,7 @@
-<p>exhibit-page works!</p>
+@if (exhibits.hasValue()) {
+  <!-- Display exhibits -->
+} @else if (exhibits.isLoading()) {
+  <!-- Display loading state -->
+} @else {
+  <!-- Display error state -->
+}

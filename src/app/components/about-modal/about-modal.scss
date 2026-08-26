@@ -2,7 +2,7 @@
 @use 'token-utils';
 @use 'breakpoints';
 
-.about-modal--panel {
+.app-about-modal--panel {
   max-height: 100vh;
   border-radius: token-utils.sys-slot(corner-large);
   border: 1px solid token-utils.sys-slot(outline);
@@ -38,7 +38,7 @@
       font: token-utils.sys-slot(title-small);
       letter-spacing: token-utils.sys-slot(title-small-tracking);
       margin: 0;
-      margin-top: 40px;
+      margin-top: 2.5rem;
       margin-bottom: 0.5rem;
       color: token-utils.sys-slot(on-surface);
     }
@@ -53,17 +53,17 @@
   }
 
   @include breakpoints.breakpoint(large) {
-    border-radius: 32px;
+    border-radius: 2rem;
 
     @include mat.dialog-overrides(
       (
-        container-shape: 32px,
+        container-shape: 2rem,
       )
     );
   }
 }
 
-.about-modal--root {
+.app-about-modal--root {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -71,19 +71,19 @@
   color: token-utils.sys-slot(on-surface);
   background: token-utils.sys-slot(surface-container-high);
 
-  .about-modal--close {
+  .app-about-modal--close {
     @include mat.icon-button-overrides(
       (
-        state-layer-size: 48px,
-        icon-size: 24px,
+        state-layer-size: 3rem,
+        icon-size: 1.5rem,
       )
     );
 
     @include breakpoints.breakpoint(large) {
       @include mat.icon-button-overrides(
         (
-          state-layer-size: 64px,
-          icon-size: 48px,
+          state-layer-size: 4rem,
+          icon-size: 3rem,
         )
       );
     }
@@ -93,54 +93,48 @@
     right: 0.25rem;
   }
 
-  .about-modal--logo-container {
-    width: 272px;
-    height: 64.15px;
+  .app-about-modal--logo-container {
+    width: 17rem;
     position: relative;
     color: token-utils.sys-slot(on-surface);
-
-    svg {
-      width: 100%;
-      height: auto;
-    }
   }
 
-  .about-modal--left,
-  .about-modal--right {
+  .app-about-modal--left,
+  .app-about-modal--right {
     padding: 1.25rem;
   }
 
-  .about-modal--left {
+  .app-about-modal--left {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
     padding: 1.25rem;
     padding-bottom: 0;
 
-    .about-modal--header {
+    .app-about-modal--header {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
       font: token-utils.sys-slot(title-small);
       letter-spacing: token-utils.sys-slot(title-small-tracking);
 
-      .about-modal--title {
-        max-width: calc(100% - 36px);
+      .app-about-modal--title {
+        max-width: calc(100% - 2.25rem);
         font: token-utils.sys-slot(headline-small);
         letter-spacing: token-utils.sys-slot(headline-small-tracking);
         color: token-utils.sys-slot(primary);
       }
     }
 
-    .about-modal--types {
-      .about-modal--type-header {
+    .app-about-modal--types {
+      .app-about-modal--type-header {
         font: token-utils.sys-slot(title-small);
         letter-spacing: token-utils.sys-slot(title-small-tracking);
         color: token-utils.sys-slot(primary);
         margin-bottom: 1rem;
       }
 
-      .about-modal--chips {
+      .app-about-modal--chips {
         display: flex;
         gap: 0.75rem;
         flex-wrap: wrap;
@@ -148,7 +142,7 @@
     }
   }
 
-  .about-modal--right {
+  .app-about-modal--right {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
@@ -170,38 +164,38 @@
       }
     }
 
-    .about-modal--left,
-    .about-modal--right {
+    .app-about-modal--left,
+    .app-about-modal--right {
       flex: 1;
     }
 
-    .about-modal--left {
-      max-width: 296px;
+    .app-about-modal--left {
+      max-width: 18.5rem;
       padding-bottom: 1.25rem;
 
-      .about-modal--header {
-        .about-modal--title {
+      .app-about-modal--header {
+        .app-about-modal--title {
           max-width: 100%;
         }
       }
 
-      .about-modal--types {
-        .about-modal--type-header {
+      .app-about-modal--types {
+        .app-about-modal--type-header {
           font: token-utils.sys-slot(title-medium);
           letter-spacing: token-utils.sys-slot(title-medium-tracking);
         }
 
-        .about-modal--chips {
+        .app-about-modal--chips {
           gap: 0.5rem;
         }
       }
     }
 
-    .about-modal--logo-container {
-      width: 232px;
+    .app-about-modal--logo-container {
+      width: 14.5rem;
     }
 
-    .about-modal--right {
+    .app-about-modal--right {
       background: token-utils.sys-slot(surface-container-low);
       padding-top: 1.25rem;
       font: token-utils.sys-slot(body-medium);
@@ -210,14 +204,14 @@
   }
 
   @include breakpoints.breakpoint(large) {
-    .about-modal--close {
+    .app-about-modal--close {
       top: 0.5rem;
       right: 0.5rem;
 
       mat-icon {
-        font-size: 48px;
-        height: 48px;
-        width: 48px;
+        font-size: 3rem;
+        height: 3rem;
+        width: 3rem;
       }
     }
 
@@ -230,34 +224,34 @@
       }
     }
 
-    .about-modal--logo-container {
-      width: 262px;
+    .app-about-modal--logo-container {
+      width: 16.375rem;
     }
 
-    .about-modal--left {
-      max-width: 328px;
+    .app-about-modal--left {
+      max-width: 20.5rem;
       padding: 2rem;
 
-      .about-modal--header {
+      .app-about-modal--header {
         font: token-utils.sys-slot(title-large);
         letter-spacing: token-utils.sys-slot(title-large-tracking);
-        gap: 20px;
+        gap: 1.25rem;
 
-        .about-modal--title {
+        .app-about-modal--title {
           font: token-utils.sys-slot(headline-large);
           letter-spacing: token-utils.sys-slot(headline-large-tracking);
         }
       }
 
-      .about-modal--types {
-        .about-modal--type-header {
+      .app-about-modal--types {
+        .app-about-modal--type-header {
           font: token-utils.sys-slot(title-large);
           letter-spacing: token-utils.sys-slot(title-large-tracking);
         }
       }
     }
 
-    .about-modal--right {
+    .app-about-modal--right {
       padding: 2rem;
       font: token-utils.sys-slot(body-large);
       letter-spacing: token-utils.sys-slot(body-large-tracking);

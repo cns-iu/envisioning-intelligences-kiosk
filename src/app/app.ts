@@ -1,8 +1,16 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { AboutService } from './services/about.service';
 import { Header } from './components/header/header';
+
+function hasOpenAboutMethod(instance: unknown): instance is { openAbout: () => void } {
+  return (
+    typeof instance === 'object' &&
+    instance !== null &&
+    'openAbout' in instance &&
+    typeof instance.openAbout === 'function'
+  );
+}
 
 @Component({
   selector: 'app-root',
@@ -11,6 +19,14 @@ import { Header } from './components/header/header';
   styleUrl: './app.scss',
 })
 export class App {
-  readonly about = inject(AboutService);
   readonly currentVisualization = input<string>('Title of Visualization');
+
+  protected readonly activeInstance = signal<unknown>(undefined);
+
+  protected openAbout(): void {
+    const instance = this.activeInstance();
+    if (hasOpenAboutMethod(instance)) {
+      instance.openAbout();
+    }
+  }
 }

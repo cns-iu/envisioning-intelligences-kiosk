@@ -6,7 +6,7 @@ import { ZodError } from 'zod';
 import { ExhibitStore, provideExhibitStore } from './exhibit-store';
 
 describe('ExhibitStore', () => {
-  const DEFAULT_DATA_URL = 'assets/data/exhibits.yaml';
+  const DEFAULT_DATA_URL = 'data/exhibits.yaml';
   const CUSTOM_DATA_URL = 'assets/test/exhibits.yaml';
 
   const VALID_EXHIBITS_YAML = `

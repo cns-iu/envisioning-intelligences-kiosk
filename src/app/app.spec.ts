@@ -1,10 +1,14 @@
-import { render } from '@testing-library/angular';
+import { provideRouter } from '@angular/router';
+import { render, screen } from '@testing-library/angular';
 import { App } from './app';
-import { appConfig } from './app.config';
 
 describe('App', () => {
-  it('renders', async () => {
-    const result = render(App, { providers: appConfig.providers });
-    await expect(result).resolves.toBeDefined();
+  it('renders the current visualization title', async () => {
+    await render(App, {
+      providers: [provideRouter([])],
+      inputs: { currentVisualization: 'Envisioning Intelligences' },
+    });
+
+    expect(screen.getByText('Envisioning Intelligences')).toBeInTheDocument();
   });
 });

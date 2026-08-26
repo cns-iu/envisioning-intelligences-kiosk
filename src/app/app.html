@@ -1,3 +1,2 @@
-<app-header [title]="currentVisualization()" (aboutClick)="about.openDialog('/content/about-exhibit.yml')" />
-<button matButton [style.margin]="'2rem'" (click)="about.openDialog('/content/test.yml')">Open Piece Modal</button>
-<router-outlet />
+<app-header [title]="currentVisualization()" (aboutClick)="openAbout()" />
+<router-outlet (activate)="activeInstance.set($event)" (deactivate)="activeInstance.set(undefined)" />

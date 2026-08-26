@@ -1,21 +1,31 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { render } from '@testing-library/angular';
+import { ExhibitStore } from '../../services/exhibit-store';
 import ExhibitPage from './exhibit-page';
 
 describe('ExhibitPage', () => {
-  let component: ExhibitPage;
-  let fixture: ComponentFixture<ExhibitPage>;
+  it('renders the exhibit page', async () => {
+    const result = render(ExhibitPage, {
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: { snapshot: { paramMap: { get: () => null } } },
+        },
+        {
+          provide: ExhibitStore,
+          useValue: {
+            exhibits: {
+              hasValue: () => true,
+              isLoading: () => false,
+              value: () => [],
+            },
+          },
+        },
+        { provide: MatDialog, useValue: { open: vi.fn() } },
+      ],
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ExhibitPage],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ExhibitPage);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    await expect(result).resolves.toBeDefined();
   });
 });

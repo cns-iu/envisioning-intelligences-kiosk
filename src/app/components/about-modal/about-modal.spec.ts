@@ -2,24 +2,26 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { render, screen } from '@testing-library/angular';
 import { MarkdownService } from 'ngx-markdown';
 import { AboutModal } from './about-modal';
-import { About } from '../../models/about';
-import { IntelligenceType } from '../../models/exhibit';
+import { Exhibit, IntelligenceType } from '../../models/exhibit';
 
 describe('AboutModal', () => {
   const dialogRef = {
     addPanelClass: vi.fn(),
   };
 
-  function createAboutData(overrides: Partial<About> = {}): About {
+  function createAboutData(overrides: Partial<Exhibit> = {}): Exhibit {
     return {
       id: 'about-1',
+      title: 'About',
+      year: 2026,
+      cardImageUrl: '',
       intelligenceTypes: [],
       description: 'Base description',
       ...overrides,
     };
   }
 
-  async function renderModal(data: About = createAboutData()) {
+  async function renderModal(data: Exhibit = createAboutData()) {
     return render(AboutModal, {
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: data },
@@ -36,7 +38,7 @@ describe('AboutModal', () => {
   it('creates the modal and adds its panel class', async () => {
     await renderModal();
 
-    expect(dialogRef.addPanelClass).toHaveBeenCalledWith('about-modal--panel');
+    expect(dialogRef.addPanelClass).toHaveBeenCalledWith('app-about-modal--panel');
   });
 
   it('renders the title and year', async () => {
@@ -51,10 +53,14 @@ describe('AboutModal', () => {
     expect(screen.getByText('2026')).toBeInTheDocument();
   });
 
-  it('renders the logo when the title is not provided', async () => {
-    const { container } = await renderModal();
+  it('renders the logo when not on an exhibit page', async () => {
+    const { fixture } = await renderModal(
+      createAboutData({
+        id: 'envisioning-intelligences',
+      }),
+    );
 
-    expect(container.querySelector('.about-modal--logo-container')).toBeInTheDocument();
+    expect(fixture.nativeElement.querySelector('app-logo')).toBeInTheDocument();
   });
 
   it('maps known intelligence types and preserves unknown values in getTypeLabel', async () => {
