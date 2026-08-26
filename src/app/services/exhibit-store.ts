@@ -15,7 +15,7 @@ const EXHIBIT_STORE_CONFIG = new InjectionToken<ExhibitStoreConfig>('EXHIBIT_STO
 /** Resolves the injected store configuration and fills in omitted defaults. */
 function injectExhibitStoreConfig(): Required<ExhibitStoreConfig> {
   return {
-    dataUrl: 'assets/data/exhibits.yaml',
+    dataUrl: 'data/exhibits.yaml',
     ...inject(EXHIBIT_STORE_CONFIG, { optional: true }),
   };
 }

@@ -1,1 +1,4 @@
-<p>exhibit-page works!</p>
+@let exhibit = this.exhibit();
+@if (exhibit?.visualizationUrl) {
+  <app-embedded-visualization [visualizationUrl]="exhibit.visualizationUrl" />
+}

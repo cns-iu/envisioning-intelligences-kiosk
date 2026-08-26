@@ -1,1 +1,31 @@
-[]
+- id: artificial-worldviews
+  title: |
+    Artificial Worldviews
+  year: 2023
+  intelligenceTypes:
+    - artificial-machine
+    - human
+  description: |
+    ### Artists and affiliations
+    * Kim Albrecht, Center for Complex Network Research
+
+    ### Description
+    Large language models, created by humans and trained on human-produced work,
+    reflect human beliefs and values. Given the widespread popularity and extraordinary
+    influence of LLMs, programs like ChatGPT are likely to influence the way we write,
+    think, and perceive the world for years to come. This makes it important to uncover
+    the hidden biases and implicit values that shape AI’s operations.
+
+    Over the course of 1,764 requests, data artist Kim Albrecht coaxed ChatGPT into
+    defining what constitutes “knowledge” and “power.” The answers it gave reveal a value
+    system in which certain people, objects, and ideas are emphasized or marginalized,
+    included or excluded. Explore the two networks to discover what kinds of knowledge
+    and what types of power are valued by ChatGPT.
+
+    ### References
+    * Albrecht, Kim. 2023\. “Artificial Worldviews.” Accessed February 19, 2026\.
+    [https://artificial-worldviews.kimalbrecht.com](https://artificial-worldviews.kimalbrecht.com/#appearances).
+    * Albrecht, Kim. 2023\. *Artificial Worldviews*. In *Envisioning Intelligences 3.1* (2025),
+    edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
+  cardImageUrl: /assets/card-placeholder.png
+  visualizationUrl: https://artificial-worldviews-exhibit.kimalbrecht.com/#maps
