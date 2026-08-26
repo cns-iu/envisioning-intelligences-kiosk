@@ -1,2 +1,2 @@
-<app-header [title]="currentVisualization()" />
-<router-outlet />
+<app-header [title]="currentExhibit()?.title" />
+<router-outlet (activate)="onActivate($event)" (deactivate)="onDeactivate()" />

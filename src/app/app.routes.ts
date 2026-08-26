@@ -5,14 +5,14 @@ import { filter, map } from 'rxjs';
 import { Exhibit } from './models/exhibit';
 import { ExhibitStore } from './services/exhibit-store';
 
-function titleResolver(): ResolveFn<string> {
+function exhibitResolver(): ResolveFn<Exhibit | undefined> {
   return (route) => {
     const exhibitStore = inject(ExhibitStore);
     const exhibitId = route.paramMap.get('id') || '';
     return toObservable(exhibitStore.exhibits.status).pipe(
       filter((status) => status === 'resolved'),
       map(() => {
-        return findExhibit(exhibitStore.exhibits.value(), exhibitId)?.title ?? exhibitId;
+        return findExhibit(exhibitStore.exhibits.value(), exhibitId);
       }),
     );
   };
@@ -31,7 +31,9 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'exhibit/:id',
-    title: titleResolver(),
+    resolve: {
+      exhibit: exhibitResolver(),
+    },
     loadComponent: () => import('./pages/exhibit-page/exhibit-page'),
   },
   {
