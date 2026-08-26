@@ -22,7 +22,10 @@ const SWIPER_CONFIG: SwiperOptions = {
   keyboard: true,
   loop: true,
   observer: true,
+  slidesOffsetBefore: 16,
+  slidesOffsetAfter: 16,
   slidesPerView: 1,
+  spaceBetween: 16,
   touchStartPreventDefault: false,
   modules: [A11y, Keyboard, Navigation, Pagination],
   injectStyles: [a11yCssModule, keyboardCssModule]
