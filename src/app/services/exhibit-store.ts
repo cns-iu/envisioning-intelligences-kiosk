@@ -15,7 +15,7 @@ const EXHIBIT_STORE_CONFIG = new InjectionToken<ExhibitStoreConfig>('EXHIBIT_STO
 /** Resolves the injected store configuration and fills in omitted defaults. */
 function injectExhibitStoreConfig(): Required<ExhibitStoreConfig> {
   return {
-    dataUrl: 'assets/data/exhibits.yaml',
+    dataUrl: 'data/exhibits.yaml',
     ...inject(EXHIBIT_STORE_CONFIG, { optional: true }),
   };
 }
@@ -44,11 +44,20 @@ export class ExhibitStore {
   /** Read-only HTTP resource containing the validated exhibit collection. */
   readonly exhibits = httpResource
     .text<Exhibit[]>(() => this.config.dataUrl, {
-      defaultValue: [],
       parse: (text) => {
         const data = load(text);
         return ExhibitSchema.array().parse(data);
       },
     })
     .asReadonly();
+
+  /**
+   * Gets the exhibit with the given ID.
+   *
+   * @param id Exhibit ID to look up.
+   * @returns The exhibit with the given ID, or `undefined` if no such exhibit exists or the collection has not yet loaded.
+   */
+  getExhibitById(id: string): Exhibit | undefined {
+    return this.exhibits.value()?.find((exhibit) => exhibit.id === id);
+  }
 }
