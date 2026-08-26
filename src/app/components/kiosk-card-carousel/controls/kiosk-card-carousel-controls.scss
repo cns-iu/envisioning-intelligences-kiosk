@@ -2,6 +2,9 @@
 @use 'layer-utils';
 @use 'token-utils';
 
+// Base styles for pagination bullets
+@use 'swiper/css/pagination' as pagination;
+
 .app-kiosk-card-carousel-controls {
   display: flex;
   align-items: center;

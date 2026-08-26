@@ -1,6 +1,3 @@
-<!-- TODO: add header (sticky) -->
-<button matButton [style.margin]="'2rem'" (click)="about.openDialog('/content/about-exhibit.yml')">
-  Open Exhibit Modal
-</button>
+<app-header [title]="currentVisualization()" (aboutClick)="about.openDialog('/content/about-exhibit.yml')" />
 <button matButton [style.margin]="'2rem'" (click)="about.openDialog('/content/test.yml')">Open Piece Modal</button>
 <router-outlet />
