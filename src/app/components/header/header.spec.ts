@@ -1,9 +1,10 @@
 import { provideRouter } from '@angular/router';
 import { fireEvent, render } from '@testing-library/angular';
+import { MarkdownService } from 'ngx-markdown';
 import { Header } from './header';
 
 describe('Header', () => {
-  const providers = [provideRouter([])];
+  const providers = [provideRouter([]), MarkdownService];
 
   it('renders the logo as an accessible link to home', async () => {
     const { getByLabelText } = await render(Header, { providers });
@@ -13,12 +14,21 @@ describe('Header', () => {
   });
 
   it('renders the provided title', async () => {
-    const { getByText } = await render(Header, {
+    const { findByText } = await render(Header, {
       providers,
       inputs: { title: 'Envisioning Intelligences' },
     });
 
-    expect(getByText('Envisioning Intelligences')).toBeInTheDocument();
+    expect(await findByText('Envisioning Intelligences')).toBeInTheDocument();
+  });
+
+  it('renders markdown in the provided title', async () => {
+    const { findByText } = await render(Header, {
+      providers,
+      inputs: { title: 'The **Living** World' },
+    });
+
+    expect(await findByText('Living')).toHaveRole('strong');
   });
 
   it('emits when the about button is clicked', async () => {
