@@ -5,14 +5,14 @@
 $_overrides: typography.$typography-overrides;
 
 :root {
-  color-scheme: light dark;
+  color-scheme: only dark;
 
   @include mat.theme(
     (
       color: (
         primary: palettes.$primary-palette,
         tertiary: palettes.$tertiary-palette,
-        theme-type: color-scheme,
+        theme-type: dark,
       ),
       typography: typography.$typography,
       density: 0,
