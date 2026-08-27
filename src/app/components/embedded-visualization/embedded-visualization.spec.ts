@@ -1,21 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
 import { EmbeddedVisualization } from './embedded-visualization';
 
 describe('EmbeddedVisualization', () => {
-  let component: EmbeddedVisualization;
-  let fixture: ComponentFixture<EmbeddedVisualization>;
+  it('renders an iframe for the visualization URL', async () => {
+    await render(EmbeddedVisualization, {
+      inputs: { visualizationUrl: 'https://example.com/visualization' },
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EmbeddedVisualization],
-    }).compileComponents();
+    const iframe = screen.getByTitle('Embedded Page');
 
-    fixture = TestBed.createComponent(EmbeddedVisualization);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(iframe).toHaveClass('embedded-visualization');
+    expect(iframe).toHaveAttribute('width', '100%');
+    expect(iframe).toHaveAttribute('height', '100%');
+    expect(iframe).toHaveAttribute('src', 'https://example.com/visualization');
   });
 });

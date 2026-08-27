@@ -1,21 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { render } from '@testing-library/angular';
+import { YouTubePlayer } from '@angular/youtube-player';
 import { EmbeddedYoutube } from './embedded-youtube';
 
 describe('EmbeddedYoutube', () => {
-  let component: EmbeddedYoutube;
-  let fixture: ComponentFixture<EmbeddedYoutube>;
+  it('passes the video ID to the YouTube player', async () => {
+    const { fixture } = await render(EmbeddedYoutube, {
+      inputs: { videoId: 'dQw4w9WgXcQ' },
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EmbeddedYoutube],
-    }).compileComponents();
+    const player = fixture.debugElement.query(By.directive(YouTubePlayer));
 
-    fixture = TestBed.createComponent(EmbeddedYoutube);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(player).toBeTruthy();
+    expect(player.componentInstance.videoId).toBe('dQw4w9WgXcQ');
   });
 });
