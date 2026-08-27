@@ -15,6 +15,7 @@ import {
   withNavigationErrorHandler,
   withViewTransitions,
 } from '@angular/router';
+import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
 import { ExhibitStore } from './exhibit/exhibit.store';
 
@@ -24,6 +25,7 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => inject(ExhibitStore).loadExhibits()),
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(),
+    provideMarkdown(),
     provideRouter(
       appRoutes,
       withComponentInputBinding(),

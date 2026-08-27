@@ -19,6 +19,7 @@
   .tile {
     height: calc(100% + 2px);
     position: absolute;
+    border-radius: token-utils.sys-slot(corner-full);
   }
 
   .label {

@@ -1,4 +1,5 @@
 import { Component, ElementRef, input, output, viewChild } from '@angular/core';
+import { MarkdownComponent } from 'ngx-markdown';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { Logo } from '../logo/logo';
@@ -9,7 +10,7 @@ import { InteractiveElementManager } from '../../shared/interactive-element-mana
  */
 @Component({
   selector: 'app-header',
-  imports: [Logo, MatButtonModule, RouterLink],
+  imports: [Logo, MarkdownComponent, MatButtonModule, RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })

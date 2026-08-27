@@ -1,7 +1,10 @@
 import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
-import { render, screen } from '@testing-library/angular';
+import { TestBed } from '@angular/core/testing';
+import { render, screen, waitFor } from '@testing-library/angular';
 import { BehaviorSubject } from 'rxjs';
 import { Exhibit } from '../../exhibit/exhibit.model';
+import AboutDialog from '../../services/about-dialog';
+import { AppEvents } from '../../services/app-events';
 import LandingPage from './landing-page';
 
 describe('LandingPage', () => {
@@ -18,6 +21,8 @@ describe('LandingPage', () => {
     }),
   );
 
+  const open = vi.fn();
+
   async function setup(options: { exhibits?: Exhibit[]; largeScreen?: boolean } = {}) {
     const breakpointState = new BehaviorSubject<BreakpointState>({
       breakpoints: {
@@ -29,11 +34,19 @@ describe('LandingPage', () => {
 
     const renderResult = await render(LandingPage, {
       inputs: { exhibits: options.exhibits ?? [] },
-      providers: [{ provide: BreakpointObserver, useValue: { observe: vi.fn(() => breakpointState) } }],
+      providers: [
+        AppEvents,
+        { provide: AboutDialog, useValue: { open } },
+        { provide: BreakpointObserver, useValue: { observe: vi.fn(() => breakpointState) } },
+      ],
     });
 
     return { ...renderResult, breakpointState };
   }
+
+  beforeEach(() => {
+    open.mockReset();
+  });
 
   it('renders exhibits directly on smaller screens', async () => {
     await setup({ exhibits: EXHIBITS });
@@ -54,5 +67,30 @@ describe('LandingPage', () => {
     await setup();
 
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
+  });
+
+  it('does not render hidden exhibits', async () => {
+    const hiddenExhibit: Exhibit = { ...EXHIBITS[0], hidden: true };
+    await setup({ exhibits: [hiddenExhibit, EXHIBITS[1]] });
+
+    expect(screen.queryByRole('link', { name: /Exhibit 1/ })).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Exhibit 2/ })).toBeInTheDocument();
+  });
+
+  it('opens the collection About dialog without an exhibit title', async () => {
+    const aboutExhibit: Exhibit = { ...EXHIBITS[0], id: 'exhibit', hidden: true };
+    await setup({ exhibits: [aboutExhibit, EXHIBITS[1]] });
+
+    TestBed.inject(AppEvents).dispatch('open-about');
+
+    await waitFor(() => expect(open).toHaveBeenCalledWith(aboutExhibit, false));
+  });
+
+  it('does not open an About dialog when collection content is absent', async () => {
+    await setup({ exhibits: EXHIBITS });
+
+    TestBed.inject(AppEvents).dispatch('open-about');
+
+    expect(open).not.toHaveBeenCalled();
   });
 });

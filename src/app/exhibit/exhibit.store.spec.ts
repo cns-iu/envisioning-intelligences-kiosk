@@ -19,6 +19,7 @@ describe('ExhibitStore', () => {
     - human
     - artificial-machine
   videoId: abc123
+  hidden: true
 `;
 
   const INVALID_EXHIBITS_YAML = `
@@ -84,6 +85,7 @@ describe('ExhibitStore', () => {
         cardImageUrl: 'assets/images/collective-intelligence.webp',
         intelligenceTypes: ['human', 'artificial-machine'],
         videoId: 'abc123',
+        hidden: true,
       },
     ]);
     expect(store.exhibits()).toEqual(exhibits);
