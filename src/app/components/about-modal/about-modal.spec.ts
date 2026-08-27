@@ -49,10 +49,10 @@ describe('AboutModal', () => {
       }),
     );
 
-    expect(screen.getByRole('img', { name: 'Animal' })).toHaveAttribute('src', 'assets/animal.svg');
+    expect(screen.getByRole('img', { name: 'Animal' })).toHaveAttribute('src', 'assets/animal.png');
     expect(screen.getByRole('img', { name: 'Artificial/Machine' })).toHaveAttribute(
       'src',
-      'assets/artificial-machine.svg',
+      'assets/artificial-machine.png',
     );
   });
 
