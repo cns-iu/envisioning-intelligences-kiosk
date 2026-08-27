@@ -2,7 +2,7 @@ import { FocusMonitor } from '@angular/cdk/a11y';
 import { MatRippleLoader } from '@angular/material/core';
 import { render, screen } from '@testing-library/angular';
 import { EMPTY } from 'rxjs';
-import { Exhibit } from '../../../models/exhibit';
+import { Exhibit } from '../../../exhibit/exhibit.model';
 import { KioskCardCarouselSlide } from './kiosk-card-carousel-slide';
 
 const EXHIBITS: Exhibit[] = [

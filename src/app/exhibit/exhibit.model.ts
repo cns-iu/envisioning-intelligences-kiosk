@@ -27,3 +27,6 @@ export const ExhibitSchema = z.object({
   videoId: z.string().optional(),
   visualizationUrl: z.string().optional(),
 });
+
+/** Runtime schema for the collection of exhibit records. */
+export const ExhibitsSchema = ExhibitSchema.array();

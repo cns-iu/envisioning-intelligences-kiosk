@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Exhibit } from '../../../models/exhibit';
+import { Exhibit } from '../../../exhibit/exhibit.model';
 import { KioskCard } from '../../kiosk-card/kiosk-card';
 import { KioskCardContainer } from '../../kiosk-card/kiosk-card-container/kiosk-card-container';
 

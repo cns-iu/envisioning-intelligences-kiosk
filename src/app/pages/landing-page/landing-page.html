@@ -1,31 +1,17 @@
-@if (exhibits.hasValue()) {
-  @let items = exhibits.value();
-
-  @if (items.length > 8 && isLargeScreen()) {
-    <app-kiosk-card-carousel class="app-landing-page--card-carousel" [exhibits]="items" />
-  } @else {
-    <app-kiosk-card-container class="app-landing-page--card-container">
-      @for (item of items; track item.id) {
-        <app-kiosk-card
-          class="app-landing-page--card"
-          [title]="item.title"
-          [image]="item.cardImageUrl"
-          [link]="`/exhibit/${item.id}`"
-          [type]="item.visualizationUrl ? 'visualization' : 'video'"
-          [priority]="$index < 8"
-        />
-      }
-    </app-kiosk-card-container>
-  }
-} @else if (exhibits.isLoading()) {
-  <div class="app-landing-page--loading-spinner-container">
-    <mat-progress-spinner
-      class="app-landing-page--loading-spinner"
-      diameter="128"
-      strokeWidth="16"
-      mode="indeterminate"
-    />
-  </div>
+@let items = exhibits();
+@if (items.length > 8 && isLargeScreen()) {
+  <app-kiosk-card-carousel class="app-landing-page--card-carousel" [exhibits]="items" />
 } @else {
-  <!-- TODO -->
+  <app-kiosk-card-container class="app-landing-page--card-container">
+    @for (item of items; track item.id) {
+      <app-kiosk-card
+        class="app-landing-page--card"
+        [title]="item.title"
+        [image]="item.cardImageUrl"
+        [link]="`/exhibit/${item.id}`"
+        [type]="item.visualizationUrl ? 'visualization' : 'video'"
+        [priority]="$index < 8"
+      />
+    }
+  </app-kiosk-card-container>
 }

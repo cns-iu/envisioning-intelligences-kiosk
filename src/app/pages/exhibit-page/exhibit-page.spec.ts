@@ -1,21 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render } from '@testing-library/angular';
+import { Exhibit } from '../../exhibit/exhibit.model';
 import ExhibitPage from './exhibit-page';
 
 describe('ExhibitPage', () => {
-  let component: ExhibitPage;
-  let fixture: ComponentFixture<ExhibitPage>;
+  const EXHIBIT: Exhibit = {
+    id: 'collective-intelligence',
+    title: 'Collective Intelligence',
+    description: 'A study of distributed problem-solving.',
+    year: 2026,
+    cardImageUrl: 'assets/images/collective-intelligence.webp',
+    intelligenceTypes: ['human', 'artificial-machine'],
+  };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ExhibitPage],
-    }).compileComponents();
+  it('accepts the exhibit resolved for the route', async () => {
+    const { fixture } = await render(ExhibitPage, { inputs: { exhibit: EXHIBIT } });
 
-    fixture = TestBed.createComponent(ExhibitPage);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.componentInstance.exhibit()).toEqual(EXHIBIT);
   });
 });
