@@ -3,7 +3,7 @@
     <app-logo aria-hidden="true" />
   </a>
   @if (title(); as titleValue) {
-    <span class="app-header--title">{{ titleValue }}</span>
+    <markdown class="app-header--title" [data]="titleValue" />
   }
   <div class="app-header--actions">
     <a matButton class="app-header--button" routerLink="/" draggable="false">Home</a>
