@@ -1,4 +1,4 @@
-@let items = exhibits();
+@let items = visibleExhibits();
 @if (items.length > 8 && isLargeScreen()) {
   <app-kiosk-card-carousel class="app-landing-page--card-carousel" [exhibits]="items" />
 } @else {
