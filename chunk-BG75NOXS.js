@@ -1,1 +1,0 @@
-import{Ib as s,Za as a,rb as n,sb as o}from"./chunk-ZAD26JVN.js";var t=class i{static \u0275fac=function(e){return new(e||i)};static \u0275cmp=a({type:i,selectors:[["app-exhibit-page"]],decls:2,vars:0,template:function(e,m){e&1&&(n(0,"p"),s(1,"exhibit-page works!"),o())},styles:["[_nghost-%COMP%]{display:block}"]})};export{t as default};
