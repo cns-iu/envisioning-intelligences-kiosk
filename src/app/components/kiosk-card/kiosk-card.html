@@ -1,6 +1,6 @@
-<a class="app-kiosk-card--content-button" [routerLink]="link()" #cardButton>
+<a class="app-kiosk-card--content-button" draggable="false" [routerLink]="link()" #cardButton>
   <div class="app-kiosk-card--header">
-    <img class="app-kiosk-card--image" alt="" fill [ngSrc]="image()" [priority]="priority()" />
+    <img class="app-kiosk-card--image" alt="" draggable="false" fill [ngSrc]="image()" [priority]="priority()" />
     <div class="app-kiosk-card--type-chip">{{ type() | titlecase }}</div>
   </div>
   <div class="app-kiosk-card--title">{{ title() }}</div>

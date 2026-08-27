@@ -66,7 +66,7 @@ describe('KioskCard', () => {
 
     await waitFor(() => expect(focusMonitor.monitor).toHaveBeenCalledWith(link, true));
     expect(rippleLoader.configureRipple).toHaveBeenCalledWith(link, {
-      centered: true,
+      centered: false,
       className: INTERACTIVE_ELEMENT_RIPPLE_CLASS,
     });
 

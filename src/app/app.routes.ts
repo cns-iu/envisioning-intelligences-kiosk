@@ -1,5 +1,7 @@
 import { Route } from '@angular/router';
+import { exhibitPageTitleResolver } from './pages/exhibit-page/exhibit-page-title';
 
+/** Top-level routes for the landing page, exhibit details, and unknown URLs. */
 export const appRoutes: Route[] = [
   {
     path: '',
@@ -9,7 +11,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'exhibit/:id',
-    title: '', // TODO: use resolver to set title
+    title: exhibitPageTitleResolver,
     loadComponent: () => import('./pages/exhibit-page/exhibit-page'),
   },
   {

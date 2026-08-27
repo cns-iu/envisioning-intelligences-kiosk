@@ -32,6 +32,6 @@ export class KioskCard {
 
   /** Registers the rendered card link with the shared interaction manager. */
   constructor() {
-    new InteractiveElementManager(() => this.cardButton().nativeElement);
+    new InteractiveElementManager(() => this.cardButton().nativeElement, { centeredRipples: false });
   }
 }

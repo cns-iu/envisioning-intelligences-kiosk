@@ -6,7 +6,7 @@ import { ZodError } from 'zod';
 import { ExhibitStore, provideExhibitStore } from './exhibit-store';
 
 describe('ExhibitStore', () => {
-  const DEFAULT_DATA_URL = 'assets/data/exhibits.yaml';
+  const DEFAULT_DATA_URL = 'data/exhibits.yaml';
   const CUSTOM_DATA_URL = 'assets/test/exhibits.yaml';
 
   const VALID_EXHIBITS_YAML = `
@@ -58,11 +58,13 @@ describe('ExhibitStore', () => {
     TestBed.inject(HttpTestingController).verify();
   });
 
-  it('uses the default data URL and exposes an empty value while loading', async () => {
-    await flushExhibitRequest(DEFAULT_DATA_URL, '[]', (store) => {
-      expect(store.config).toEqual({ dataUrl: DEFAULT_DATA_URL });
-      expect(store.exhibits.value()).toEqual([]);
+  it('uses the default data URL and exposes no value while loading', async () => {
+    const store = await flushExhibitRequest(DEFAULT_DATA_URL, '[]', (loadingStore) => {
+      expect(loadingStore.config).toEqual({ dataUrl: DEFAULT_DATA_URL });
+      expect(loadingStore.exhibits.value()).toBeUndefined();
     });
+
+    expect(store.exhibits.value()).toEqual([]);
   });
 
   it('loads and validates exhibits from a configured YAML document', async () => {
@@ -84,6 +86,20 @@ describe('ExhibitStore', () => {
         videoId: 'abc123',
       },
     ]);
+  });
+
+  it('looks up exhibits by ID after the collection loads', async () => {
+    const store = TestBed.inject(ExhibitStore);
+
+    expect(store.getExhibitById('collective-intelligence')).toBeUndefined();
+
+    await flushExhibitRequest(DEFAULT_DATA_URL, VALID_EXHIBITS_YAML);
+
+    expect(store.getExhibitById('collective-intelligence')).toMatchObject({
+      id: 'collective-intelligence',
+      title: 'Collective Intelligence',
+    });
+    expect(store.getExhibitById('unknown')).toBeUndefined();
   });
 
   it('exposes schema validation failures through the resource', async () => {

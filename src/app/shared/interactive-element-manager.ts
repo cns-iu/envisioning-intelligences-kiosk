@@ -10,6 +10,8 @@ export const INTERACTIVE_ELEMENT_RIPPLE_CLASS = 'app-envisioning-intelligences--
 export interface InteractiveElementManagerOptions {
   /** Injector used to resolve the manager's Angular dependencies and destruction scope. */
   injector?: Injector;
+  /** Whether the ripples created for managed elements should be centered. */
+  centeredRipples?: boolean;
 }
 
 /**
@@ -35,9 +37,12 @@ export class InteractiveElementManager {
    * other render-dependent element references are available.
    *
    * @param getInitialElements - Resolves one or more elements to add after the next render.
-   * @param options - Optional construction settings, including an explicit Angular injector.
+   * @param options - Optional construction settings.
    */
-  constructor(getInitialElements?: () => HTMLElement | HTMLElement[], options?: InteractiveElementManagerOptions) {
+  constructor(
+    getInitialElements?: () => HTMLElement | HTMLElement[],
+    readonly options?: InteractiveElementManagerOptions,
+  ) {
     if (!options?.injector) {
       assertInInjectionContext(InteractiveElementManager);
     }
@@ -70,7 +75,7 @@ export class InteractiveElementManager {
     this.#focusMonitor.monitor(element, true);
     this.#rippleLoader.configureRipple(element, {
       className: INTERACTIVE_ELEMENT_RIPPLE_CLASS,
-      centered: true,
+      centered: this.options?.centeredRipples ?? true,
     });
     this.#interactiveElements.add(element);
   }

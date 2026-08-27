@@ -1,12 +1,12 @@
 <header class="app-header--header">
-  <a class="app-header--logo" routerLink="/" aria-label="Home">
-    <app-logo />
+  <a class="app-header--logo" routerLink="/" aria-label="Home" draggable="false" #logo>
+    <app-logo aria-hidden="true" />
   </a>
   @if (title(); as titleValue) {
     <span class="app-header--title">{{ titleValue }}</span>
   }
   <div class="app-header--actions">
-    <a matButton class="app-header--button" routerLink="/">Home</a>
+    <a matButton class="app-header--button" routerLink="/" draggable="false">Home</a>
     <button matButton class="app-header--button" (click)="aboutClick.emit()">About</button>
   </div>
 </header>
