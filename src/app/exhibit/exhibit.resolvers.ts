@@ -31,13 +31,13 @@ export const exhibitTitleResolver: ResolveFn<string> = (route) => getExhibitForR
  *
  * @param route Snapshot containing the exhibit ID route parameter.
  * @returns The exhibit matching the route ID.
- * @throws {Error} When the route ID is absent or does not identify a loaded exhibit.
+ * @throws {Error} When the route ID is absent, unknown, or identifies a hidden exhibit.
  */
 export const exhibitByIdResolver: ResolveFn<Exhibit> = (route) => {
   const exhibit = getExhibitForRoute(route);
-  if (!exhibit) {
+  if (!exhibit || exhibit.hidden) {
     const id = route.paramMap.get('id');
-    throw new Error(`Exhibit with id ${id} not found`);
+    throw new Error(`Exhibit with id ${id} ${exhibit ? 'is hidden' : 'not found'}`);
   }
 
   return exhibit;

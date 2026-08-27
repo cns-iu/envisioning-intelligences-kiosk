@@ -71,4 +71,18 @@ describe('exhibit resolvers', () => {
       `Exhibit with id ${id ?? 'null'} not found`,
     );
   });
+
+  it('rejects a hidden exhibit', () => {
+    const hiddenExhibit: Exhibit = { ...EXHIBITS[0], hidden: true };
+    TestBed.overrideProvider(ExhibitStore, {
+      useValue: {
+        exhibits: () => [hiddenExhibit],
+        exhibitById: () => new Map([[hiddenExhibit.id, hiddenExhibit]]),
+      },
+    });
+
+    expect(() =>
+      resolve(() => exhibitByIdResolver(createRoute('collective-intelligence'), {} as RouterStateSnapshot)),
+    ).toThrow('Exhibit with id collective-intelligence is hidden');
+  });
 });

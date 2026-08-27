@@ -13,6 +13,16 @@ export const IntelligenceTypeSchema = z.enum([
   'extraterrestrial',
 ]);
 
+/** Human-readable labels for every supported intelligence category. */
+export const IntelligenceTypeLabels: Readonly<Record<IntelligenceType, string>> = {
+  'artificial-machine': 'Artificial/Machine',
+  animal: 'Animal',
+  fungal: 'Fungal',
+  plant: 'Plant',
+  human: 'Human',
+  extraterrestrial: 'Extraterrestrial',
+};
+
 /** Validated content and media metadata for one exhibit. */
 export type Exhibit = z.infer<typeof ExhibitSchema>;
 
@@ -26,6 +36,7 @@ export const ExhibitSchema = z.object({
   intelligenceTypes: IntelligenceTypeSchema.array(),
   videoId: z.string().optional(),
   visualizationUrl: z.string().optional(),
+  hidden: z.boolean().optional(),
 });
 
 /** Runtime schema for the collection of exhibit records. */
