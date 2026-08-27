@@ -1,2 +1,5 @@
-<app-header [title]="currentTitle()" />
-<router-outlet />
+<app-header class="app--header" [title]="isExhibitPage() ? getTitle(outlet.activatedRoute) : undefined" />
+
+<div class="app--content">
+  <router-outlet #outlet="outlet" />
+</div>

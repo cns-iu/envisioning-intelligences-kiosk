@@ -1,39 +1,23 @@
-import { inject } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { ResolveFn, Route } from '@angular/router';
-import { filter, map } from 'rxjs';
-import { Exhibit } from './models/exhibit';
-import { ExhibitStore } from './services/exhibit-store';
+import { Route } from '@angular/router';
+import { exhibitByIdResolver, exhibitsResolver, exhibitTitleResolver } from './exhibit/exhibit.resolvers';
 
-function exhibitsResolver(): ResolveFn<Exhibit[]> {
-  return () => {
-    const exhibitStore = inject(ExhibitStore);
-    return toObservable(exhibitStore.exhibits.status).pipe(
-      filter((status) => status === 'resolved'),
-      map(() => exhibitStore.exhibits.value()),
-    );
-  };
-}
-
+/** Top-level routes for the landing page, exhibit details, and unknown URLs. */
 export const appRoutes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
     title: 'Envisioning Intelligences',
-    resolve: {
-      exhibits: exhibitsResolver(),
-    },
     loadComponent: () => import('./pages/landing-page/landing-page'),
+    resolve: { exhibits: exhibitsResolver },
   },
   {
     path: 'exhibit/:id',
-    resolve: {
-      exhibits: exhibitsResolver(),
-    },
+    title: exhibitTitleResolver,
     loadComponent: () => import('./pages/exhibit-page/exhibit-page'),
+    resolve: { exhibit: exhibitByIdResolver },
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: '/',
   },
 ];

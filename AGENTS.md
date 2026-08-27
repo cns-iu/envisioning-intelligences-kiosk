@@ -58,6 +58,7 @@
 - Prefer `user-event` for interactions and `@testing-library/jest-dom` matchers for rendered DOM assertions.
 - Import `@testing-library/jest-dom/vitest` in `src/test-setup.ts`, not in individual `*.spec.ts` files.
 - Avoid low-level patterns such as `querySelector`, `querySelectorAll`, manual `dispatchEvent`, and raw `element.click()` unless there is no Testing Library equivalent.
+- Do not add JSDoc to helper functions, fixtures, constants, types, or other test scaffolding declared in `*.spec.ts` files. Keep test code self-explanatory through clear naming instead.
 
 ## Documentation Map (Link, Don't Duplicate)
 
@@ -67,7 +68,7 @@
 
 ## Documentation Expectations
 
-- Generate JSDoc blocks for code, including private and protected members and non-exported functions, types, constants, and helpers, when they add clarity.
+- Outside `*.spec.ts` files, generate JSDoc blocks for code, including private and protected members and non-exported functions, types, constants, and helpers, when they add clarity.
 - Place JSDoc blocks for Angular components, directives, and similar classes immediately before the class declaration, not between the decorator and the class.
 - Document functions with `@param` tags for each parameter and `@returns` when the function returns a value.
 - Use `@throws`, `@see`, `@deprecated`, and inline links such as `{@link ...}` when they improve the API documentation.

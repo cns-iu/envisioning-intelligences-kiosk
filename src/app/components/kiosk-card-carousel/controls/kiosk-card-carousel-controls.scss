@@ -34,10 +34,7 @@
   }
 
   .app-kiosk-card-carousel-controls--pagination-container {
-    $bullet-size: 4rem;
-    $border-width: 2px;
-
-    --swiper-pagination-bullet-size: calc(#{$bullet-size} - 2 * #{$border-width});
+    --swiper-pagination-bullet-size: 4rem;
     --swiper-pagination-bullet-horizontal-gap: 0px;
     --swiper-pagination-color: #{token-utils.sys-slot(primary)};
     --swiper-pagination-bullet-inactive-color: #{token-utils.sys-slot(surface)};
@@ -52,8 +49,9 @@
     transform: none;
 
     .swiper-pagination-bullet {
+      box-sizing: border-box;
       position: relative;
-      border: $border-width solid token-utils.sys-slot(outline);
+      border: 2px solid token-utils.sys-slot(outline);
       outline: none;
       overflow: hidden;
 

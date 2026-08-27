@@ -1,9 +1,17 @@
-<app-kiosk-card-container>
-  @for (exhibit of this.exhibits(); track exhibit.id) {
-    <app-kiosk-card
-      [link]="`exhibit/${exhibit.id}`"
-      [type]="exhibit.visualizationUrl ? 'visualization' : 'video'"
-      [title]="exhibit.title"
-    />
-  }
-</app-kiosk-card-container>
+@let items = exhibits();
+@if (items.length > 8 && isLargeScreen()) {
+  <app-kiosk-card-carousel class="app-landing-page--card-carousel" [exhibits]="items" />
+} @else {
+  <app-kiosk-card-container class="app-landing-page--card-container">
+    @for (item of items; track item.id) {
+      <app-kiosk-card
+        class="app-landing-page--card"
+        [title]="item.title"
+        [image]="item.cardImageUrl"
+        [link]="`/exhibit/${item.id}`"
+        [type]="item.visualizationUrl ? 'visualization' : 'video'"
+        [priority]="$index < 8"
+      />
+    }
+  </app-kiosk-card-container>
+}

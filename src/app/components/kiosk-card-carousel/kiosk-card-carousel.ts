@@ -12,7 +12,7 @@ import * as a11yCssModule from 'swiper/element/css/a11y';
 import * as keyboardCssModule from 'swiper/element/css/keyboard';
 import { A11y, Keyboard, Navigation, Pagination } from 'swiper/modules';
 import { SwiperOptions } from 'swiper/types';
-import { Exhibit } from '../../models/exhibit';
+import { Exhibit } from '../../exhibit/exhibit.model';
 import { KioskCardCarouselControls } from './controls/kiosk-card-carousel-controls';
 import { KioskCardCarouselSlide } from './slide/kiosk-card-carousel-slide';
 
@@ -22,7 +22,11 @@ const SWIPER_CONFIG: SwiperOptions = {
   keyboard: true,
   loop: true,
   observer: true,
+  slidesOffsetBefore: 16,
+  slidesOffsetAfter: 16,
   slidesPerView: 1,
+  spaceBetween: 16,
+  touchStartPreventDefault: false,
   modules: [A11y, Keyboard, Navigation, Pagination],
   injectStyles: [a11yCssModule, keyboardCssModule]
     .map((module) => (module as { default: string }).default)

@@ -1,10 +1,9 @@
-import { Component, computed, effect, inject, input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, input } from '@angular/core';
+import { Exhibit } from '../../exhibit/exhibit.model';
 import { EmbeddedVisualization } from '../../components/embedded-visualization/embedded-visualization';
 import { EmbeddedYoutube } from '../../components/embedded-youtube/embedded-youtube';
-import { Exhibit } from '../../models/exhibit';
-import { ExhibitStore } from '../../services/exhibit-store';
 
+/** Renders the detail view for the exhibit selected by the current route. */
 @Component({
   selector: 'app-exhibit-page',
   imports: [EmbeddedVisualization, EmbeddedYoutube],
@@ -12,16 +11,6 @@ import { ExhibitStore } from '../../services/exhibit-store';
   styleUrl: './exhibit-page.scss',
 })
 export default class ExhibitPage {
-  readonly route = inject(ActivatedRoute);
-  readonly exhibitStore = inject(ExhibitStore);
-
-  readonly exhibits = input<Exhibit[]>();
-  readonly exhibitId = computed(() => this.route.snapshot.paramMap.get('id'));
-  readonly exhibit = computed(() => this.exhibits()?.find((ex) => ex.id === this.exhibitId()));
-
-  constructor() {
-    effect(() => {
-      this.exhibitStore.currentExhibit.set(this.exhibit());
-    });
-  }
+  /** Exhibit resolved from the current route. */
+  readonly exhibit = input.required<Exhibit>();
 }

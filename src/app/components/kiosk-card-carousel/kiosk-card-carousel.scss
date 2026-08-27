@@ -2,7 +2,6 @@ $controls-height: 64px + 2 * 24px;
 
 :host {
   display: block;
-  height: 100vh; // TODO move to parent
 
   .app-kiosk-card-carousel--container {
     height: calc(100% - #{$controls-height});

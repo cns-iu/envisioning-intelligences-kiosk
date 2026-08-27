@@ -6,4 +6,19 @@
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  overflow-y: auto;
+  background-color: token-utils.sys-slot(background);
+
+  .app--header {
+    position: sticky;
+    top: 0;
+  }
+
+  @include breakpoints.breakpoint(large) {
+    $header-height: 106px;
+
+    .app--content {
+      height: calc(100vh - #{$header-height});
+    }
+  }
 }

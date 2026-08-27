@@ -1,67 +1,60 @@
 - id: artificial-worldviews
-  title: |
-    Artificial Worldviews
-  year: 2023
-  intelligenceTypes:
-    - artificial-machine
-    - human
+  title: Artificial Worldviews
   description: |
     ### Artists and affiliations
+
     * Kim Albrecht, Center for Complex Network Research
 
     ### Description
-    Large language models, created by humans and trained on human-produced work,
-    reflect human beliefs and values. Given the widespread popularity and extraordinary
-    influence of LLMs, programs like ChatGPT are likely to influence the way we write,
-    think, and perceive the world for years to come. This makes it important to uncover
-    the hidden biases and implicit values that shape AI’s operations.
 
-    Over the course of 1,764 requests, data artist Kim Albrecht coaxed ChatGPT into
-    defining what constitutes “knowledge” and “power.” The answers it gave reveal a value
-    system in which certain people, objects, and ideas are emphasized or marginalized,
-    included or excluded. Explore the two networks to discover what kinds of knowledge
-    and what types of power are valued by ChatGPT.
+    Large language models, created by humans and trained on human-produced work, reflect human beliefs and values. Given the widespread popularity and extraordinary influence of LLMs, programs like ChatGPT are likely to influence the way we write, think, and perceive the world for years to come. This makes it important to uncover the hidden biases and implicit values that shape AI’s operations.
+
+    Over the course of 1,764 requests, data artist Kim Albrecht coaxed ChatGPT into defining what constitutes “knowledge” and “power.” The answers it gave reveal a value system in which certain people, objects, and ideas are emphasized or marginalized, included or excluded. Explore the two networks to discover what kinds of knowledge and what types of power are valued by ChatGPT.
 
     ### References
-    * Albrecht, Kim. 2023\. “Artificial Worldviews.” Accessed February 19, 2026\.
-    [https://artificial-worldviews.kimalbrecht.com](https://artificial-worldviews.kimalbrecht.com/#appearances).
-    * Albrecht, Kim. 2023\. *Artificial Worldviews*. In *Envisioning Intelligences 3.1* (2025),
-    edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
-  cardImageUrl: /assets/card-placeholder.png
-  visualizationUrl: https://artificial-worldviews-exhibit.kimalbrecht.com/#maps
-- id: intelligence-is-information-having-fun
-  title: |
-    Intelligence Is Information Having Fun
-  year: 2024
+
+    * Albrecht, Kim. 2023\. “Artificial Worldviews.” Accessed February 19, 2026\. [https://artificial-worldviews.kimalbrecht.com](https://artificial-worldviews.kimalbrecht.com/#appearances).
+    * Albrecht, Kim. 2023\. *Artificial Worldviews*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
+  year: 2023
+  cardImageUrl: assets/card-placeholder.png
   intelligenceTypes:
     - artificial-machine
     - human
+  visualizationUrl: https://artificial-worldviews-exhibit.kimalbrecht.com/#maps
+
+- id: intelligence-is-information-having-fun
+  title: Intelligence Is Information Having Fun
   description: |
     ### Artists and affiliations
+
     * Santiago Ortiz, CDO & Founder at DrumWave and Head of Moebio Labs
 
     ### Description
+
     In simple terms, large language models (LLM) like ChatGPT are tools that predict what word is most likely to come next in a string of text. By asking it many times to complete the same sentence opening, you can gather a range of possibilities and calculate which words are more or less likely to follow. Visualizing this data would be akin to performing an MRI of ChatGPT’s neural pathways.
 
     *Intelligence Is Information Having Fun* visualizes the results of asking ChatGPT to complete the sentence “Intelligence is….” The visualization plots all the ways Chat GPT completes the sentence, starting with a few potential directions that branch off into longer, less likely continuations. On the left, a network of possible word choices is completely highlighted at the sentence’s beginning but begins to fade as the sentence progresses and potential directions are cut off.
 
     ### References
+
     * Ortiz, Santiago. 2024\. “Mind.” Accessed February 19, 2026\. [https://moebio.com/mind](https://moebio.com/mind).
     * Ortiz, Santiago. 2024\. *Intelligence Is Information Having Fun*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
-  cardImageUrl: /assets/card-placeholder.png
-  visualizationUrl: https://moebio.protozoo.com/mind_EI/
-- id: responsibility-visualizing-ai-for-google-deepmind
-  title: |
-    Responsibility: Visualizing AI for Google DeepMind
   year: 2024
+  cardImageUrl: assets/card-placeholder.png
   intelligenceTypes:
     - artificial-machine
     - human
+  visualizationUrl: https://moebio.protozoo.com/mind_EI/
+
+- id: responsibility-visualizing-ai-for-google-deepmind
+  title: 'Responsibility: Visualizing AI for Google DeepMind'
   description: |
     ### Artists and affiliations
+
     * Aurora Mititelu, University of California, Los Angeles
 
     ### Description
+
     Whether they are collecting data, labeling content, or identifying images, humans play a substantial role in training artificial intelligence systems. In an era of crowdsourced labor, some have voiced concerns about the fair treatment, payment, and recognition of freelance employees who are often described as “ghost workers.”
 
     *Responsibility* was created for Google DeepMind’s Visualizing AI, a collection of digital art imagining AI’s rewards, roles, and responsibilities. It visualizes the push and pull, the mutual effort of humans and machines needed to create intelligent technologies. The clusters of particles show how data is grouped and processed inside an unsupervised machine learning model as the computer begins to find patterns on its own. At the same time, human hands enter the operation at various points, refining the data and adjusting the algorithm, guiding it in the desired direction.
@@ -71,15 +64,15 @@
     * Hawkins, Will, and Brent Mittelstadt. 2023\. “The Ethical Ambiguity of AI Data Enrichment: Measuring Gaps in Research Ethics Norms and Practices.” In *Proceedings of the 2023 ACM Conference on Fairness, Accountability, and Transparency (FAccT ‘23)*. New York, NY: ACM Publications. 261–270. Accessed February 23, 2026\. [https://doi.org/10.1145/3593013.3593995](https://doi.org/10.1145/3593013.3593995).
     * Mititelu, Aurora. 2024\. “Visualising AI: Responsibility for Google DeepMind*.*” Accessed February 26, 2026\. [https://auroramititelu.com/visualising-ai-google-deepmind](https://auroramititelu.com/visualising-ai-google-deepmind).
     * Mititelu, Aurora. 2024\. *Responsibility: Visualizing AI for Google DeepMind*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
-  cardImageUrl: /assets/card-placeholder.png
-  videoId: LANdlLNl2jo
-- id: recollection-you-only-have-seven-seconds
-  title: |
-    ReCollection: You Only Have Seven Seconds
-  year: 2023
+  year: 2024
+  cardImageUrl: assets/card-placeholder.png
   intelligenceTypes:
     - artificial-machine
     - human
+  videoId: LANdlLNl2jo
+
+- id: recollection-you-only-have-seven-seconds
+  title: 'ReCollection: You Only Have Seven Seconds'
   description: |
     ### Artists and affiliations
 
@@ -96,16 +89,17 @@
 
     ### References
 
-    * Zhang, Weidi, and Rodger Luo. 2023. “ReCollection.” Accessed February 23, 2026. [https://www.zhangweidi.com/recollection](https://www.zhangweidi.com/recollection).
-    * Zhang, Weidi, and Rodger Luo. 2023. *ReCollection: You Only Have Seven Seconds*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
-  cardImageUrl: /assets/card-placeholder.png
-  videoId: KtLnsSJ8ijE
-- id: the-emotional-echo-of-cultural-intelligence
-  title: |
-    The Emotional Echo of Cultural Intelligence
-  year: 2021
+    * Zhang, Weidi, and Rodger Luo. 2023\. “ReCollection.” Accessed February 23, 2026\. [https://www.zhangweidi.com/recollection](https://www.zhangweidi.com/recollection).
+    * Zhang, Weidi, and Rodger Luo. 2023\. *ReCollection: You Only Have Seven Seconds*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
+  year: 2023
+  cardImageUrl: assets/card-placeholder.png
   intelligenceTypes:
+    - artificial-machine
     - human
+  videoId: KtLnsSJ8ijE
+
+- id: the-emotional-echo-of-cultural-intelligence
+  title: The Emotional Echo of Cultural Intelligence
   description: |
     ### Artists and affiliations
 
@@ -125,16 +119,17 @@
     * Hütter, Christiane V.R., Celine Sin, Felix Müller, and Jörg Menche. 2022\. “Network Cartographs for Interpretable Visualizations.” *Nature Computational Science* 2\. 84–89. Accessed February 23, 2026\. [https://www.nature.com/articles/s43588-022-00199-z](https://www.nature.com/articles/s43588-022-00199-z).
     * Literally Media Ltd. 2026\. *Know Your Meme: Internet Meme Database*. Accessed February 23, 2026\. [https://knowyourmeme.com](https://knowyourmeme.com).
     * Pirch, Sebastian, Felix Müller, Eugenia Iofinova, Julia Pazmandi, Christiane V.R. Hütter, Martin Chiettini, Celine Sin, Kaan Boztug, Iana Podkosova, Hannes Kaufmann, and Jörg Menche. 2021\. “The VRNetzer Platform Enables Interactive Network Analysis in Virtual Reality.” *Nature Communications* 12 (2432). Accessed February 23, 2026\. [https://www.nature.com/articles/s41467-021-22570-w](https://www.nature.com/articles/s41467-021-22570-w).
-  cardImageUrl: /assets/card-placeholder.png
-  videoId: KIvM4CDEmNg
-- id: the-knowledge-cosmos
-  title: |
-    The Knowledge Cosmos
-  year: 2025
+  year: 2021
+  cardImageUrl: assets/card-placeholder.png
   intelligenceTypes:
     - human
+  videoId: KIvM4CDEmNg
+
+- id: the-knowledge-cosmos
+  title: The Knowledge Cosmos
   description: |
     ### Artists and affiliations
+
     * Nikita Sridhar, IBM Client Engineering
     * Alec McGail, NASA
     * Rifaa Tajani, Harvard University and IBM
@@ -155,17 +150,17 @@
     * McGail, Alec, Rifaa Tajani, Nikita Sridhar, and Jiaobao Li. 2025\. *The Knowledge Cosmos*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
     * Rosvall, Martin, and Carl T. Bergstrom. 2008\. “Maps of Random Walks on Complex Networks Reveal Community Structure.” *PNAS* 105 (4): 1118–1123. Accessed February 23, 2026\. [https://www.pnas.org/doi/full/10.1073/pnas.0706851105](https://www.pnas.org/doi/full/10.1073/pnas.0706851105).
     * Wang, Xitang, Shixia Liu, Junlin Liu, Jianfei Chen, Jun Zhu, and Baining Guo. 2016\. “TopicPanorama: A Full Picture of Relevant Topics.” *IEEE Transactions on Visualization and Computer Graphics* 22 (12): 2508–2521. Accessed February 23, 2026\. [https://ieeexplore.ieee.org/document/7374750](https://ieeexplore.ieee.org/document/7374750).
-  cardImageUrl: /assets/card-placeholder.png
-  visualizationUrl: https://app.theknowledgecosmos.com/
-- id: zoonotic-web
-  title: |
-    Zoonotic Web
-  year: 2024
+  year: 2025
+  cardImageUrl: assets/card-placeholder.png
   intelligenceTypes:
-    - animal
     - human
+  visualizationUrl: https://app.theknowledgecosmos.com/
+
+- id: zoonotic-web
+  title: Zoonotic Web
   description: |
     ### Artists and affiliations
+
     * Liuhuaying Yang, Complexity Science Hub
     * Amélie Desvars-Larrive, Complexity Science Hub and University of Veterinary Medicine Vienna
 
@@ -176,8 +171,13 @@
     This interactive network shows how tiny pathogens navigate between species and environments. Visualizing otherwise hidden relationships reveals how microscopic and macroscopic life co-shape disease dynamics.
 
     ### References
+
     * Amélie Desvars-Larrive, Amélie, Anna Elisabeth Vogl, Gavrila Amadea Puspitarani, Liuhuaying Yang, Anja Joachim, and Annemarie Käsbohrer. 2024\. “A One Health Framework for Exploring Zoonotic Interactions Demonstrated through a Case Study.” *Nature Communications* 15 (5650). Accessed February 20, 2026\. [https://www.nature.com/articles/s41467-024-49967-7](https://www.nature.com/articles/s41467-024-49967-7).
     * Yang, Liuhuaying, and Amélie Desvars-Larrive. 2024\. “Zoonotic Web.” Accessed February 23, 2026\. [https://vis.csh.ac.at/zoonotic-web](https://vis.csh.ac.at/zoonotic-web).
     * Yang, Liuhuaying, and Amélie Desvars-Larrive. 2024\. *Zoonotic Web*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
-  cardImageUrl: /assets/card-placeholder.png
+  year: 2024
+  cardImageUrl: assets/card-placeholder.png
+  intelligenceTypes:
+    - animal
+    - human
   visualizationUrl: https://vis.csh.ac.at/zoonotic-web/?v=kiosk
