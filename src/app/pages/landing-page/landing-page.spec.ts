@@ -1,9 +1,7 @@
 import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
-import { signal } from '@angular/core';
 import { render, screen } from '@testing-library/angular';
 import { BehaviorSubject } from 'rxjs';
-import { Exhibit } from '../../models/exhibit';
-import { ExhibitStore } from '../../services/exhibit-store';
+import { Exhibit } from '../../exhibit/exhibit.model';
 import LandingPage from './landing-page';
 
 describe('LandingPage', () => {
@@ -20,10 +18,7 @@ describe('LandingPage', () => {
     }),
   );
 
-  /** Renders the page with controllable exhibit-resource and breakpoint state. */
-  async function setup(options: { exhibits?: Exhibit[]; loading?: boolean; largeScreen?: boolean } = {}) {
-    const exhibitValue = signal<Exhibit[] | undefined>(options.exhibits);
-    const loading = signal(options.loading ?? false);
+  async function setup(options: { exhibits?: Exhibit[]; largeScreen?: boolean } = {}) {
     const breakpointState = new BehaviorSubject<BreakpointState>({
       breakpoints: {
         [Breakpoints.Large]: options.largeScreen ?? false,
@@ -31,27 +26,14 @@ describe('LandingPage', () => {
       },
       matches: options.largeScreen ?? false,
     });
-    const exhibits = {
-      hasValue: () => exhibitValue() !== undefined,
-      value: () => exhibitValue() ?? [],
-      isLoading: () => loading(),
-    };
 
     const renderResult = await render(LandingPage, {
-      providers: [
-        { provide: ExhibitStore, useValue: { exhibits } },
-        { provide: BreakpointObserver, useValue: { observe: vi.fn(() => breakpointState) } },
-      ],
+      inputs: { exhibits: options.exhibits ?? [] },
+      providers: [{ provide: BreakpointObserver, useValue: { observe: vi.fn(() => breakpointState) } }],
     });
 
-    return { ...renderResult, breakpointState, exhibitValue, loading };
+    return { ...renderResult, breakpointState };
   }
-
-  it('shows a progress indicator while exhibits are loading', async () => {
-    await setup({ loading: true });
-
-    expect(screen.getByRole('progressbar')).toBeInTheDocument();
-  });
 
   it('renders exhibits directly on smaller screens', async () => {
     await setup({ exhibits: EXHIBITS });
@@ -68,10 +50,9 @@ describe('LandingPage', () => {
     expect(screen.getAllByRole('button')).toHaveLength(2);
   });
 
-  it('renders no exhibits or progress indicator after loading fails', async () => {
+  it('renders an empty card container when the resolved collection is empty', async () => {
     await setup();
 
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
-    expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
   });
 });

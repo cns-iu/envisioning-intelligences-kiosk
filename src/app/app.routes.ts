@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { exhibitPageTitleResolver } from './pages/exhibit-page/exhibit-page-title';
+import { exhibitByIdResolver, exhibitsResolver, exhibitTitleResolver } from './exhibit/exhibit.resolvers';
 
 /** Top-level routes for the landing page, exhibit details, and unknown URLs. */
 export const appRoutes: Route[] = [
@@ -8,14 +8,16 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     title: 'Envisioning Intelligences',
     loadComponent: () => import('./pages/landing-page/landing-page'),
+    resolve: { exhibits: exhibitsResolver },
   },
   {
     path: 'exhibit/:id',
-    title: exhibitPageTitleResolver,
+    title: exhibitTitleResolver,
     loadComponent: () => import('./pages/exhibit-page/exhibit-page'),
+    resolve: { exhibit: exhibitByIdResolver },
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: '/',
   },
 ];

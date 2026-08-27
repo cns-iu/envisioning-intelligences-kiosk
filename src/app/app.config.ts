@@ -1,19 +1,44 @@
-import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import {
+  ApplicationConfig,
+  ErrorHandler,
+  inject,
+  provideAppInitializer,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
+import {
+  provideRouter,
+  RedirectCommand,
+  Router,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+  withNavigationErrorHandler,
+  withViewTransitions,
+} from '@angular/router';
 import { appRoutes } from './app.routes';
-import { ExhibitStore } from './services/exhibit-store';
+import { ExhibitStore } from './exhibit/exhibit.store';
 
-/** Root dependency-injection and router configuration for the kiosk application. */
+/** Root exhibit-loading, dependency-injection, and router configuration for the kiosk application. */
 export const appConfig: ApplicationConfig = {
   providers: [
-    // Instantiate the store during startup so exhibit data begins loading immediately.
-    provideAppInitializer(() => void inject(ExhibitStore)),
+    provideAppInitializer(() => inject(ExhibitStore).loadExhibits()),
     provideBrowserGlobalErrorListeners(),
+    provideHttpClient(),
     provideRouter(
       appRoutes,
+      withComponentInputBinding(),
       withInMemoryScrolling({
         anchorScrolling: 'enabled',
         scrollPositionRestoration: 'enabled',
+      }),
+      withNavigationErrorHandler((error) => {
+        inject(ErrorHandler).handleError(error);
+
+        const homePath = inject(Router).parseUrl('/');
+        return new RedirectCommand(homePath);
+      }),
+      withViewTransitions({
+        skipInitialTransition: true,
       }),
     ),
   ],
