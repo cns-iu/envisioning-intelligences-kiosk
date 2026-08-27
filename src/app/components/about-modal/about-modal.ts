@@ -32,7 +32,7 @@ export class AboutModal {
       .map((id) => ({
         id: id,
         label: IntelligenceTypeLabels[id],
-        image: `assets/${id}.svg`,
+        image: `assets/${id}.png`,
       }));
   });
 }
