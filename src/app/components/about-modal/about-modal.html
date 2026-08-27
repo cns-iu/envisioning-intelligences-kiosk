@@ -1,27 +1,28 @@
-<button class="app-about-modal--close" matIconButton matDialogClose aria-label="Close about modal">
+<button class="app-about-modal--close" matIconButton matDialogClose aria-label="Close about">
   <mat-icon fontIcon="close" />
 </button>
+
 <div class="app-about-modal--left">
   <div class="app-about-modal--header">
-    @if (data.id === 'envisioning-intelligences') {
+    @if (showTitle()) {
+      <div class="app-about-modal--title">{{ exhibit().title }}</div>
+      <div class="app-about-modal--year">{{ exhibit().year }}</div>
+    } @else {
       <div class="app-about-modal--logo-container">
         <app-logo />
       </div>
-    } @else {
-      <div class="app-about-modal--title">{{ data.title }}</div>
-      <div class="app-about-modal--year">{{ data.year }}</div>
     }
   </div>
   <div class="app-about-modal--types">
     <div class="app-about-modal--type-header">Intelligence types</div>
     <div class="app-about-modal--chips">
-      @for (type of data.intelligenceTypes; track type) {
-        <app-intelligence-type-chip [image]="`assets/${type}.svg`" [label]="getTypeLabel(type)" />
+      @for (chip of chips(); track chip.id) {
+        <app-intelligence-type-chip [image]="chip.image" [label]="chip.label" />
       }
     </div>
   </div>
 </div>
 
 <div class="app-about-modal--right">
-  <markdown [data]="data.description" />
+  <markdown [data]="exhibit().description" />
 </div>

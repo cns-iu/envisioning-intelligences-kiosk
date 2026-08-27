@@ -5,7 +5,7 @@
 .app-about-modal--panel {
   max-height: 100vh;
   border-radius: token-utils.sys-slot(corner-large);
-  border: 1px solid token-utils.sys-slot(outline);
+  border: 2px solid token-utils.sys-slot(outline);
 
   @include mat.dialog-overrides(
     (
@@ -63,7 +63,7 @@
   }
 }
 
-.app-about-modal--root {
+.app-about-modal {
   display: flex;
   flex-direction: column;
   position: relative;
