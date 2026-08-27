@@ -2,8 +2,6 @@
 @use 'breakpoints';
 
 :host {
-  $header-height: 113px;
-
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -17,14 +15,6 @@
   }
 
   .app--content {
-    height: calc(100vh - #{$header-height});
-  }
-
-  @include breakpoints.breakpoint(large) {
-    $header-height: 106px;
-
-    // .app--content {
-    //   height: calc(100vh - #{$header-height});
-    // }
+    flex-grow: 1;
   }
 }
