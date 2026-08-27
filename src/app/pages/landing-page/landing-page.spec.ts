@@ -1,9 +1,9 @@
 import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
 import { TestBed } from '@angular/core/testing';
-import { render, screen } from '@testing-library/angular';
+import { render, screen, waitFor } from '@testing-library/angular';
 import { BehaviorSubject } from 'rxjs';
 import { Exhibit } from '../../exhibit/exhibit.model';
-import { AboutDialog } from '../../services/about-dialog';
+import AboutDialog from '../../services/about-dialog';
 import { AppEvents } from '../../services/app-events';
 import LandingPage from './landing-page';
 
@@ -83,7 +83,7 @@ describe('LandingPage', () => {
 
     TestBed.inject(AppEvents).dispatch('open-about');
 
-    expect(open).toHaveBeenCalledWith(aboutExhibit, false);
+    await waitFor(() => expect(open).toHaveBeenCalledWith(aboutExhibit, false));
   });
 
   it('does not open an About dialog when collection content is absent', async () => {

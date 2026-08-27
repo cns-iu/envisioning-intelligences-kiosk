@@ -4,7 +4,7 @@ import { screen } from '@testing-library/dom';
 import { MarkdownService } from 'ngx-markdown';
 import { Exhibit } from '../exhibit/exhibit.model';
 import { AboutModal } from '../components/about-modal/about-modal';
-import { AboutDialog } from './about-dialog';
+import AboutDialog from './about-dialog';
 
 describe('AboutDialog', () => {
   const EXHIBIT: Exhibit = {

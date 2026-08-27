@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { render } from '@testing-library/angular';
+import { render, waitFor } from '@testing-library/angular';
 import { Exhibit } from '../../exhibit/exhibit.model';
-import { AboutDialog } from '../../services/about-dialog';
+import AboutDialog from '../../services/about-dialog';
 import { AppEvents } from '../../services/app-events';
 import ExhibitPage from './exhibit-page';
 
@@ -39,6 +39,6 @@ describe('ExhibitPage', () => {
 
     TestBed.inject(AppEvents).dispatch('open-about');
 
-    expect(open).toHaveBeenCalledWith(EXHIBIT);
+    await waitFor(() => expect(open).toHaveBeenCalledWith(EXHIBIT));
   });
 });

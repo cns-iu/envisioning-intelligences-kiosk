@@ -5,7 +5,7 @@ import { Exhibit } from '../exhibit/exhibit.model';
 
 /** Opens consistently configured About dialogs for exhibit content. */
 @Service()
-export class AboutDialog {
+export default class AboutDialog {
   /** Material dialog service used to create the modal overlay. */
   readonly #dialog = inject(MatDialog);
 
