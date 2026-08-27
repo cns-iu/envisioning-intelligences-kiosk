@@ -3,7 +3,7 @@ import { MatRippleLoader } from '@angular/material/core';
 import { render, screen, waitFor } from '@testing-library/angular';
 import { EMPTY } from 'rxjs';
 import { register, SwiperContainer } from 'swiper/element';
-import { Exhibit } from '../../models/exhibit';
+import { Exhibit } from '../../exhibit/exhibit.model';
 import { KioskCardCarousel } from './kiosk-card-carousel';
 
 function createExhibit(index: number): Exhibit {

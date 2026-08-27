@@ -1,27 +1,30 @@
-import { Component, computed, inject } from '@angular/core';
-import { KioskCardContainer } from '../../components/kiosk-card/kiosk-card-container/kiosk-card-container';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, inject, input, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { KioskCardCarousel } from '../../components/kiosk-card-carousel/kiosk-card-carousel';
 import { KioskCard } from '../../components/kiosk-card/kiosk-card';
-import { AboutModal } from '../../components/about-modal/about-modal';
-import { MatDialog } from '@angular/material/dialog';
-import { ExhibitStore } from '../../services/exhibit-store';
+import { KioskCardContainer } from '../../components/kiosk-card/kiosk-card-container/kiosk-card-container';
+import { Exhibit } from '../../exhibit/exhibit.model';
 
+/** Displays the exhibit collection in a layout adapted to the current viewport size. */
 @Component({
   selector: 'app-landing-page',
-  imports: [KioskCard, KioskCardContainer],
+  imports: [KioskCard, KioskCardCarousel, KioskCardContainer],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.scss',
 })
 export default class LandingPage {
-  readonly dialog = inject(MatDialog);
-  readonly exhibitStore = inject(ExhibitStore);
+  /** Exhibit collection resolved before the landing page is activated. */
+  readonly exhibits = input.required<Exhibit[]>();
 
-  protected readonly exhibit = computed(() => {
-    return this.exhibitStore.exhibits.value().find((ex) => ex.id === 'envisioning-intelligences');
-  });
+  /** Whether the viewport matches a large or extra-large Material breakpoint. */
+  protected readonly isLargeScreen = signal(false);
 
-  openAbout(): void {
-    this.dialog.open(AboutModal, {
-      data: this.exhibit(),
-    });
+  /** Starts observing viewport changes for responsive exhibit layout selection. */
+  constructor() {
+    inject(BreakpointObserver)
+      .observe([Breakpoints.Large, Breakpoints.XLarge])
+      .pipe(takeUntilDestroyed())
+      .subscribe((result) => this.isLargeScreen.set(result.matches));
   }
 }

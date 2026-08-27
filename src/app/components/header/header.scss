@@ -1,33 +1,31 @@
 @use '@angular/material' as mat;
-@use 'token-utils';
 @use 'breakpoints';
+@use 'layer-utils';
+@use 'token-utils';
 
 :host {
   display: block;
-  position: sticky;
-  top: 0;
 
   .app-header--header {
     display: grid;
     grid-template-areas:
-      'logo . button-group'
+      'logo . actions'
       'title title title';
     grid-template-columns: 9.75rem 1fr auto;
     grid-template-rows: 3.5rem auto;
+    align-items: center;
     background: token-utils.sys-slot(background);
   }
 
   .app-header--logo {
+    position: relative;
     grid-area: logo;
     padding: 0.75rem 1rem;
     border-radius: token-utils.sys-slot(corner-large);
     color: token-utils.sys-slot(on-surface);
+    outline: none;
 
-    &:focus,
-    &:focus-visible {
-      outline: 0.25rem solid token-utils.sys-slot(on-surface);
-      outline-offset: -0.25rem;
-    }
+    @include layer-utils.state-layer();
   }
 
   .app-header--title {
@@ -41,7 +39,7 @@
   }
 
   .app-header--actions {
-    grid-area: button-group;
+    grid-area: actions;
     display: flex;
     align-items: center;
   }
@@ -65,13 +63,13 @@
 
   @include breakpoints.breakpoint(large) {
     .app-header--header {
-      grid-template-areas: 'logo title button-group';
+      grid-template-areas: 'logo title actions';
       grid-template-columns: 20.25rem 1fr auto;
       grid-template-rows: 6.625rem;
     }
 
     .app-header--logo {
-      padding: 1.5rem 2.5rem;
+      padding: 9px 2rem;
       border-radius: 2rem;
     }
 

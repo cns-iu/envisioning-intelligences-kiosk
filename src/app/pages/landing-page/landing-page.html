@@ -1,10 +1,17 @@
-<app-kiosk-card-container>
-  <app-kiosk-card link="work/test" type="visualization" title="The Knowledge Cosmos" />
-  <app-kiosk-card link="work/test" type="visualization" title="Zoonotic Web" />
-  <app-kiosk-card link="work/test" type="visualization" title="Cultural Knowledge" />
-  <app-kiosk-card link="work/test" type="visualization" title="Intelligence Is Information Having Fun" />
-  <app-kiosk-card link="work/test" type="visualization" title="Artificial Worldviews" />
-  <app-kiosk-card link="work/test" type="visualization" title="ReCollection: You Only Have Seven Seconds" />
-  <app-kiosk-card link="work/test" type="visualization" title="Responsibility: Visualizing AI for Google DeepMind" />
-  <app-kiosk-card link="work/test" type="visualization" title="Title of Work" />
-</app-kiosk-card-container>
+@let items = exhibits();
+@if (items.length > 8 && isLargeScreen()) {
+  <app-kiosk-card-carousel class="app-landing-page--card-carousel" [exhibits]="items" />
+} @else {
+  <app-kiosk-card-container class="app-landing-page--card-container">
+    @for (item of items; track item.id) {
+      <app-kiosk-card
+        class="app-landing-page--card"
+        [title]="item.title"
+        [image]="item.cardImageUrl"
+        [link]="`/exhibit/${item.id}`"
+        [type]="item.visualizationUrl ? 'visualization' : 'video'"
+        [priority]="$index < 8"
+      />
+    }
+  </app-kiosk-card-container>
+}

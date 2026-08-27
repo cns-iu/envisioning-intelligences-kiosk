@@ -4,7 +4,7 @@
       [title]="exhibit.title"
       [image]="exhibit.cardImageUrl"
       [link]="`/exhibit/${exhibit.id}`"
-      [type]="exhibit.videoId ? 'video' : 'visualization'"
+      [type]="exhibit.visualizationUrl ? 'visualization' : 'video'"
       [priority]="isFirstSlide()"
     />
   }

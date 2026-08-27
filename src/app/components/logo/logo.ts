@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+/** Renders the application's responsive wordmark. */
 @Component({
   selector: 'app-logo',
   imports: [],

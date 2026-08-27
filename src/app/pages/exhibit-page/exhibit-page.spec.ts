@@ -1,31 +1,20 @@
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
 import { render } from '@testing-library/angular';
-import { ExhibitStore } from '../../services/exhibit-store';
+import { Exhibit } from '../../exhibit/exhibit.model';
 import ExhibitPage from './exhibit-page';
 
 describe('ExhibitPage', () => {
-  it('renders the exhibit page', async () => {
-    const result = render(ExhibitPage, {
-      providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: { snapshot: { paramMap: { get: () => null } } },
-        },
-        {
-          provide: ExhibitStore,
-          useValue: {
-            exhibits: {
-              hasValue: () => true,
-              isLoading: () => false,
-              value: () => [],
-            },
-          },
-        },
-        { provide: MatDialog, useValue: { open: vi.fn() } },
-      ],
-    });
+  const EXHIBIT: Exhibit = {
+    id: 'collective-intelligence',
+    title: 'Collective Intelligence',
+    description: 'A study of distributed problem-solving.',
+    year: 2026,
+    cardImageUrl: 'assets/images/collective-intelligence.webp',
+    intelligenceTypes: ['human', 'artificial-machine'],
+  };
 
-    await expect(result).resolves.toBeDefined();
+  it('accepts the exhibit resolved for the route', async () => {
+    const { fixture } = await render(ExhibitPage, { inputs: { exhibit: EXHIBIT } });
+
+    expect(fixture.componentInstance.exhibit()).toEqual(EXHIBIT);
   });
 });
