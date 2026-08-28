@@ -1,0 +1,67 @@
+@use '@angular/material' as mat;
+@use 'breakpoints';
+@use 'token-utils';
+
+.app-screen-size-modal--panel {
+  .app-screen-size-modal--title {
+    text-align: center;
+  }
+
+  .mat-mdc-dialog-title::before {
+    height: 0px;
+  }
+
+  .mat-mdc-dialog-actions {
+    border: none;
+  }
+
+  @include mat.button-overrides(
+    (
+      text-horizontal-padding: 1.25rem,
+      text-container-height: 3rem,
+      text-label-text-font: token-utils.sys-slot(label-medium-font),
+      text-label-text-size: token-utils.sys-slot(label-medium-size),
+      text-label-text-tracking: token-utils.sys-slot(label-medium-tracking),
+      text-label-text-weight: token-utils.sys-slot(label-medium-weight),
+    )
+  );
+
+  @include mat.dialog-overrides(
+    (
+      headline-padding: 1.5rem,
+      actions-padding: 1.25rem 1.5rem,
+      container-color: token-utils.sys-slot(surface-container-high),
+    )
+  );
+
+  @include breakpoints.breakpoint(large) {
+    @include mat.button-overrides(
+      (
+        text-horizontal-padding: 2rem,
+        text-container-height: 4.25rem,
+        text-label-text-font: token-utils.sys-slot(label-large-font),
+        text-label-text-size: token-utils.sys-slot(label-large-size),
+        text-label-text-tracking: token-utils.sys-slot(label-large-tracking),
+        text-label-text-weight: token-utils.sys-slot(label-large-weight),
+      )
+    );
+
+    @include mat.dialog-overrides(
+      (
+        headline-padding: 2rem,
+        actions-padding: 1.25rem 1.5rem,
+        with-actions-content-padding: 0 2rem 0,
+        subhead-font: token-utils.sys-slot(headline-medium-font),
+        subhead-line-height: token-utils.sys-slot(headline-medium-line-height),
+        subhead-size: token-utils.sys-slot(headline-medium-size),
+        subhead-tracking: token-utils.sys-slot(headline-medium-tracking),
+        subhead-weight: token-utils.sys-slot(headline-medium-weight),
+        supporting-text-font: token-utils.sys-slot(body-large-font),
+        supporting-text-line-height: token-utils.sys-slot(body-large-line-height),
+        supporting-text-size: token-utils.sys-slot(body-large-size),
+        supporting-text-tracking: token-utils.sys-slot(body-large-tracking),
+        supporting-text-weight: token-utils.sys-slot(body-large-weight),
+      )
+    );
+  }
+}
