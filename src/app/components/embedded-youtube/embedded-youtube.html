@@ -1,1 +1,6 @@
-<youtube-player [videoId]="videoId()" (stateChange)="onStateChange($event)" />
+<youtube-player
+  placeholderImageQuality="high"
+  [videoId]="videoId()"
+  [playerVars]="{ rel: 0 }"
+  (stateChange)="onStateChange($event)"
+/>
