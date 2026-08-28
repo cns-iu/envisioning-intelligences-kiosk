@@ -35,6 +35,7 @@ export const ExhibitSchema = z.object({
   cardImageUrl: z.string(),
   intelligenceTypes: IntelligenceTypeSchema.array(),
   videoId: z.string().optional(),
+  loop: z.boolean().optional(),
   visualizationUrl: z.string().optional(),
   hidden: z.boolean().optional(),
 });

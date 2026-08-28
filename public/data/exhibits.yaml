@@ -92,6 +92,7 @@
     - artificial-machine
     - human
   videoId: LANdlLNl2jo
+  loop: true
 
 - id: recollection-you-only-have-seven-seconds
   title: 'ReCollection: You Only Have Seven Seconds'

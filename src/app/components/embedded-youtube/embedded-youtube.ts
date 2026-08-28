@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { booleanAttribute, Component, input } from '@angular/core';
 import { YouTubePlayer } from '@angular/youtube-player';
 
 /**
@@ -13,4 +13,13 @@ import { YouTubePlayer } from '@angular/youtube-player';
 export class EmbeddedYoutube {
   /** ID of the YouTube video to embed. */
   readonly videoId = input.required<string>();
+  /** Whether the video should loop. */
+  readonly loop = input(false, { transform: booleanAttribute });
+
+  /** Handles video looping if enabled */
+  onStateChange(event: YT.OnStateChangeEvent) {
+    if (this.loop() && event.data === 0) {
+      event.target.playVideo();
+    }
+  }
 }
