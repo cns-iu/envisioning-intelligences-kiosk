@@ -38,7 +38,7 @@
     * Albrecht, Kim. 2023\. “Artificial Worldviews.” Accessed February 19, 2026\. [https://artificial-worldviews.kimalbrecht.com](https://artificial-worldviews.kimalbrecht.com/#appearances).
     * Albrecht, Kim. 2023\. *Artificial Worldviews*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
   year: 2023
-  cardImageUrl: assets/card-placeholder.png
+  cardImageUrl: assets/thumbnails/thumbnail-artificial-worldviews-600.png
   intelligenceTypes:
     - artificial-machine
     - human
@@ -62,7 +62,7 @@
     * Ortiz, Santiago. 2024\. “Mind.” Accessed February 19, 2026\. [https://moebio.com/mind](https://moebio.com/mind).
     * Ortiz, Santiago. 2024\. *Intelligence Is Information Having Fun*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
   year: 2024
-  cardImageUrl: assets/card-placeholder.png
+  cardImageUrl: assets/thumbnails/thumbnail-intelligence-600.png
   intelligenceTypes:
     - artificial-machine
     - human
@@ -87,7 +87,7 @@
     * Mititelu, Aurora. 2024\. “Visualising AI: Responsibility for Google DeepMind*.*” Accessed February 26, 2026\. [https://auroramititelu.com/visualising-ai-google-deepmind](https://auroramititelu.com/visualising-ai-google-deepmind).
     * Mititelu, Aurora. 2024\. *Responsibility: Visualizing AI for Google DeepMind*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
   year: 2024
-  cardImageUrl: assets/card-placeholder.png
+  cardImageUrl: assets/thumbnails/thumbnail-responsibility-600.png
   intelligenceTypes:
     - artificial-machine
     - human
@@ -115,7 +115,7 @@
     * Zhang, Weidi, and Rodger Luo. 2023\. “ReCollection.” Accessed February 23, 2026\. [https://www.zhangweidi.com/recollection](https://www.zhangweidi.com/recollection).
     * Zhang, Weidi, and Rodger Luo. 2023\. *ReCollection: You Only Have Seven Seconds*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
   year: 2023
-  cardImageUrl: assets/card-placeholder.png
+  cardImageUrl: assets/thumbnails/thumbnail-recollection-600.png
   intelligenceTypes:
     - artificial-machine
     - human
@@ -143,7 +143,7 @@
     * Literally Media Ltd. 2026\. *Know Your Meme: Internet Meme Database*. Accessed February 23, 2026\. [https://knowyourmeme.com](https://knowyourmeme.com).
     * Pirch, Sebastian, Felix Müller, Eugenia Iofinova, Julia Pazmandi, Christiane V.R. Hütter, Martin Chiettini, Celine Sin, Kaan Boztug, Iana Podkosova, Hannes Kaufmann, and Jörg Menche. 2021\. “The VRNetzer Platform Enables Interactive Network Analysis in Virtual Reality.” *Nature Communications* 12 (2432). Accessed February 23, 2026\. [https://www.nature.com/articles/s41467-021-22570-w](https://www.nature.com/articles/s41467-021-22570-w).
   year: 2021
-  cardImageUrl: assets/card-placeholder.png
+  cardImageUrl: assets/thumbnails/thumbnail-emotional-echo-600.png
   intelligenceTypes:
     - human
   videoId: KIvM4CDEmNg
@@ -174,7 +174,7 @@
     * Rosvall, Martin, and Carl T. Bergstrom. 2008\. “Maps of Random Walks on Complex Networks Reveal Community Structure.” *PNAS* 105 (4): 1118–1123. Accessed February 23, 2026\. [https://www.pnas.org/doi/full/10.1073/pnas.0706851105](https://www.pnas.org/doi/full/10.1073/pnas.0706851105).
     * Wang, Xitang, Shixia Liu, Junlin Liu, Jianfei Chen, Jun Zhu, and Baining Guo. 2016\. “TopicPanorama: A Full Picture of Relevant Topics.” *IEEE Transactions on Visualization and Computer Graphics* 22 (12): 2508–2521. Accessed February 23, 2026\. [https://ieeexplore.ieee.org/document/7374750](https://ieeexplore.ieee.org/document/7374750).
   year: 2025
-  cardImageUrl: assets/card-placeholder.png
+  cardImageUrl: assets/thumbnails/thumbnail-knowledge-cosmos-600.png
   intelligenceTypes:
     - human
   visualizationUrl: https://app.theknowledgecosmos.com/
@@ -199,7 +199,7 @@
     * Yang, Liuhuaying, and Amélie Desvars-Larrive. 2024\. “Zoonotic Web.” Accessed February 23, 2026\. [https://vis.csh.ac.at/zoonotic-web](https://vis.csh.ac.at/zoonotic-web).
     * Yang, Liuhuaying, and Amélie Desvars-Larrive. 2024\. *Zoonotic Web*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
   year: 2024
-  cardImageUrl: assets/card-placeholder.png
+  cardImageUrl: assets/thumbnails/thumbnail-zoonotic-web-600.png
   intelligenceTypes:
     - animal
     - human

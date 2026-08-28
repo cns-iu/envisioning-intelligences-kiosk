@@ -34,9 +34,9 @@
 
     .app-kiosk-card--type-chip {
       position: absolute;
-      bottom: 20px;
-      left: 20px;
-      padding: 8px 20px;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      padding: 0.5rem 1.25rem;
       border: 1px solid token-utils.sys-slot(outline-variant);
       border-radius: token-utils.sys-slot(corner-full);
       font: token-utils.sys-slot(label-medium);
@@ -45,28 +45,32 @@
     }
 
     .app-kiosk-card--title {
-      padding: 20px;
+      padding: 1.25rem;
       font: token-utils.sys-slot(title-medium);
       letter-spacing: token-utils.sys-slot(title-medium-tracking);
       background: token-utils.sys-slot(surface-container-highest);
     }
   }
 
-  @include breakpoints.breakpoint(large) {
+  @include breakpoints.breakpoint(medium) {
     .app-kiosk-card--content-button {
       .app-kiosk-card--header {
         aspect-ratio: unset;
       }
+    }
+  }
 
+  @include breakpoints.breakpoint(large) {
+    .app-kiosk-card--content-button {
       .app-kiosk-card--type-chip {
-        bottom: 24px;
-        left: 24px;
+        bottom: 1.5rem;
+        left: 1.5rem;
         font: token-utils.sys-slot(label-large);
         letter-spacing: token-utils.sys-slot(label-large-tracking);
       }
 
       .app-kiosk-card--title {
-        padding: 24px;
+        padding: 1.5rem;
         font: token-utils.sys-slot(title-large);
         letter-spacing: token-utils.sys-slot(title-large-tracking);
       }
