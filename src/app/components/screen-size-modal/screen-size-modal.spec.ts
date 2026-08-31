@@ -7,6 +7,6 @@ describe('ScreenSizeModal', () => {
 
     expect(screen.getByText('Limited experience')).toBeInTheDocument();
     expect(screen.getByText(/Your screen is below 1920×1080/)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Close screen size dialog' })).toBeInTheDocument();
+    expect(screen.getByText('Close')).toBeInTheDocument();
   });
 });
