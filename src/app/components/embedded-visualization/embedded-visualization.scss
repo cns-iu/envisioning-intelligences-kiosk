@@ -1,5 +1,8 @@
 :host {
-  .embedded-visualization {
+  display: block;
+  height: 100%;
+
+  .app-embedded-visualization--iframe {
     outline: none;
     border: none;
   }

@@ -9,14 +9,15 @@ import { DomSanitizer } from '@angular/platform-browser';
   imports: [],
   templateUrl: './embedded-visualization.html',
   styleUrl: './embedded-visualization.scss',
+  host: { class: 'app-embedded-visualization' },
 })
 export class EmbeddedVisualization {
-  /** Sanitizer for bypassing security checks. */
-  readonly sanitizer = inject(DomSanitizer);
-
   /** URL of the visualization to embed. */
-  readonly visualizationUrl = input.required<string>();
+  readonly url = input.required<string>();
 
-  /** Sanitized visualization URL */
-  protected readonly iframeUrl = computed(() => this.sanitizer.bypassSecurityTrustResourceUrl(this.visualizationUrl()));
+  /** Sanitizer for bypassing security checks. */
+  readonly #sanitizer = inject(DomSanitizer);
+
+  /** Sanitized URL for the iframe. */
+  protected readonly iframeUrl = computed(() => this.#sanitizer.bypassSecurityTrustResourceUrl(this.url()));
 }
