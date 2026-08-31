@@ -9,7 +9,7 @@ describe('AboutModal', () => {
       id: 'about-1',
       title: 'About',
       year: 2026,
-      cardImageUrl: '',
+      thumbnailUrl: '',
       intelligenceTypes: [],
       description: 'Base description',
       ...overrides,

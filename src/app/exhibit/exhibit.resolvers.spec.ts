@@ -11,7 +11,7 @@ describe('exhibit resolvers', () => {
       title: 'Collective Intelligence',
       description: 'A study of distributed problem-solving.',
       year: 2026,
-      cardImageUrl: 'assets/images/collective-intelligence.webp',
+      thumbnailUrl: 'assets/images/collective-intelligence.webp',
       intelligenceTypes: ['human', 'artificial-machine'],
     },
   ];

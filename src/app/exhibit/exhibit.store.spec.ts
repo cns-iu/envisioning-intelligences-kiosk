@@ -14,7 +14,7 @@ describe('ExhibitStore', () => {
   title: Collective Intelligence
   description: A study of distributed problem-solving.
   year: 2026
-  cardImageUrl: assets/images/collective-intelligence.webp
+  thumbnailUrl: assets/images/collective-intelligence.webp
   intelligenceTypes:
     - human
     - artificial-machine
@@ -27,7 +27,7 @@ describe('ExhibitStore', () => {
   title: Invalid exhibit
   description: Its year does not satisfy the exhibit schema.
   year: -1
-  cardImageUrl: assets/images/invalid.webp
+  thumbnailUrl: assets/images/invalid.webp
   intelligenceTypes:
     - animal
 `;
@@ -82,7 +82,7 @@ describe('ExhibitStore', () => {
         title: 'Collective Intelligence',
         description: 'A study of distributed problem-solving.',
         year: 2026,
-        cardImageUrl: 'assets/images/collective-intelligence.webp',
+        thumbnailUrl: 'assets/images/collective-intelligence.webp',
         intelligenceTypes: ['human', 'artificial-machine'],
         videoId: 'abc123',
         hidden: true,
