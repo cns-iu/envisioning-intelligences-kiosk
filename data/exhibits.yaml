@@ -10,7 +10,7 @@
     Looking at human intelligence alongside that of microbes, plants, animals, and machines can help us find ways to work together and identify blind spots in our own ways of thinking.
     *Envisioning Intelligences* is curated by the Cyberinfrastructure for Network Science Center at Indiana University.
   year: 2026
-  cardImageUrl: assets/card-placeholder.png
+  thumbnailUrl: assets/card-placeholder.png
   intelligenceTypes:
     - artificial-machine
     - animal
@@ -38,7 +38,7 @@
     * Albrecht, Kim. 2023\. “Artificial Worldviews.” Accessed February 19, 2026\. [https://artificial-worldviews.kimalbrecht.com](https://artificial-worldviews.kimalbrecht.com/#appearances).
     * Albrecht, Kim. 2023\. *Artificial Worldviews*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
   year: 2023
-  cardImageUrl: assets/card-placeholder.png
+  thumbnailUrl: assets/thumbnails/thumbnail-artificial-worldviews.png
   intelligenceTypes:
     - artificial-machine
     - human
@@ -62,7 +62,7 @@
     * Ortiz, Santiago. 2024\. “Mind.” Accessed February 19, 2026\. [https://moebio.com/mind](https://moebio.com/mind).
     * Ortiz, Santiago. 2024\. *Intelligence Is Information Having Fun*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
   year: 2024
-  cardImageUrl: assets/card-placeholder.png
+  thumbnailUrl: assets/thumbnails/thumbnail-intelligence.png
   intelligenceTypes:
     - artificial-machine
     - human
@@ -82,17 +82,17 @@
     *Responsibility* was created for Google DeepMind’s Visualizing AI, a collection of digital art imagining AI’s rewards, roles, and responsibilities. It visualizes the push and pull, the mutual effort of humans and machines needed to create intelligent technologies. The clusters of particles show how data is grouped and processed inside an unsupervised machine learning model as the computer begins to find patterns on its own. At the same time, human hands enter the operation at various points, refining the data and adjusting the algorithm, guiding it in the desired direction.
 
     ### References
-
     * Google. 2026\. Google DeepMind. Accessed February 23, 2026\. [https://deepmind.google](https://deepmind.google).
     * Hawkins, Will, and Brent Mittelstadt. 2023\. “The Ethical Ambiguity of AI Data Enrichment: Measuring Gaps in Research Ethics Norms and Practices.” In *Proceedings of the 2023 ACM Conference on Fairness, Accountability, and Transparency (FAccT ‘23)*. New York, NY: ACM Publications. 261–270. Accessed February 23, 2026\. [https://doi.org/10.1145/3593013.3593995](https://doi.org/10.1145/3593013.3593995).
     * Mititelu, Aurora. 2024\. “Visualising AI: Responsibility for Google DeepMind*.*” Accessed February 26, 2026\. [https://auroramititelu.com/visualising-ai-google-deepmind](https://auroramititelu.com/visualising-ai-google-deepmind).
     * Mititelu, Aurora. 2024\. *Responsibility: Visualizing AI for Google DeepMind*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
   year: 2024
-  cardImageUrl: assets/card-placeholder.png
+  thumbnailUrl: assets/thumbnails/thumbnail-responsibility.png
   intelligenceTypes:
     - artificial-machine
     - human
-  videoId: LANdlLNl2jo
+  videoUrl: assets/videos/responsibility-human.mp4
+  loopVideo: true
 
 - id: recollection-you-only-have-seven-seconds
   title: 'ReCollection: You Only Have Seven Seconds'
@@ -115,11 +115,11 @@
     * Zhang, Weidi, and Rodger Luo. 2023\. “ReCollection.” Accessed February 23, 2026\. [https://www.zhangweidi.com/recollection](https://www.zhangweidi.com/recollection).
     * Zhang, Weidi, and Rodger Luo. 2023\. *ReCollection: You Only Have Seven Seconds*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
   year: 2023
-  cardImageUrl: assets/card-placeholder.png
+  thumbnailUrl: assets/thumbnails/thumbnail-recollection.png
   intelligenceTypes:
     - artificial-machine
     - human
-  videoId: KtLnsSJ8ijE
+  videoUrl: assets/videos/recollection.mp4
 
 - id: the-emotional-echo-of-cultural-intelligence
   title: The Emotional Echo of Cultural Intelligence
@@ -143,10 +143,10 @@
     * Literally Media Ltd. 2026\. *Know Your Meme: Internet Meme Database*. Accessed February 23, 2026\. [https://knowyourmeme.com](https://knowyourmeme.com).
     * Pirch, Sebastian, Felix Müller, Eugenia Iofinova, Julia Pazmandi, Christiane V.R. Hütter, Martin Chiettini, Celine Sin, Kaan Boztug, Iana Podkosova, Hannes Kaufmann, and Jörg Menche. 2021\. “The VRNetzer Platform Enables Interactive Network Analysis in Virtual Reality.” *Nature Communications* 12 (2432). Accessed February 23, 2026\. [https://www.nature.com/articles/s41467-021-22570-w](https://www.nature.com/articles/s41467-021-22570-w).
   year: 2021
-  cardImageUrl: assets/card-placeholder.png
+  thumbnailUrl: assets/thumbnails/thumbnail-emotional-echo.png
   intelligenceTypes:
     - human
-  videoId: KIvM4CDEmNg
+  videoUrl: assets/videos/emotional-echo.mp4
 
 - id: the-knowledge-cosmos
   title: The Knowledge Cosmos
@@ -159,13 +159,11 @@
     * Jiabao Li, The University of Texas at Austin
 
     ### Description
-
     The amount of scientific literature humanity produces is growing at an incredible rate, and it is difficult to stay current. To make knowledge more manageable, it is often divided into disciplinary territories. But this solution prevents knowledge from crossing borders to encounter the unfamiliar thoughts and practices that may spur new ideas and innovation.
 
     The *Knowledge Cosmos* visualization is an interactive 3D universe where 17 million academic papers are located based on similarity of content, not preconceived categories. This arrangement allows for the discovery of unexpected interdisciplinary connections and under-explored gaps in knowledge.
 
     ### References
-
     * Börner, Katy. 2010\. *Atlas of Science: Visualizing What We Know*. Cambridge, MA: The MIT Press.
     * Cui, Weiwei, Shixia Liu, Li Tan, Conglei Shi, Yangqiu Song, and Zekai Gao. XXXX. “TextFlow: Towards Better Understanding of Evolving Topics in Text.” *IEEE Transactions on Visualization and Computer Graphics* 17 (12): 2412–2421. Accessed February 23, 2026\. [https://ieeexplore.ieee.org/document/6065008](https://ieeexplore.ieee.org/document/6065008).
     * Davidson, George S., Bruce Hendrickson, David K. Johnson, Charles E. Meyers, and Brian N. Wylie. 1998\. “Knowledge Mining with VxInsight: Discovery through Interaction.” *Journal of Intelligent Information Systems* 11 (3): 259–285. Accessed February 23, 2026\. [https://link.springer.com/article/10.1023/A:1008690008856](https://link.springer.com/article/10.1023/A:1008690008856).
@@ -176,7 +174,7 @@
     * Rosvall, Martin, and Carl T. Bergstrom. 2008\. “Maps of Random Walks on Complex Networks Reveal Community Structure.” *PNAS* 105 (4): 1118–1123. Accessed February 23, 2026\. [https://www.pnas.org/doi/full/10.1073/pnas.0706851105](https://www.pnas.org/doi/full/10.1073/pnas.0706851105).
     * Wang, Xitang, Shixia Liu, Junlin Liu, Jianfei Chen, Jun Zhu, and Baining Guo. 2016\. “TopicPanorama: A Full Picture of Relevant Topics.” *IEEE Transactions on Visualization and Computer Graphics* 22 (12): 2508–2521. Accessed February 23, 2026\. [https://ieeexplore.ieee.org/document/7374750](https://ieeexplore.ieee.org/document/7374750).
   year: 2025
-  cardImageUrl: assets/card-placeholder.png
+  thumbnailUrl: assets/thumbnails/thumbnail-knowledge-cosmos.png
   intelligenceTypes:
     - human
   visualizationUrl: https://app.theknowledgecosmos.com/
@@ -201,7 +199,7 @@
     * Yang, Liuhuaying, and Amélie Desvars-Larrive. 2024\. “Zoonotic Web.” Accessed February 23, 2026\. [https://vis.csh.ac.at/zoonotic-web](https://vis.csh.ac.at/zoonotic-web).
     * Yang, Liuhuaying, and Amélie Desvars-Larrive. 2024\. *Zoonotic Web*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
   year: 2024
-  cardImageUrl: assets/card-placeholder.png
+  thumbnailUrl: assets/thumbnails/thumbnail-zoonotic-web.png
   intelligenceTypes:
     - animal
     - human

@@ -1,0 +1,1 @@
+var e=/(\.[^/.]+)$/;function t(n,r){return r?n.replace(e,`-${r}$1`):n}export{t};
