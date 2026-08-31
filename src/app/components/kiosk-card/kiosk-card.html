@@ -5,8 +5,11 @@
       alt=""
       draggable="false"
       fill
-      ngSrcset="600w, 1000w"
-      sizes="(min-width: 1280px) 100vw, 600px"
+      ngSrcset="360w, 720w, 1080w"
+      sizes="(min-width: 1280px) calc((100vw - 80px) / 4),
+        (min-width: 960px) calc((100vw - 64px) / 3),
+        (min-width: 600px) calc((100vw - 48px) / 2),
+        calc(100vw - 32px)"
       [ngSrc]="image()"
       [priority]="priority()"
     />

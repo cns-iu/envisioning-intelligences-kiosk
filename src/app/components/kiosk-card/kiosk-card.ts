@@ -1,4 +1,4 @@
-import { CommonModule, IMAGE_LOADER, ImageLoader, NgOptimizedImage } from '@angular/common';
+import { CommonModule, IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage } from '@angular/common';
 import { booleanAttribute, Component, ElementRef, input, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
@@ -7,16 +7,8 @@ import { InteractiveElementManager } from '../../shared/interactive-element-mana
 /** Supported work categories displayed by a kiosk card. */
 export type WorkType = 'visualization' | 'video';
 
-/**
- * Select an optimized image URL for the kiosk card based on the requested width.
- *
- * @param config Image configuration.
- * @returns Image URL with a width suffix if requested, or the original URL otherwise.
- */
-const cardImageLoader: ImageLoader = (config) => {
-  const { src, width } = config;
-  return width ? src.replace(/(\.[^/.]+)$/, `-${width}$1`) : src;
-};
+/** Regular expression to match the file extension of an image. */
+const IMAGE_SUFFIX_REGEX = /(\.[^/.]+)$/;
 
 /** Presents a linked work preview with an optimized image and category label. */
 @Component({
@@ -27,7 +19,10 @@ const cardImageLoader: ImageLoader = (config) => {
   providers: [
     {
       provide: IMAGE_LOADER,
-      useValue: cardImageLoader,
+      useValue: (config: ImageLoaderConfig) => {
+        const { src, width } = config;
+        return width ? src.replace(IMAGE_SUFFIX_REGEX, `-${width}$1`) : src;
+      },
     },
   ],
   host: { class: 'app-kiosk-card' },
