@@ -2,16 +2,16 @@
 @use 'breakpoints';
 @use 'token-utils';
 
-.app-screen-size-modal--panel {
+.app-screen-size-modal {
   .app-screen-size-modal--title {
     text-align: center;
+
+    &:before {
+      height: 0px;
+    }
   }
 
-  .mat-mdc-dialog-title::before {
-    height: 0px;
-  }
-
-  .mat-mdc-dialog-actions {
+  .app-screen-size-modal--actions {
     border: none;
   }
 

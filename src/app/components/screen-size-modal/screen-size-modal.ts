@@ -8,5 +8,6 @@ import { MatDialogModule } from '@angular/material/dialog';
   templateUrl: './screen-size-modal.html',
   styleUrl: './screen-size-modal.scss',
   encapsulation: ViewEncapsulation.None,
+  host: { class: 'app-screen-size-modal' },
 })
 export class ScreenSizeModal {}

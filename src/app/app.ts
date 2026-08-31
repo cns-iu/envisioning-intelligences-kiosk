@@ -1,7 +1,4 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, computed, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatDialogModule } from '@angular/material/dialog';
 import { ActivatedRoute, ActivatedRouteSnapshot, isActive, Router, RouterOutlet } from '@angular/router';
 import { Header } from './components/header/header';
 import { AppEvents } from './services/app-events';
@@ -10,7 +7,7 @@ import { ScreenSizeDialog } from './services/screen-size-dialog';
 /** Hosts the application header and the currently active routed page. */
 @Component({
   selector: 'app-root',
-  imports: [Header, RouterOutlet, MatDialogModule],
+  imports: [Header, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -38,12 +35,7 @@ export class App {
 
   /** Sets up screen size dialog */
   constructor() {
-    inject(BreakpointObserver)
-      .observe(Breakpoints.XLarge)
-      .pipe(takeUntilDestroyed())
-      .subscribe((result) => {
-        this.screenSizeDialog.handleScreenSizeDialog(result);
-      });
+    inject(ScreenSizeDialog).startMonitor();
   }
 
   /** Requests that the active page open its contextual About dialog. */

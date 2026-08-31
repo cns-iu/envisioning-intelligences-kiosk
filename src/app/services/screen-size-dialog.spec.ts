@@ -1,4 +1,4 @@
-import { BreakpointState } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { TestBed } from '@angular/core/testing';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
@@ -7,66 +7,74 @@ import { ScreenSizeDialog } from './screen-size-dialog';
 
 describe('ScreenSizeDialog', () => {
   const dismissedKey = 'screen-size-dialog-dismissed';
-  const smallScreen: BreakpointState = { matches: false, breakpoints: {} };
-  const largeScreen: BreakpointState = { matches: true, breakpoints: {} };
 
-  let service: ScreenSizeDialog;
-  let closeReason: Subject<'dismissed' | 'screen-large' | undefined>;
-  let close: ReturnType<typeof vi.fn>;
-  let open: ReturnType<typeof vi.fn>;
-
-  beforeEach(() => {
+  function setup() {
     localStorage.removeItem(dismissedKey);
-    closeReason = new Subject();
-    close = vi.fn();
+    const screenSize = new Subject<BreakpointState>();
+    const closeReason = new Subject<'dismissed' | 'screen-large' | undefined>();
+    const close = vi.fn();
 
     const dialogRef = {
       close,
       afterClosed: vi.fn(() => closeReason.asObservable()),
     } as unknown as MatDialogRef<ScreenSizeModal, 'dismissed' | 'screen-large'>;
 
-    open = vi.fn(() => dialogRef);
+    const open = vi.fn(() => dialogRef);
+    const observe = vi.fn(() => screenSize.asObservable());
 
     TestBed.configureTestingModule({
-      providers: [ScreenSizeDialog, { provide: MatDialog, useValue: { open } }],
+      providers: [
+        ScreenSizeDialog,
+        { provide: BreakpointObserver, useValue: { observe } },
+        { provide: MatDialog, useValue: { open } },
+      ],
     });
 
-    service = TestBed.inject(ScreenSizeDialog);
-  });
+    const service = TestBed.inject(ScreenSizeDialog);
+
+    return { close, closeReason, observe, open, screenSize, service };
+  }
 
   afterEach(() => {
     localStorage.removeItem(dismissedKey);
   });
 
   it('opens the warning dialog on screens smaller than XLarge', () => {
-    service.handleScreenSizeDialog(smallScreen);
+    const { observe, open, screenSize, service } = setup();
 
+    TestBed.runInInjectionContext(() => service.startMonitor());
+    screenSize.next({ matches: false, breakpoints: {} });
+
+    expect(observe).toHaveBeenCalledWith(Breakpoints.XLarge);
     expect(open).toHaveBeenCalledOnce();
-    expect(open).toHaveBeenCalledWith(ScreenSizeModal, {
-      panelClass: 'app-screen-size-modal--panel',
-    });
+    expect(open).toHaveBeenCalledWith(ScreenSizeModal);
   });
 
   it('does not open the warning when it was dismissed previously', () => {
+    const { open, service } = setup();
     localStorage.setItem(dismissedKey, 'true');
 
-    service.handleScreenSizeDialog(smallScreen);
+    service.open();
 
     expect(open).not.toHaveBeenCalled();
   });
 
   it('remembers a user dismissal and does not open the warning again', () => {
-    service.handleScreenSizeDialog(smallScreen);
+    const { closeReason, open, service } = setup();
+
+    service.open();
 
     closeReason.next('dismissed');
-    service.handleScreenSizeDialog(smallScreen);
+    service.open();
 
     expect(localStorage.getItem(dismissedKey)).toBe('true');
     expect(open).toHaveBeenCalledOnce();
   });
 
   it('treats closing with the backdrop or Escape key as a user dismissal', () => {
-    service.handleScreenSizeDialog(smallScreen);
+    const { closeReason, service } = setup();
+
+    service.open();
 
     closeReason.next(undefined);
 
@@ -74,9 +82,12 @@ describe('ScreenSizeDialog', () => {
   });
 
   it('closes the warning without persisting a dismissal when the screen becomes XLarge', () => {
-    service.handleScreenSizeDialog(smallScreen);
+    const { close, closeReason, screenSize, service } = setup();
 
-    service.handleScreenSizeDialog(largeScreen);
+    TestBed.runInInjectionContext(() => service.startMonitor());
+    screenSize.next({ matches: false, breakpoints: {} });
+    screenSize.next({ matches: true, breakpoints: {} });
+
     closeReason.next('screen-large');
 
     expect(close).toHaveBeenCalledWith('screen-large');
