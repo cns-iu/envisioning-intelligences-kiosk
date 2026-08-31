@@ -15,7 +15,7 @@ describe('LandingPage', () => {
       title: `Exhibit ${index + 1}`,
       description: `Description ${index + 1}`,
       year: 2026,
-      cardImageUrl: `assets/exhibit-${index + 1}.png`,
+      thumbnailUrl: `assets/exhibit-${index + 1}.png`,
       intelligenceTypes: ['human'],
       visualizationUrl: `visualization-${index + 1}`,
     }),

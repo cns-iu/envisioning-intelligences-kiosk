@@ -2,7 +2,7 @@
   @for (exhibit of exhibits(); track exhibit.id) {
     <app-kiosk-card
       [title]="exhibit.title"
-      [image]="exhibit.cardImageUrl"
+      [image]="exhibit.thumbnailUrl"
       [link]="`/exhibit/${exhibit.id}`"
       [type]="exhibit.visualizationUrl ? 'visualization' : 'video'"
       [priority]="isFirstSlide()"

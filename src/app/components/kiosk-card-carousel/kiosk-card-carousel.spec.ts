@@ -12,7 +12,7 @@ function createExhibit(index: number): Exhibit {
     title: `Exhibit ${index}`,
     description: `Description ${index}`,
     year: 2025,
-    cardImageUrl: `assets/exhibit-${index}.png`,
+    thumbnailUrl: `assets/exhibit-${index}.png`,
     intelligenceTypes: ['human'],
     visualizationUrl: `visualization-${index}`,
   };

@@ -12,7 +12,7 @@ describe('AboutDialog', () => {
     title: 'Living Systems',
     description: 'A living description.',
     year: 2026,
-    cardImageUrl: 'assets/living-systems.png',
+    thumbnailUrl: 'assets/living-systems.png',
     intelligenceTypes: ['plant'],
   };
 
