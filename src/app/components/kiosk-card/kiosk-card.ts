@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule, IMAGE_LOADER, ImageLoader, NgOptimizedImage } from '@angular/common';
 import { booleanAttribute, Component, ElementRef, input, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
@@ -7,17 +7,34 @@ import { InteractiveElementManager } from '../../shared/interactive-element-mana
 /** Supported work categories displayed by a kiosk card. */
 export type WorkType = 'visualization' | 'video';
 
+/**
+ * Select an optimized image URL for the kiosk card based on the requested width.
+ *
+ * @param config Image configuration.
+ * @returns Image URL with a width suffix if requested, or the original URL otherwise.
+ */
+const cardImageLoader: ImageLoader = (config) => {
+  const { src, width } = config;
+  return width ? src.replace(/(\.[^/.]+)$/, `-${width}$1`) : src;
+};
+
 /** Presents a linked work preview with an optimized image and category label. */
 @Component({
   selector: 'app-kiosk-card',
   imports: [CommonModule, MatButtonModule, RouterLink, NgOptimizedImage],
   templateUrl: './kiosk-card.html',
   styleUrl: './kiosk-card.scss',
+  providers: [
+    {
+      provide: IMAGE_LOADER,
+      useValue: cardImageLoader,
+    },
+  ],
   host: { class: 'app-kiosk-card' },
 })
 export class KioskCard {
   /** URL of the card image, or the placeholder asset when omitted. */
-  readonly image = input<string>('assets/card-placeholder.png');
+  readonly image = input('assets/card-placeholder.png');
   /** Human-readable title of the linked work. */
   readonly title = input.required<string>();
   /** Category shown over the card image. */

@@ -6,7 +6,6 @@ import { KioskCard } from '../../components/kiosk-card/kiosk-card';
 import { KioskCardContainer } from '../../components/kiosk-card/kiosk-card-container/kiosk-card-container';
 import { Exhibit } from '../../exhibit/exhibit.model';
 import { AppEvents } from '../../services/app-events';
-import { upscaleThumbnailUrl } from '../../shared/image-url';
 
 /** Displays the exhibit collection in a layout adapted to the current viewport size. */
 @Component({
@@ -48,10 +47,5 @@ export default class LandingPage {
     if (exhibit) {
       (await this.#dialog()).open(exhibit, false);
     }
-  }
-
-  /** Fetches the appropriate thumbnail URL based on the current screen size. */
-  fetchThumbnail(url: string): string {
-    return this.isLargeScreen() ? upscaleThumbnailUrl(url) : url;
   }
 }
