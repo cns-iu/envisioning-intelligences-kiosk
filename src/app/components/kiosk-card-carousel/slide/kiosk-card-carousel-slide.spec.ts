@@ -13,7 +13,7 @@ const EXHIBITS: Exhibit[] = [
     year: 2024,
     thumbnailUrl: 'assets/video-work.png',
     intelligenceTypes: ['human'],
-    videoId: 'video-1',
+    videoUrl: 'video-1',
   },
   {
     id: 'visual-work',

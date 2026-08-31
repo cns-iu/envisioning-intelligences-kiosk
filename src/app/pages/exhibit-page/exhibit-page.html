@@ -1,6 +1,6 @@
 @let exhibit = this.exhibit();
 @if (exhibit.visualizationUrl; as url) {
-  <app-embedded-visualization [url]="url" [thumbnailUrl]="exhibit.thumbnailUrl" />
-} @else if (exhibit.videoId; as videoId) {
-  <app-embedded-youtube [videoId]="videoId" [loop]="exhibit.loopVideo" />
+  <app-embedded-visualization [visualizationUrl]="url" />
+} @else if (exhibit.videoUrl; as videoUrl) {
+  <app-embedded-video [videoUrl]="videoUrl" [thumbnailUrl]="exhibit.thumbnailUrl" [loop]="exhibit.loopVideo" />
 }

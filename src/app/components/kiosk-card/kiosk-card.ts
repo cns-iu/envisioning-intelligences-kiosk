@@ -3,12 +3,10 @@ import { booleanAttribute, Component, ElementRef, input, viewChild } from '@angu
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { InteractiveElementManager } from '../../shared/interactive-element-manager';
+import { createThumbnailUrl } from '../../shared/thumbnail-url';
 
 /** Supported work categories displayed by a kiosk card. */
 export type WorkType = 'visualization' | 'video';
-
-/** Regular expression to match the file extension of an image. */
-const IMAGE_SUFFIX_REGEX = /(\.[^/.]+)$/;
 
 /** Presents a linked work preview with an optimized image and category label. */
 @Component({
@@ -19,10 +17,7 @@ const IMAGE_SUFFIX_REGEX = /(\.[^/.]+)$/;
   providers: [
     {
       provide: IMAGE_LOADER,
-      useValue: (config: ImageLoaderConfig) => {
-        const { src, width } = config;
-        return width ? src.replace(IMAGE_SUFFIX_REGEX, `-${width}$1`) : src;
-      },
+      useValue: ({ src, width }: ImageLoaderConfig) => createThumbnailUrl(src, width),
     },
   ],
   host: { class: 'app-kiosk-card' },

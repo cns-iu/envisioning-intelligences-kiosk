@@ -34,7 +34,7 @@ export const ExhibitSchema = z.object({
   year: z.int().positive(),
   thumbnailUrl: z.string(),
   intelligenceTypes: IntelligenceTypeSchema.array(),
-  videoId: z.string().optional(),
+  videoUrl: z.string().optional(),
   loopVideo: z.boolean().optional(),
   visualizationUrl: z.string().optional(),
   hidden: z.boolean().optional(),

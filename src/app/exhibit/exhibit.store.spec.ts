@@ -18,7 +18,7 @@ describe('ExhibitStore', () => {
   intelligenceTypes:
     - human
     - artificial-machine
-  videoId: abc123
+  videoUrl: abc123
   hidden: true
 `;
 
@@ -84,7 +84,7 @@ describe('ExhibitStore', () => {
         year: 2026,
         thumbnailUrl: 'assets/images/collective-intelligence.webp',
         intelligenceTypes: ['human', 'artificial-machine'],
-        videoId: 'abc123',
+        videoUrl: 'abc123',
         hidden: true,
       },
     ]);
