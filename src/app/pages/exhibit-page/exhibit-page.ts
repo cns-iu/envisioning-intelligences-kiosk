@@ -1,11 +1,13 @@
 import { Component, inject, injectAsync, input, onIdle } from '@angular/core';
+import { EmbeddedVideo } from '../../components/embedded-video/embedded-video';
+import { EmbeddedVisualization } from '../../components/embedded-visualization/embedded-visualization';
 import { Exhibit } from '../../exhibit/exhibit.model';
 import { AppEvents } from '../../services/app-events';
 
 /** Renders the detail view for the exhibit selected by the current route. */
 @Component({
   selector: 'app-exhibit-page',
-  imports: [],
+  imports: [EmbeddedVisualization, EmbeddedVideo],
   templateUrl: './exhibit-page.html',
   styleUrl: './exhibit-page.scss',
 })

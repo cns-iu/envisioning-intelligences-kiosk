@@ -1,1 +1,6 @@
-<p>Exhibit Page works!</p>
+@let exhibit = this.exhibit();
+@if (exhibit.visualizationUrl; as url) {
+  <app-embedded-visualization [url]="url" />
+} @else if (exhibit.videoUrl; as videoUrl) {
+  <app-embedded-video [videoUrl]="videoUrl" [thumbnailUrl]="exhibit.thumbnailUrl" [loop]="exhibit.loopVideo" />
+}

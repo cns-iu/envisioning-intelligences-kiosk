@@ -32,9 +32,10 @@ export const ExhibitSchema = z.object({
   title: z.string(),
   description: z.string(),
   year: z.int().positive(),
-  cardImageUrl: z.string(),
+  thumbnailUrl: z.string(),
   intelligenceTypes: IntelligenceTypeSchema.array(),
-  videoId: z.string().optional(),
+  videoUrl: z.string().optional(),
+  loopVideo: z.boolean().optional(),
   visualizationUrl: z.string().optional(),
   hidden: z.boolean().optional(),
 });

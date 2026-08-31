@@ -1,8 +1,9 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule, IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage } from '@angular/common';
 import { booleanAttribute, Component, ElementRef, input, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { InteractiveElementManager } from '../../shared/interactive-element-manager';
+import { createThumbnailUrl } from '../../shared/thumbnail-url';
 
 /** Supported work categories displayed by a kiosk card. */
 export type WorkType = 'visualization' | 'video';
@@ -13,11 +14,17 @@ export type WorkType = 'visualization' | 'video';
   imports: [CommonModule, MatButtonModule, RouterLink, NgOptimizedImage],
   templateUrl: './kiosk-card.html',
   styleUrl: './kiosk-card.scss',
+  providers: [
+    {
+      provide: IMAGE_LOADER,
+      useValue: ({ src, width }: ImageLoaderConfig) => createThumbnailUrl(src, width),
+    },
+  ],
   host: { class: 'app-kiosk-card' },
 })
 export class KioskCard {
   /** URL of the card image, or the placeholder asset when omitted. */
-  readonly image = input<string>('assets/card-placeholder.png');
+  readonly image = input('assets/card-placeholder.png');
   /** Human-readable title of the linked work. */
   readonly title = input.required<string>();
   /** Category shown over the card image. */

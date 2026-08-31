@@ -7,7 +7,7 @@
       <app-kiosk-card
         class="app-landing-page--card"
         [title]="item.title"
-        [image]="item.cardImageUrl"
+        [image]="item.thumbnailUrl"
         [link]="`/exhibit/${item.id}`"
         [type]="item.visualizationUrl ? 'visualization' : 'video'"
         [priority]="$index < 8"

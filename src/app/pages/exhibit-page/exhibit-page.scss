@@ -1,3 +1,8 @@
+@use 'token-utils';
+
 :host {
   display: block;
+  height: 100%;
+  overflow: hidden;
+  background: token-utils.sys-slot(surface);
 }

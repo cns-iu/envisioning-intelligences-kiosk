@@ -1,6 +1,18 @@
 <a class="app-kiosk-card--content-button" draggable="false" [routerLink]="link()" #cardButton>
   <div class="app-kiosk-card--header">
-    <img class="app-kiosk-card--image" alt="" draggable="false" fill [ngSrc]="image()" [priority]="priority()" />
+    <img
+      class="app-kiosk-card--image"
+      alt=""
+      draggable="false"
+      fill
+      ngSrcset="360w, 720w, 1080w"
+      sizes="(min-width: 1280px) calc((100vw - 80px) / 4),
+        (min-width: 960px) calc((100vw - 64px) / 3),
+        (min-width: 600px) calc((100vw - 48px) / 2),
+        calc(100vw - 32px)"
+      [ngSrc]="image()"
+      [priority]="priority()"
+    />
     <div class="app-kiosk-card--type-chip">{{ type() | titlecase }}</div>
   </div>
   <div class="app-kiosk-card--title">{{ title() }}</div>

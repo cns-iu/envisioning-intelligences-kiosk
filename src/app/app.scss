@@ -2,7 +2,8 @@
 @use 'breakpoints';
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
@@ -11,12 +12,19 @@
   .app--header {
     position: sticky;
     top: 0;
+    z-index: 1;
+  }
+
+  .app--content {
+    height: 0;
+    flex-grow: 1;
   }
 
   @include breakpoints.breakpoint(large) {
-    $header-height: 106px;
+    display: block;
 
     .app--content {
+      $header-height: 106px;
       height: calc(100vh - #{$header-height});
     }
   }
