@@ -1,4 +1,3 @@
-# Note: 'exhibit' is not an actual work displayed. This content is shown in the about modal on the home page.
 - id: exhibit
   title: Exhibit
   description: |
@@ -19,7 +18,6 @@
     - human
     - extraterrestrial
   hidden: true
-
 - id: artificial-worldviews
   title: Artificial Worldviews
   description: |
@@ -43,7 +41,7 @@
     - artificial-machine
     - human
   visualizationUrl: https://artificial-worldviews-exhibit.kimalbrecht.com/#maps
-
+  visualizationAvailable: false
 - id: intelligence-is-information-having-fun
   title: Intelligence Is Information Having Fun
   description: |
@@ -67,7 +65,7 @@
     - artificial-machine
     - human
   visualizationUrl: https://moebio.protozoo.com/mind_EI/
-
+  visualizationAvailable: true
 - id: responsibility-visualizing-ai-for-google-deepmind
   title: 'Responsibility: Visualizing AI for Google DeepMind'
   description: |
@@ -93,7 +91,6 @@
     - human
   videoUrl: https://idemo.cns.iu.edu/envisioning-intelligences/responsibility-visualizing-ai-for-google-deepmind/video.mp4
   loopVideo: true
-
 - id: recollection-you-only-have-seven-seconds
   title: 'ReCollection: You Only Have Seven Seconds'
   description: |
@@ -120,7 +117,6 @@
     - artificial-machine
     - human
   videoUrl: https://idemo.cns.iu.edu/envisioning-intelligences/recollection-you-only-have-seven-seconds/video.mp4
-
 - id: the-emotional-echo-of-cultural-intelligence
   title: The Emotional Echo of Cultural Intelligence
   description: |
@@ -147,7 +143,6 @@
   intelligenceTypes:
     - human
   videoUrl: https://idemo.cns.iu.edu/envisioning-intelligences/the-emotional-echo-of-cultural-intelligence/video.mp4
-
 - id: the-knowledge-cosmos
   title: The Knowledge Cosmos
   description: |
@@ -178,7 +173,7 @@
   intelligenceTypes:
     - human
   visualizationUrl: https://app.theknowledgecosmos.com/
-
+  visualizationAvailable: true
 - id: zoonotic-web
   title: Zoonotic Web
   description: |
@@ -204,3 +199,4 @@
     - animal
     - human
   visualizationUrl: https://vis.csh.ac.at/zoonotic-web/?v=kiosk
+  visualizationAvailable: true
