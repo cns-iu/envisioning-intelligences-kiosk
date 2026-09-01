@@ -41,7 +41,7 @@
     - artificial-machine
     - human
   visualizationUrl: https://artificial-worldviews-exhibit.kimalbrecht.com/#maps
-  visualizationAvailable: false
+  visualizationAvailable: true
 - id: intelligence-is-information-having-fun
   title: Intelligence Is Information Having Fun
   description: |
