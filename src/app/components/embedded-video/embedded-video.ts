@@ -1,6 +1,9 @@
 import { booleanAttribute, Component, input } from '@angular/core';
 import { createThumbnailUrl } from '../../shared/thumbnail-url';
 
+/**
+ * An embedded video player with a thumbnail and optional looping.
+ */
 @Component({
   selector: 'app-embedded-video',
   imports: [],

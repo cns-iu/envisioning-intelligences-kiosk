@@ -91,7 +91,7 @@
   intelligenceTypes:
     - artificial-machine
     - human
-  videoUrl: assets/videos/responsibility-human.mp4
+  videoUrl: https://idemo.cns.iu.edu/envisioning-intelligences/responsibility-visualizing-ai-for-google-deepmind/video.mp4
   loopVideo: true
 
 - id: recollection-you-only-have-seven-seconds
@@ -119,7 +119,7 @@
   intelligenceTypes:
     - artificial-machine
     - human
-  videoUrl: assets/videos/recollection.mp4
+  videoUrl: https://idemo.cns.iu.edu/envisioning-intelligences/recollection-you-only-have-seven-seconds/video.mp4
 
 - id: the-emotional-echo-of-cultural-intelligence
   title: The Emotional Echo of Cultural Intelligence
@@ -146,7 +146,7 @@
   thumbnailUrl: assets/thumbnails/thumbnail-emotional-echo.png
   intelligenceTypes:
     - human
-  videoUrl: assets/videos/emotional-echo.mp4
+  videoUrl: https://idemo.cns.iu.edu/envisioning-intelligences/the-emotional-echo-of-cultural-intelligence/video.mp4
 
 - id: the-knowledge-cosmos
   title: The Knowledge Cosmos
