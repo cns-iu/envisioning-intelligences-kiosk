@@ -51,6 +51,9 @@ jobs:
         timeout-minutes: 30
         run: npx nx run-many -t build
 
+      - name: Copy index.html to 404.html
+        run: cp dist/envisioning-intelligences-kiosk/browser/index.html dist/envisioning-intelligences-kiosk/browser/404.html
+
       # - name: Configure AWS credentials
       #   uses: aws-actions/configure-aws-credentials@v5
       #   with:
