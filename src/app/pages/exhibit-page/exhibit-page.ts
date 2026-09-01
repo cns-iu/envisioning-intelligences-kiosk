@@ -1,15 +1,25 @@
+import { IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage } from '@angular/common';
 import { Component, inject, injectAsync, input, onIdle } from '@angular/core';
+import { MatButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 import { EmbeddedVideo } from '../../components/embedded-video/embedded-video';
 import { EmbeddedVisualization } from '../../components/embedded-visualization/embedded-visualization';
 import { Exhibit } from '../../exhibit/exhibit.model';
 import { AppEvents } from '../../services/app-events';
+import { createThumbnailUrl } from '../../shared/thumbnail-url';
 
 /** Renders the detail view for the exhibit selected by the current route. */
 @Component({
   selector: 'app-exhibit-page',
-  imports: [EmbeddedVisualization, EmbeddedVideo],
+  imports: [EmbeddedVisualization, EmbeddedVideo, MatButton, NgOptimizedImage, RouterLink],
   templateUrl: './exhibit-page.html',
   styleUrl: './exhibit-page.scss',
+  providers: [
+    {
+      provide: IMAGE_LOADER,
+      useValue: ({ src, width }: ImageLoaderConfig) => createThumbnailUrl(src, width),
+    },
+  ],
 })
 export default class ExhibitPage {
   /** Exhibit resolved from the current route. */

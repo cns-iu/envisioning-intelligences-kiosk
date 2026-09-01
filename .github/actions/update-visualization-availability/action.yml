@@ -1,0 +1,34 @@
+name: Update visualization availability
+description: Check whether exhibit visualizations permit iframe embedding and update the exhibit data
+
+inputs:
+  data-file:
+    description: Repository-relative path to the exhibits YAML file
+    required: false
+    default: public/data/exhibits.yaml
+  embed-origin:
+    description: Origin that will embed the visualizations
+    required: true
+  retries:
+    description: Number of retries after a failed visualization request
+    required: false
+    default: '2'
+  timeout-ms:
+    description: Visualization request timeout in milliseconds
+    required: false
+    default: '10000'
+
+runs:
+  using: composite
+  steps:
+    - name: Check visualization URLs and update exhibit data
+      shell: bash
+      env:
+        VISUALIZATION_DATA_FILE: ${{ inputs.data-file }}
+        VISUALIZATION_EMBED_ORIGIN: ${{ inputs.embed-origin }}
+      run: >-
+        node "$GITHUB_ACTION_PATH/update-visualization-availability.mjs"
+        "--data-file=$VISUALIZATION_DATA_FILE"
+        "--embed-origin=$VISUALIZATION_EMBED_ORIGIN"
+        "--retries=${{ inputs.retries }}"
+        "--timeout-ms=${{ inputs.timeout-ms }}"

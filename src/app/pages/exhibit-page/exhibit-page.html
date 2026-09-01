@@ -1,6 +1,28 @@
 @let exhibit = this.exhibit();
-@if (exhibit.visualizationUrl; as url) {
+@if (exhibit.visualizationAvailable !== false && exhibit.visualizationUrl; as url) {
   <app-embedded-visualization [url]="url" />
 } @else if (exhibit.videoUrl; as videoUrl) {
   <app-embedded-video [videoUrl]="videoUrl" [thumbnailUrl]="exhibit.thumbnailUrl" [loop]="exhibit.loopVideo" />
+} @else {
+  <div class="app-exhibit-page--unavailable-container">
+    <img
+      class="app-exhibit-page--unavailable-thumbnail"
+      alt=""
+      draggable="false"
+      fill
+      priority
+      ngSrcset="360w, 720w, 1080w"
+      sizes="100vw"
+      [ngSrc]="exhibit.thumbnailUrl"
+    />
+
+    <div class="app-exhibit-page--unavailable-content">
+      <h2 class="app-exhibit-page--unavailable-title">Exhibit piece unavailable</h2>
+      <p class="app-exhibit-page--unavailable-description">
+        This exhibit piece is currently unavailable. Please try again later.
+      </p>
+
+      <a matButton class="app-exhibit-page--unavailable-button" routerLink="/">Back to gallery</a>
+    </div>
+  </div>
 }

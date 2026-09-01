@@ -21,9 +21,6 @@ export class App {
   /** Application event bus used to notify the active page about header actions. */
   readonly #events = inject(AppEvents);
 
-  /** Screen size dialog service. */
-  readonly screenSizeDialog = inject(ScreenSizeDialog);
-
   /** Most specific route title to display while viewing an exhibit. */
   protected readonly title = computed(() => {
     if (!this.#isExhibitPage()) {
