@@ -22,7 +22,8 @@ export default class AboutDialog {
       bindings: [inputBinding('exhibit', () => exhibit), inputBinding('showTitle', () => showTitle)],
       closeOnNavigation: true,
       hasBackdrop: true,
-      maxWidth: 'calc(100vw - 32px)',
+      width: 'calc(100vw - 32px)',
+      maxWidth: '93.75rem',
       panelClass: 'app-about-modal--panel',
     });
   }
