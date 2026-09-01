@@ -74,6 +74,9 @@ jobs:
           npx nx affected -t build --configuration="$BUILD_CONFIGURATION"
           npx nx affected -t lint test
 
+      - name: Test custom actions
+        run: node .github/actions/update-visualization-availability/update-visualization-availability.spec.mjs
+
       - name: Fix CI issues
         if: failure()
         run: npx nx fix-ci

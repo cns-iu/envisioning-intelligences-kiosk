@@ -40,6 +40,11 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit
 
+      - name: Refresh embedded visualization availability
+        uses: ./.github/actions/update-visualization-availability
+        with:
+          embed-origin: https://cns-iu.github.io
+
       - name: Build apps
         timeout-minutes: 30
         run: npx nx run-many -t build
