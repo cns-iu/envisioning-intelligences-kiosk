@@ -31,13 +31,22 @@ async function main() {
       result: await checkVisualizationAvailability(exhibit.visualizationUrl, embedOrigin, { retries, timeoutMs }),
     })),
   );
-  const availabilityById = new Map(checks.map(({ exhibit, result }) => [exhibit.id, result.available]));
+  const availabilityById = new Map(
+    checks
+      .filter(({ result }) => typeof result.available === 'boolean')
+      .map(({ exhibit, result }) => [exhibit.id, result.available]),
+  );
   const updatedDocument = updateAvailabilityInYaml(exhibits, availabilityById);
 
   await writeFile(dataFile, updatedDocument);
 
   for (const { exhibit, result } of checks) {
-    const status = result.available ? 'available' : 'unavailable';
+    const status =
+      result.available === undefined
+        ? 'indeterminate; preserving existing availability'
+        : result.available
+          ? 'available'
+          : 'unavailable';
     // eslint-disable-next-line no-console
     console.log(`${exhibit.id}: ${status} (${result.reason})`);
   }

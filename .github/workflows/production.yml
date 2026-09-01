@@ -44,6 +44,8 @@ jobs:
         uses: ./.github/actions/update-visualization-availability
         with:
           embed-origin: https://cns-iu.github.io
+          retries: '4'
+          timeout-ms: '30000'
 
       - name: Build apps
         timeout-minutes: 30

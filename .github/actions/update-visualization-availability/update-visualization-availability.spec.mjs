@@ -95,6 +95,7 @@ test('gives an enforced frame-ancestors directive precedence over X-Frame-Option
 
 test('reports HTTP failures and retries transient responses', async () => {
   let requests = 0;
+  const retryDelays = [];
   const fetchImplementation = async () => {
     requests += 1;
     return new Response(null, {
@@ -105,11 +106,55 @@ test('reports HTTP failures and retries transient responses', async () => {
   const result = await checkVisualizationAvailability(
     'https://visualization.example/work',
     'https://cns-iu.github.io',
-    { fetchImplementation, retries: 1 },
+    {
+      fetchImplementation,
+      retries: 1,
+      waitImplementation: async (delayMs) => retryDelays.push(delayMs),
+    },
   );
 
   assert.deepEqual(result, { available: false, reason: 'HTTP 404' });
   assert.equal(requests, 2);
+  assert.deepEqual(retryDelays, [1_000]);
+});
+
+test('preserves availability when transient HTTP failures exhaust retries', async () => {
+  const result = await checkVisualizationAvailability(
+    'https://visualization.example/work',
+    'https://cns-iu.github.io',
+    {
+      fetchImplementation: async () => new Response(null, { status: 503 }),
+      retries: 1,
+      waitImplementation: async () => {},
+    },
+  );
+
+  assert.deepEqual(result, {
+    available: undefined,
+    reason: 'Indeterminate after 2 attempts: HTTP 503',
+  });
+});
+
+test('preserves availability when network failures exhaust retries', async () => {
+  let requests = 0;
+  const result = await checkVisualizationAvailability(
+    'https://visualization.example/work',
+    'https://cns-iu.github.io',
+    {
+      fetchImplementation: async () => {
+        requests += 1;
+        throw new Error('The operation was aborted due to timeout');
+      },
+      retries: 2,
+      waitImplementation: async () => {},
+    },
+  );
+
+  assert.deepEqual(result, {
+    available: undefined,
+    reason: 'Indeterminate after 3 attempts: The operation was aborted due to timeout',
+  });
+  assert.equal(requests, 3);
 });
 
 test('updates parsed exhibits and serializes the result as YAML', () => {
@@ -147,4 +192,12 @@ test('fails when an exhibit cannot be updated safely', () => {
     () => updateAvailabilityInYaml([{ id: 'first', title: 'First' }], new Map([['missing', true]])),
     /Could not update/,
   );
+});
+
+test('leaves exhibits without a conclusive availability result unchanged', () => {
+  const exhibits = [{ id: 'existing', visualizationAvailable: true }, { id: 'unset' }];
+
+  const updatedDocument = updateAvailabilityInYaml(exhibits, new Map());
+
+  assert.deepEqual(load(updatedDocument), exhibits);
 });
