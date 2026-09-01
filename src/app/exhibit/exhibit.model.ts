@@ -37,6 +37,7 @@ export const ExhibitSchema = z.object({
   videoUrl: z.string().optional(),
   loopVideo: z.boolean().optional(),
   visualizationUrl: z.string().optional(),
+  visualizationAvailable: z.boolean().optional(),
   hidden: z.boolean().optional(),
 });
 

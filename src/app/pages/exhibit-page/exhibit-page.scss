@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+@use 'breakpoints';
 @use 'token-utils';
 
 :host {
@@ -5,4 +7,92 @@
   height: 100%;
   overflow: hidden;
   background: token-utils.sys-slot(surface);
+
+  .app-exhibit-page--unavailable-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .app-exhibit-page--unavailable-thumbnail {
+      object-fit: cover;
+      opacity: 0.28;
+      z-index: 0;
+    }
+
+    .app-exhibit-page--unavailable-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 280px;
+      max-width: 560px;
+      width: calc(100% - 48px);
+      background-color: token-utils.sys-slot(surface-container-highest);
+      box-shadow: 1px 4px 16px 0px rgb(0, 0, 0, 0.16);
+      border-radius: 16px;
+      z-index: 1;
+
+      .app-exhibit-page--unavailable-title {
+        padding: 24px 24px 0;
+        font: token-utils.sys-slot(headline-small);
+        letter-spacing: token-utils.sys-slot(headline-small-tracking);
+        color: token-utils.sys-slot(on-surface);
+      }
+
+      .app-exhibit-page--unavailable-description {
+        padding: 0 24px;
+        font: token-utils.sys-slot(body-medium);
+        letter-spacing: token-utils.sys-slot(body-medium-tracking);
+        color: token-utils.sys-slot(on-surface-variant);
+      }
+
+      .app-exhibit-page--unavailable-button {
+        align-self: end;
+        margin: 20px 24px 20px 0;
+
+        @include mat.button-overrides(
+          (
+            text-container-height: 48px,
+            text-horizontal-padding: 20px,
+            text-touch-target-size: 48px,
+            text-label-text-font: token-utils.sys-slot(label-medium),
+            text-label-text-size: token-utils.sys-slot(label-medium-size),
+            text-label-text-weight: token-utils.sys-slot(label-medium-weight),
+            text-label-text-tracking: token-utils.sys-slot(label-medium-tracking),
+          )
+        );
+      }
+
+      @include breakpoints.breakpoint(large) {
+        .app-exhibit-page--unavailable-title {
+          padding: 32px 32px 0;
+          font: token-utils.sys-slot(headline-medium);
+          letter-spacing: token-utils.sys-slot(headline-medium-tracking);
+        }
+
+        .app-exhibit-page--unavailable-description {
+          padding: 0 32px;
+          font: token-utils.sys-slot(body-large);
+          letter-spacing: token-utils.sys-slot(body-large-tracking);
+        }
+
+        .app-exhibit-page--unavailable-button {
+          @include mat.button-overrides(
+            (
+              text-container-height: 68px,
+              text-horizontal-padding: 32px,
+              text-touch-target-size: 68px,
+              text-label-text-font: token-utils.sys-slot(label-large),
+              text-label-text-size: token-utils.sys-slot(label-large-size),
+              text-label-text-weight: token-utils.sys-slot(label-large-weight),
+              text-label-text-tracking: token-utils.sys-slot(label-large-tracking),
+            )
+          );
+        }
+      }
+    }
+  }
 }
