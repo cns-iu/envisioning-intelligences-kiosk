@@ -54,6 +54,7 @@
     "@testing-library/user-event": "^14.6.4",
     "@typescript-eslint/utils": "^8.58.0",
     "@vitest/coverage-v8": "^4.1.10",
+    "@web-alchemy/fonttools": "^1.4.0",
     "angular-eslint": "^22.0.0",
     "commander": "^15.0.0",
     "eslint": "^9.8.0",

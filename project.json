@@ -45,7 +45,7 @@
               "maximumError": "8kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "bundles"
         },
         "development": {
           "baseHref": "/",
@@ -110,6 +110,12 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "npx nx format:write"
+      }
+    },
+    "extract-material-icons": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx pyftsubset node_modules/@fontsource-variable/material-symbols-rounded/files/material-symbols-rounded-latin-full-normal.woff2 --output-file=public/media/material-symbols-rounded.woff2 --flavor=woff2 --text=closearrow_left_altarrow_right_alt --glyphs=close,arrow_left_alt,arrow_right_alt --layout-features=rlig --no-layout-closure"
       }
     }
   }
