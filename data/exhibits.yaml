@@ -204,3 +204,29 @@
     - human
   visualizationUrl: https://vis.csh.ac.at/zoonotic-web/?v=kiosk
   visualizationAvailable: true
+- id: example-visualization-unavailable
+  title: Example Visualization Unavailable
+  description: |
+    ### Example Work for Testing Purposes!
+
+    This is an example work showcasing the behavior of the kiosk when a visualization is unavailable.
+    The about modal will still display the description of the work, but the visualization will be unavailable.
+    Instead a message will be displayed to the user indicating that the visualization is unavailable and directing them back to the home page.
+  year: 2026
+  thumbnailUrl: assets/thumbnails/thumbnail-zoonotic-web.png
+  intelligenceTypes:
+    - animal
+  visualizationUrl: https://example.com/visualization-unavailable
+  visualizationAvailable: false
+- id: example-video-unavailable
+  title: Example Video Unavailable
+  description: |
+    ### Example Work for Testing Purposes!
+
+    This is an example work showcasing the behavior of the kiosk when a video is unavailable.
+    The about modal will still display the description of the work, but the video will be unavailable.
+  year: 2026
+  thumbnailUrl: assets/thumbnails/thumbnail-zoonotic-web.png
+  intelligenceTypes:
+    - animal
+  videoUrl: https://example.com/video-unavailable.mp4
