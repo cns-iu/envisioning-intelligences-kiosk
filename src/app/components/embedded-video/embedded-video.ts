@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, input } from '@angular/core';
+import { booleanAttribute, Component, input, output } from '@angular/core';
 import { createThumbnailUrl } from '../../shared/thumbnail-url';
 
 /**
@@ -19,4 +19,7 @@ export class EmbeddedVideo {
 
   /** Whether the video should loop. */
   readonly loop = input(false, { transform: booleanAttribute });
+
+  /** Emits when an error occurs while loading the video. */
+  readonly loadingError = output();
 }

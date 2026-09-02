@@ -1,5 +1,5 @@
 import { IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage } from '@angular/common';
-import { Component, inject, injectAsync, input, onIdle } from '@angular/core';
+import { Component, inject, injectAsync, input, linkedSignal, onIdle } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { EmbeddedVideo } from '../../components/embedded-video/embedded-video';
@@ -24,6 +24,12 @@ import { createThumbnailUrl } from '../../shared/thumbnail-url';
 export default class ExhibitPage {
   /** Exhibit resolved from the current route. */
   readonly exhibit = input.required<Exhibit>();
+
+  /** Whether an error occurred while loading the exhibit. */
+  readonly hasError = linkedSignal({
+    source: this.exhibit,
+    computation: () => false,
+  });
 
   /** Lazily injected dialog controller used to display details for the active exhibit. */
   readonly #dialog = injectAsync(() => import('../../services/about-dialog'), { prefetch: onIdle });

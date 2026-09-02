@@ -1,8 +1,13 @@
 @let exhibit = this.exhibit();
-@if (exhibit.visualizationAvailable !== false && exhibit.visualizationUrl; as url) {
+@if (!hasError() && exhibit.visualizationAvailable !== false && exhibit.visualizationUrl; as url) {
   <app-embedded-visualization [url]="url" />
-} @else if (exhibit.videoUrl; as videoUrl) {
-  <app-embedded-video [videoUrl]="videoUrl" [thumbnailUrl]="exhibit.thumbnailUrl" [loop]="exhibit.loopVideo" />
+} @else if (!hasError() && exhibit.videoUrl; as videoUrl) {
+  <app-embedded-video
+    [videoUrl]="videoUrl"
+    [thumbnailUrl]="exhibit.thumbnailUrl"
+    [loop]="exhibit.loopVideo"
+    (loadingError)="hasError.set(true)"
+  />
 } @else {
   <div class="app-exhibit-page--unavailable-container">
     <img
