@@ -1,4 +1,4 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, computed, inject, injectAsync, input, onIdle, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { KioskCardCarousel } from '../../components/kiosk-card-carousel/kiosk-card-carousel';
@@ -21,7 +21,7 @@ export default class LandingPage {
   /** Exhibits eligible for display as navigable cards. */
   protected readonly visibleExhibits = computed(() => this.exhibits().filter((exhibit) => !exhibit.hidden));
 
-  /** Whether the viewport matches a large or extra-large Material breakpoint. */
+  /** Whether the viewport is large enough to display the exhibit collection using a carousel. */
   protected readonly isLargeScreen = signal(false);
 
   /** Lazily injected dialog controller used to display the collection-level description. */
@@ -30,7 +30,7 @@ export default class LandingPage {
   /** Starts observing viewport changes for responsive exhibit layout selection. */
   constructor() {
     inject(BreakpointObserver)
-      .observe([Breakpoints.Large, Breakpoints.XLarge])
+      .observe('(min-width: 1280px) and (min-height: 760px)')
       .pipe(takeUntilDestroyed())
       .subscribe((result) => this.isLargeScreen.set(result.matches));
 
