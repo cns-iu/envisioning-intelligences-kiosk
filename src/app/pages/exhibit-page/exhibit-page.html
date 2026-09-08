@@ -1,6 +1,6 @@
 @let exhibit = this.exhibit();
 @if (!hasError() && exhibit.visualizationAvailable !== false && exhibit.visualizationUrl; as url) {
-  <app-embedded-visualization [url]="url" />
+  <app-embedded-visualization [url]="url" [loadingDurationMs]="exhibit.visualizationLoadingDurationMs" />
 } @else if (!hasError() && exhibit.videoUrl; as videoUrl) {
   <app-embedded-video
     [videoUrl]="videoUrl"

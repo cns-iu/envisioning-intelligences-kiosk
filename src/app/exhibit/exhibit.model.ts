@@ -38,6 +38,7 @@ export const ExhibitSchema = z.object({
   loopVideo: z.boolean().optional(),
   visualizationUrl: z.string().optional(),
   visualizationAvailable: z.boolean().optional(),
+  visualizationLoadingDurationMs: z.number().optional(),
   hidden: z.boolean().optional(),
 });
 
