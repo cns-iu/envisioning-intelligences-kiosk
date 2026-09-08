@@ -1,9 +1,45 @@
 :host {
   display: block;
+  position: relative;
   height: 100%;
 
   .app-embedded-visualization--iframe {
     outline: none;
     border: none;
+    z-index: 0;
+  }
+
+  .app-embedded-visualization--overlay {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+
+    &.app-embedded-visualization--overlay-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .app-embedded-visualization-overlay-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+
+      mat-progress-spinner {
+        width: 50px;
+        height: 50px;
+        color: white;
+      }
+    }
   }
 }

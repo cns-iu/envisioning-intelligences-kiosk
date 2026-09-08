@@ -6,3 +6,9 @@
   [src]="iframeUrl()"
 >
 </iframe>
+
+<div class="app-embedded-visualization--overlay" [class.app-embedded-visualization--overlay-active]="isLoading()">
+  <div class="app-embedded-visualization-overlay-content">
+    <mat-progress-spinner mode="determinate" diameter="180" [value]="loadingProgress()" />
+  </div>
+</div>
