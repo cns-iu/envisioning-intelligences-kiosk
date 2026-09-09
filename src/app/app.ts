@@ -1,13 +1,20 @@
 import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, ActivatedRouteSnapshot, isActive, Router, RouterOutlet } from '@angular/router';
+import { fromEvent, merge } from 'rxjs';
 import { Header } from './components/header/header';
+import { Screensaver } from './components/screensaver/screensaver';
 import { AppEvents } from './services/app-events';
 import { ScreenSizeDialog } from './services/screen-size-dialog';
+import { idleAfter } from './shared/idle-after';
+
+/** The amount of time in milliseconds to wait before activating the screensaver. */
+const IDLE_TIME_MS = 7 * 60 * 1000; // 7 minutes
 
 /** Hosts the application header and the currently active routed page. */
 @Component({
   selector: 'app-root',
-  imports: [Header, RouterOutlet],
+  imports: [Header, RouterOutlet, Screensaver],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -21,6 +28,13 @@ export class App {
   /** Application event bus used to notify the active page about header actions. */
   readonly #events = inject(AppEvents);
 
+  /** Observable that emits when the user interacts with the application. */
+  readonly #activity$ = merge(
+    fromEvent(document, 'pointerdown'),
+    fromEvent(document, 'keydown'),
+    fromEvent(document, 'wheel', { passive: true }),
+  );
+
   /** Most specific route title to display while viewing an exhibit. */
   protected readonly title = computed(() => {
     if (!this.#isExhibitPage()) {
@@ -28,6 +42,11 @@ export class App {
     }
 
     return this.#getTitle(this.#activatedRoute);
+  });
+
+  /** Whether the screensaver is currently active. */
+  protected readonly screensaverActive = toSignal(this.#activity$.pipe(idleAfter(IDLE_TIME_MS)), {
+    initialValue: false,
   });
 
   /** Sets up screen size dialog */

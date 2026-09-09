@@ -3,3 +3,9 @@
 <div class="app--content">
   <router-outlet />
 </div>
+
+<div class="app--screensaver-container">
+  @defer (when screensaverActive(); prefetch on idle) {
+    <app-screensaver [active]="screensaverActive()" />
+  }
+</div>
