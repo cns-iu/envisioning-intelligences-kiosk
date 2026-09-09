@@ -3,14 +3,16 @@ import {
   Component,
   computed,
   CUSTOM_ELEMENTS_SCHEMA,
+  DestroyRef,
   ElementRef,
+  inject,
   input,
   viewChild,
 } from '@angular/core';
 import { register, SwiperContainer } from 'swiper/element';
 import * as a11yCssModule from 'swiper/element/css/a11y';
 import * as keyboardCssModule from 'swiper/element/css/keyboard';
-import { A11y, Keyboard, Navigation, Pagination } from 'swiper/modules';
+import { A11y, Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules';
 import { SwiperOptions } from 'swiper/types';
 import { Exhibit } from '../../exhibit/exhibit.model';
 import { KioskCardCarouselControls } from './controls/kiosk-card-carousel-controls';
@@ -19,6 +21,10 @@ import { KioskCardCarouselSlide } from './slide/kiosk-card-carousel-slide';
 /** Base Swiper behavior shared by every kiosk card carousel instance. */
 const SWIPER_CONFIG: SwiperOptions = {
   a11y: true,
+  autoplay: {
+    delay: 10000, // 10 seconds
+    disableOnInteraction: true,
+  },
   keyboard: true,
   loop: true,
   observer: true,
@@ -27,11 +33,14 @@ const SWIPER_CONFIG: SwiperOptions = {
   slidesPerView: 1,
   spaceBetween: 16,
   touchStartPreventDefault: false,
-  modules: [A11y, Keyboard, Navigation, Pagination],
+  modules: [A11y, Autoplay, Keyboard, Navigation, Pagination],
   injectStyles: [a11yCssModule, keyboardCssModule]
     .map((module) => (module as { default: string }).default)
     .filter((text) => !!text),
 };
+
+/** Time after user interaction before autoplay restarts (in milliseconds). */
+const AUTOPLAY_RESTART_DELAY = 60000; // 1 minute
 
 /**
  * Renders a carousel of exhibit cards grouped into slides, with navigation and pagination controls.
@@ -65,6 +74,9 @@ export class KioskCardCarousel {
   /** Rendered controls whose element references are supplied to Swiper. */
   private readonly controls = viewChild.required(KioskCardCarouselControls);
 
+  /** `setTimeout` handle for the autoplay restart timer. */
+  #autoplayTimeout?: ReturnType<typeof setTimeout>;
+
   /** Registers Swiper's custom elements and initializes the rendered carousel after its first render. */
   constructor() {
     register();
@@ -76,5 +88,15 @@ export class KioskCardCarousel {
       Object.assign(el, SWIPER_CONFIG, controls.config());
       el.initialize();
     });
+
+    inject(DestroyRef).onDestroy(() => clearTimeout(this.#autoplayTimeout));
+  }
+
+  /**
+   * Schedules a restart of the Swiper autoplay after a fixed delay.
+   */
+  protected rescheduleAutoplay(): void {
+    const el = this.swiperEl().nativeElement;
+    this.#autoplayTimeout = setTimeout(() => el.swiper.autoplay.start(), AUTOPLAY_RESTART_DELAY);
   }
 }

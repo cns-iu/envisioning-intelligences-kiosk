@@ -1,4 +1,9 @@
-<swiper-container class="app-kiosk-card-carousel--container" init="false" #swiperEl>
+<swiper-container
+  class="app-kiosk-card-carousel--container"
+  init="false"
+  (swiperautoplaystop)="rescheduleAutoplay()"
+  #swiperEl
+>
   @for (exhibits of groupedExhibits(); track $index) {
     <swiper-slide>
       <app-kiosk-card-carousel-slide [exhibits]="exhibits" [isFirstSlide]="$first" />
