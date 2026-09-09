@@ -1,6 +1,6 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { MatRippleLoader } from '@angular/material/core';
-import { render, screen, waitFor } from '@testing-library/angular';
+import { fireEvent, render, screen, waitFor } from '@testing-library/angular';
 import { EMPTY } from 'rxjs';
 import { register, SwiperContainer } from 'swiper/element';
 import { Exhibit } from '../../exhibit/exhibit.model';
@@ -43,7 +43,21 @@ describe('KioskCardCarousel', () => {
     return { ...renderResult, initialize };
   }
 
-  afterEach(() => vi.restoreAllMocks());
+  function mockSwiperAutoplay(swiper: SwiperContainer) {
+    const start = vi.fn();
+
+    Object.defineProperty(swiper, 'swiper', {
+      configurable: true,
+      value: { autoplay: { start } },
+    });
+
+    return start;
+  }
+
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.restoreAllMocks();
+  });
 
   it('groups exhibits into slides of the configured size', async () => {
     const exhibits = Array.from({ length: 5 }, (_, index) => createExhibit(index + 1));
@@ -64,7 +78,7 @@ describe('KioskCardCarousel', () => {
     expect(container.querySelectorAll('swiper-slide')).toHaveLength(0);
   });
 
-  it('initializes Swiper with keyboard, accessibility, and rendered control elements', async () => {
+  it('initializes Swiper with autoplay, keyboard, accessibility, and rendered control elements', async () => {
     const { container, initialize } = await setup([createExhibit(1)]);
     const swiper = container.querySelector<SwiperContainer>('swiper-container');
     const [previousButton, nextButton] = screen.getAllByRole('button');
@@ -73,6 +87,7 @@ describe('KioskCardCarousel', () => {
     await waitFor(() => expect(initialize).toHaveBeenCalledOnce());
     expect(swiper).toMatchObject({
       a11y: true,
+      autoplay: { delay: 10000, disableOnInteraction: true },
       keyboard: true,
       loop: true,
       observer: true,
@@ -80,5 +95,44 @@ describe('KioskCardCarousel', () => {
       navigation: { nextEl: nextButton, prevEl: previousButton },
       pagination: { clickable: true, type: 'bullets' },
     });
+  });
+
+  it('restarts autoplay one minute after Swiper stops it', async () => {
+    const { container } = await setup([createExhibit(1)]);
+    const swiper = container.querySelector<SwiperContainer>('swiper-container');
+
+    if (!swiper) {
+      throw new Error('Expected the carousel to render a Swiper container.');
+    }
+
+    const startAutoplay = mockSwiperAutoplay(swiper);
+    vi.useFakeTimers();
+
+    fireEvent(swiper, new CustomEvent('swiperautoplaystop'));
+    vi.advanceTimersByTime(59999);
+
+    expect(startAutoplay).not.toHaveBeenCalled();
+
+    vi.advanceTimersByTime(1);
+
+    expect(startAutoplay).toHaveBeenCalledOnce();
+  });
+
+  it('cancels a pending autoplay restart when destroyed', async () => {
+    const { container, fixture } = await setup([createExhibit(1)]);
+    const swiper = container.querySelector<SwiperContainer>('swiper-container');
+
+    if (!swiper) {
+      throw new Error('Expected the carousel to render a Swiper container.');
+    }
+
+    const startAutoplay = mockSwiperAutoplay(swiper);
+    vi.useFakeTimers();
+
+    fireEvent(swiper, new CustomEvent('swiperautoplaystop'));
+    fixture.destroy();
+    vi.advanceTimersByTime(60000);
+
+    expect(startAutoplay).not.toHaveBeenCalled();
   });
 });
