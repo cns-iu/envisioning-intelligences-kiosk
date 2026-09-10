@@ -3,7 +3,9 @@
 @use 'token-utils';
 
 :host {
-  display: none;
+  $fade-duration: 0.3s;
+
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -12,9 +14,26 @@
   height: 100%;
   padding: 40px;
   background-color: token-utils.sys-slot(background);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity $fade-duration ease-in-out,
+    visibility 0s linear $fade-duration;
 
   &.app-screensaver--active {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 
   .app-screensaver--logo {
