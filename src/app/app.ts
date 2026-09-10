@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, ActivatedRouteSnapshot, isActive, Router, RouterOutlet } from '@angular/router';
 import { fromEvent, merge } from 'rxjs';
@@ -19,8 +19,11 @@ const IDLE_TIME_MS = 7 * 60 * 1000; // 7 minutes
   styleUrl: './app.scss',
 })
 export class App {
+  /** Router reference. */
+  readonly #router = inject(Router);
+
   /** Whether the current URL belongs to an exhibit detail page. */
-  readonly #isExhibitPage = isActive('/exhibit', inject(Router));
+  readonly #isExhibitPage = isActive('/exhibit', this.#router);
 
   /** Root route used to discover the title of the active child route. */
   readonly #activatedRoute = inject(ActivatedRoute);
@@ -52,6 +55,12 @@ export class App {
   /** Sets up screen size dialog */
   constructor() {
     inject(ScreenSizeDialog).startMonitor();
+
+    effect(() => {
+      if (this.screensaverActive()) {
+        this.#router.navigate(['/']);
+      }
+    });
   }
 
   /** Requests that the active page open its contextual About dialog. */
