@@ -1,3 +1,12 @@
 <app-logo class="app-screensaver--logo" />
-<markdown class="app-screensaver--content" [data]="currentContent()" />
+<div class="app-screensaver--content-container">
+  @for (content of [currentContent()]; track content) {
+    <markdown
+      animate.enter="app-screensaver--content-enter"
+      animate.leave="app-screensaver--content-leave"
+      class="app-screensaver--content"
+      [data]="content"
+    />
+  }
+</div>
 <app-touch-icon class="app-screensaver--icon" />
