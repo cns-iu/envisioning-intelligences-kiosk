@@ -1,6 +1,8 @@
 import { coerceArray } from '@angular/cdk/coercion';
+import { IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage } from '@angular/common';
 import { Component, computed, effect, input, linkedSignal } from '@angular/core';
 import { MarkdownComponent } from 'ngx-markdown';
+import { createThumbnailUrl } from '../../shared/thumbnail-url';
 import { Logo } from '../logo/logo';
 import { TouchIcon } from './touch-icon/touch-icon';
 
@@ -16,9 +18,15 @@ const SCREENSAVER_DEFAULT_CONTENT = [
 /** Displays rotating prompts while the application is idle. */
 @Component({
   selector: 'app-screensaver',
-  imports: [Logo, MarkdownComponent, TouchIcon],
+  imports: [Logo, MarkdownComponent, NgOptimizedImage, TouchIcon],
   templateUrl: './screensaver.html',
   styleUrl: './screensaver.scss',
+  providers: [
+    {
+      provide: IMAGE_LOADER,
+      useValue: ({ src, width }: ImageLoaderConfig) => createThumbnailUrl(src, width),
+    },
+  ],
   host: {
     class: 'app-screensaver',
     '[class.app-screensaver--active]': 'active()',
