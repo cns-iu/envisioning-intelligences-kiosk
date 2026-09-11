@@ -1,5 +1,6 @@
 import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, ActivatedRouteSnapshot, isActive, Router, RouterOutlet } from '@angular/router';
 import { fromEvent, merge } from 'rxjs';
 import { Header } from './components/header/header';
@@ -21,6 +22,9 @@ export const IDLE_TIME_MS = 7 * 60 * 1000; // 7 minutes
 export class App {
   /** Router reference. */
   readonly #router = inject(Router);
+
+  /** Dialog reference. */
+  readonly #dialog = inject(MatDialog);
 
   /** Whether the current URL belongs to an exhibit detail page. */
   readonly #isExhibitPage = isActive('/exhibit', this.#router);
@@ -59,6 +63,7 @@ export class App {
     effect(() => {
       if (this.screensaverActive()) {
         this.#router.navigate(['/']);
+        this.#dialog.closeAll();
       }
     });
   }

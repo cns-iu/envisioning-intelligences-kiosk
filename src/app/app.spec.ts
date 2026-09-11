@@ -1,5 +1,6 @@
 import { Component, ErrorHandler } from '@angular/core';
 import { DeferBlockState } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 import { fireEvent, render, screen, type RenderComponentOptions } from '@testing-library/angular';
 import { MarkdownService } from 'ngx-markdown';
 import { of } from 'rxjs';
@@ -118,6 +119,22 @@ describe('App', () => {
     fireEvent.pointerUp(screensaver);
     fixture.detectChanges();
     expect(screensaver).not.toHaveClass('app-screensaver--active');
+  });
+
+  it('closes all dialogs when the screensaver activates', async () => {
+    vi.useFakeTimers();
+    const closeAll = vi.fn();
+    const { fixture } = await setup({
+      deferBlockStates: DeferBlockState.Complete,
+      providers: [{ provide: MatDialog, useValue: { closeAll } }],
+    });
+
+    expect(closeAll).not.toHaveBeenCalled();
+
+    await vi.advanceTimersByTimeAsync(IDLE_TIME_MS);
+    fixture.detectChanges();
+
+    expect(closeAll).toHaveBeenCalledOnce();
   });
 
   it('reports route resolution errors and redirects home', async () => {
