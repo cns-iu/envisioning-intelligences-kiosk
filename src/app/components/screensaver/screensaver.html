@@ -1,0 +1,22 @@
+<img
+  class="app-screensaver--background"
+  alt=""
+  draggable="false"
+  fill
+  ngSrc="assets/backgrounds/network-screensaver.png"
+  ngSrcset="600w, 1280w, 1920w, 2880w"
+  sizes="100vw"
+/>
+
+<app-logo class="app-screensaver--logo" />
+<div class="app-screensaver--content-container">
+  @for (content of [currentContent()]; track content) {
+    <markdown
+      animate.enter="app-screensaver--content-enter"
+      animate.leave="app-screensaver--content-leave"
+      class="app-screensaver--content"
+      [data]="content"
+    />
+  }
+</div>
+<app-touch-icon class="app-screensaver--icon" />
