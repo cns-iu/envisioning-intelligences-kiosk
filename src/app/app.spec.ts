@@ -3,7 +3,7 @@ import { DeferBlockState } from '@angular/core/testing';
 import { fireEvent, render, screen, type RenderComponentOptions } from '@testing-library/angular';
 import { MarkdownService } from 'ngx-markdown';
 import { of } from 'rxjs';
-import { App } from './app';
+import { App, IDLE_TIME_MS } from './app';
 import { appConfig } from './app.config';
 import { ExhibitStore } from './exhibit/exhibit.store';
 import { AppEvents } from './services/app-events';
@@ -11,7 +11,6 @@ import { AppEvents } from './services/app-events';
 @Component({ template: '' })
 class RouteStub {}
 
-const IDLE_TIME_MS = 7 * 60 * 1000;
 const DEFAULT_SCREENSAVER_PROMPT =
   'What does intelligence look like when exhibited by humans or machines, plants or animals?';
 
@@ -73,7 +72,7 @@ describe('App', () => {
   });
 
   it.each([
-    ['pointer interaction', () => fireEvent.pointerDown(document)],
+    ['pointer interaction', () => fireEvent.pointerUp(document)],
     ['keyboard interaction', () => fireEvent.keyDown(document, { key: 'Enter' })],
     ['wheel interaction', () => fireEvent.wheel(document)],
   ])('activates after seven idle minutes and dismisses on %s', async (_interaction, interact) => {
@@ -94,6 +93,30 @@ describe('App', () => {
     interact();
     fixture.detectChanges();
 
+    expect(screensaver).not.toHaveClass('app-screensaver--active');
+  });
+
+  it('keeps the screensaver active until a pointer interaction finishes', async () => {
+    vi.useFakeTimers();
+    const { fixture } = await setup({
+      deferBlockStates: DeferBlockState.Complete,
+    });
+
+    const screensaver = screen.getByText(DEFAULT_SCREENSAVER_PROMPT).closest('app-screensaver');
+    if (!screensaver) {
+      throw new Error('Expected the screensaver prompt to be rendered inside app-screensaver.');
+    }
+
+    await vi.advanceTimersByTimeAsync(IDLE_TIME_MS);
+    fixture.detectChanges();
+    expect(screensaver).toHaveClass('app-screensaver--active');
+
+    fireEvent.pointerDown(screensaver);
+    fixture.detectChanges();
+    expect(screensaver).toHaveClass('app-screensaver--active');
+
+    fireEvent.pointerUp(screensaver);
+    fixture.detectChanges();
     expect(screensaver).not.toHaveClass('app-screensaver--active');
   });
 

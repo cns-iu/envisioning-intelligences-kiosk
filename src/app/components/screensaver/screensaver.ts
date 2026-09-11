@@ -5,7 +5,7 @@ import { Logo } from '../logo/logo';
 import { TouchIcon } from './touch-icon/touch-icon';
 
 /** The amount of time each piece of screensaver content remains visible. */
-const CONTENT_CYCLE_TIME_MS = 7 * 60 * 1000; // 7 minutes
+export const CONTENT_CYCLE_TIME_MS = 45 * 1000; // 45 seconds
 
 /** Prompts shown when the screensaver consumer does not provide custom content. */
 const SCREENSAVER_DEFAULT_CONTENT = [

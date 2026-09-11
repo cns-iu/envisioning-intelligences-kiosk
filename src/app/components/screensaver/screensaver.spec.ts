@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/angular';
 import { MarkdownService } from 'ngx-markdown';
-import { Screensaver } from './screensaver';
-
-const CONTENT_CYCLE_TIME_MS = 7 * 60 * 1000;
+import { CONTENT_CYCLE_TIME_MS, Screensaver } from './screensaver';
 
 describe('Screensaver', () => {
   async function setup(inputs: Record<string, unknown> = {}) {

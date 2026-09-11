@@ -9,7 +9,7 @@ import { ScreenSizeDialog } from './services/screen-size-dialog';
 import { idleAfter } from './shared/idle-after';
 
 /** The amount of time in milliseconds to wait before activating the screensaver. */
-const IDLE_TIME_MS = 7 * 60 * 1000; // 7 minutes
+export const IDLE_TIME_MS = 7 * 60 * 1000; // 7 minutes
 
 /** Hosts the application header and the currently active routed page. */
 @Component({
@@ -33,7 +33,7 @@ export class App {
 
   /** Observable that emits when the user interacts with the application. */
   readonly #activity$ = merge(
-    fromEvent(document, 'pointerdown'),
+    fromEvent(document, 'pointerup'),
     fromEvent(document, 'keydown'),
     fromEvent(document, 'wheel', { passive: true }),
   );
