@@ -8,6 +8,7 @@ import { Screensaver } from './components/screensaver/screensaver';
 import { AppEvents } from './services/app-events';
 import { ScreenSizeDialog } from './services/screen-size-dialog';
 import { idleAfter } from './shared/idle-after';
+import { IS_KIOSK_MODE } from './shared/kiosk-mode';
 
 /** The amount of time in milliseconds to wait before activating the screensaver. */
 export const IDLE_TIME_MS = 7 * 60 * 1000; // 7 minutes
@@ -56,8 +57,11 @@ export class App {
     initialValue: false,
   });
 
-  /** Sets up screen size dialog */
+  /** Starts application-wide event monitoring. */
   constructor() {
+    // Instantiate the root signal before routed components can request it.
+    inject(IS_KIOSK_MODE);
+
     inject(ScreenSizeDialog).startMonitor();
 
     effect(() => {

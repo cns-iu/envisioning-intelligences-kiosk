@@ -35,4 +35,16 @@ describe('EmbeddedVideo', () => {
 
     expect(container.querySelector('video')).toHaveAttribute('loop');
   });
+
+  it('does not limit the video controls by default', async () => {
+    const { container } = await setup();
+
+    expect(container.querySelector('video')).not.toHaveAttribute('controlslist');
+  });
+
+  it('prevents downloads and fullscreen playback when controls are limited', async () => {
+    const { container } = await setup({ limitControls: true });
+
+    expect(container.querySelector('video')).toHaveAttribute('controlslist', 'nodownload nofullscreen');
+  });
 });

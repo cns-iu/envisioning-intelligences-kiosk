@@ -6,6 +6,7 @@ import { EmbeddedVideo } from '../../components/embedded-video/embedded-video';
 import { EmbeddedVisualization } from '../../components/embedded-visualization/embedded-visualization';
 import { Exhibit } from '../../exhibit/exhibit.model';
 import { AppEvents } from '../../services/app-events';
+import { IS_KIOSK_MODE } from '../../shared/kiosk-mode';
 import { createThumbnailUrl } from '../../shared/thumbnail-url';
 
 /** Renders the detail view for the exhibit selected by the current route. */
@@ -25,8 +26,11 @@ export default class ExhibitPage {
   /** Exhibit resolved from the current route. */
   readonly exhibit = input.required<Exhibit>();
 
+  /** Whether the application is currently in kiosk mode. */
+  protected readonly isKioskMode = inject(IS_KIOSK_MODE);
+
   /** Whether an error occurred while loading the exhibit. */
-  readonly hasError = linkedSignal({
+  protected readonly hasError = linkedSignal({
     source: this.exhibit,
     computation: () => false,
   });

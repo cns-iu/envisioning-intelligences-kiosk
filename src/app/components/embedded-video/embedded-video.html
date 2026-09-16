@@ -1,3 +1,10 @@
-<video autoplay controls disablepictureinpicture [attr.loop]="loop() ? '' : null" [attr.poster]="thumbnailUrl()">
+<video
+  autoplay
+  controls
+  disablepictureinpicture
+  [attr.controlslist]="limitControls() ? 'nodownload nofullscreen' : null"
+  [attr.loop]="loop() ? '' : null"
+  [attr.poster]="thumbnailUrl()"
+>
   <source type="video/mp4" [attr.src]="videoUrl()" (error)="loadingError.emit()" />
 </video>
