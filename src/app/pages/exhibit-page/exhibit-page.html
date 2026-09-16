@@ -6,6 +6,7 @@
     [videoUrl]="videoUrl"
     [thumbnailUrl]="exhibit.thumbnailUrl"
     [loop]="exhibit.loopVideo"
+    [limitControls]="isKioskMode()"
     (loadingError)="hasError.set(true)"
   />
 } @else {

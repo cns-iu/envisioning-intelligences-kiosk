@@ -1,8 +1,10 @@
+import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { render, waitFor } from '@testing-library/angular';
 import { Exhibit } from '../../exhibit/exhibit.model';
 import AboutDialog from '../../services/about-dialog';
 import { AppEvents } from '../../services/app-events';
+import { IS_KIOSK_MODE } from '../../shared/kiosk-mode';
 import ExhibitPage from './exhibit-page';
 
 describe('ExhibitPage', () => {
@@ -17,10 +19,14 @@ describe('ExhibitPage', () => {
 
   const open = vi.fn();
 
-  async function setup() {
+  async function setup(exhibit = EXHIBIT, isKioskMode = false) {
     return render(ExhibitPage, {
-      inputs: { exhibit: EXHIBIT },
-      providers: [AppEvents, { provide: AboutDialog, useValue: { open } }],
+      inputs: { exhibit },
+      providers: [
+        AppEvents,
+        { provide: AboutDialog, useValue: { open } },
+        { provide: IS_KIOSK_MODE, useValue: signal(isKioskMode) },
+      ],
     });
   }
 
@@ -40,5 +46,15 @@ describe('ExhibitPage', () => {
     TestBed.inject(AppEvents).dispatch('open-about');
 
     await waitFor(() => expect(open).toHaveBeenCalledWith(EXHIBIT));
+  });
+
+  it('limits embedded video controls in kiosk mode', async () => {
+    const videoExhibit: Exhibit = {
+      ...EXHIBIT,
+      videoUrl: 'assets/videos/collective-intelligence.mp4',
+    };
+    const { container } = await setup(videoExhibit, true);
+
+    expect(container.querySelector('video')).toHaveAttribute('controlslist', 'nodownload nofullscreen');
   });
 });
